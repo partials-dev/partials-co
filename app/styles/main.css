@@ -1,0 +1,263 @@
+/* CSS Document */
+
+/* Nav Bar */
+
+#navigation {
+  border-radius: 0px;
+}
+
+#home .navbar-default .navbar-toggle .icon-bar {
+  background-color: #B3B2B2;
+}
+#home #navigation {
+  padding-right: 0;
+  box-shadow: none;
+}
+
+@media (min-width: 768px) {
+  #navigation {
+    background: transparent;
+    border-color: transparent;
+    padding-top: 10px;
+  }
+}
+
+#home nav a {
+  color: #B3B2B2;
+  text-shadow: 0 0 0 transparent !important;
+  font-size: 20px;
+}
+
+#home .nav > li > a {
+  padding-left: 30px;
+  padding-right: 0;
+}
+
+#home .navbar-header .navbar-brand {
+  color: #6B6262;
+  font-size: 30px;
+  font-weight: 200;
+  padding-left: 15px;
+  letter-spacing: 1px;
+  margin-left: 0;
+  text-shadow: 0 0 0 transparent;
+}
+
+#nav-toggle {
+  border-color: transparent;
+}
+
+/* Alternate link colors for nav bar */
+
+#home .nav li:nth-child(4n + 1) a:hover {
+  border-color: #3FBFE2;
+  color: #3FBFE2; 
+}
+
+#home .nav li:nth-child(4n + 1) a.active {
+  border-color: #3FBFE2;
+  color: #3FBFE2; 
+}
+
+#home .nav li:nth-child(4n + 2) a:hover {
+  border-color: #FFD000;
+  color: #FFD000;
+}
+
+#home .nav li:nth-child(4n + 2) a.active {
+  border-color: #FFD000;
+  color: #FFD000;
+}
+
+#home .nav li:nth-child(4n + 3) a:hover {
+  border-color: #C13A05;
+  color: #C13A05;
+}
+
+#home .nav li:nth-child(4n + 3) a.active {
+  border-color: #C13A05;
+  color: #C13A05;
+}
+
+#home .nav li:nth-child(4n + 4) a:hover {
+  border-color: #694473;
+  color: #694473;
+}
+
+#home .nav li:nth-child(4n + 4) a.active {
+  border-color: #694473;
+  color: #694473;
+}
+
+/* Middle */
+
+body {
+  -webkit-font-smoothing: antialiased;
+  font-size: 14px;
+}
+
+#cover-image {
+  background: url(/img/partial_cinema_press_photo.png);
+  background-position: center;
+  background-size: 100%;
+  height: 500px;
+}
+
+#home .pull-down {
+  margin-top: 10px;
+  margin-bottom: 50px;
+}
+
+.below-navbar {
+  margin-top: 75px;
+}
+
+.info {
+  margin-bottom: 40px;
+  font-size: 1.05em;
+}
+
+#bear {
+  display: inline-block;
+  text-align: center;
+  width: 60px;
+}
+
+@media (min-width: 768px) {
+  #home .pull-down {
+    margin-top: 50px;
+  }
+  .info-heading {
+    margin-top: 20px;
+  }
+  #home .navbar-header .navbar-brand {
+    margin-left: -15px;
+  }
+}
+
+@media (min-width: 992px) {
+  .embed-responsive-16by9 {
+    padding-bottom: 33%;
+  }
+  #home .pull-down {
+    margin-top: 130px;
+    margin-bottom: 130px;
+  }
+}
+
+@media (max-width: 991px) {
+  #home .info {
+    text-align: center;
+    font-size: 14px;
+  }
+  #home .info p {
+    width: 100%;
+    text-align: left;
+  }
+  #lightweight-embed {
+    height: 120%;
+  }
+}
+
+.info-heading {
+  margin-bottom: 20px;
+  margin-left: 20px;
+  font-size: 1.1em;
+}
+
+.info h1 {
+  margin-bottom: 2px;
+  margin-top: 10px;
+  font-size: 46px;
+}
+
+.info p {
+  width: 83%;
+  line-height: 1.5em;
+}
+
+#home .btn-default {
+  box-shadow: none;
+  border: 1px solid black;
+}
+
+#home a {
+  transition: all 0.1s linear;
+  transition-property: all;
+  transition-duration: 0.1s;
+  transition-timing-function: linear;
+  transition-delay: initial;
+}
+
+#home .btn-default:hover {
+  background-color: white;
+}
+
+#home .call-to-action {
+  border-color: #3FBFE2;
+  color: #3FBFE2; 
+}
+
+#home .hover-blue:hover {
+  border-color: #3FBFE2;
+  color: #3FBFE2; 
+}
+
+#home .hover-yellow:hover {
+  border-color: #FFD000;
+  color: #FFD000;
+}
+
+#home .hover-red:hover {
+  border-color: #C13A05;
+  color: #C13A05;
+}
+
+#home .hover-purple:hover {
+  border-color: #694473;
+  color: #694473;
+}
+
+section {
+  padding-top: 50px;
+}
+
+/* Add read-more functionality to sections */
+
+.read-more {
+  display: none;
+}
+
+.abridged .read-more {
+  display: inline;
+}
+
+.abridged p:nth-of-type(n + 2) {
+  display: none;
+}
+
+/* Footer */
+
+#footer { 
+  text-align: center;
+  color: #A1AAB6;
+  padding-top: 300px;
+  padding-bottom: 20px;
+}
+
+/* Misc. */
+
+@media (max-width: 500px) {
+  .visible-xxs-block {
+    display: block;
+  }
+  .visible-xs-block {
+    display: none !important;
+  }
+}
+
+@media (min-width: 501px) {
+  .visible-xxs-block {
+    display: none;
+  }
+}

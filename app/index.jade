@@ -1,0 +1,19 @@
+extends ./partials/layout.jade
+block content
+  .middle.container.pull-down
+
+    .col-md-6.info
+      .info-heading
+        h1 We're a band.
+        span Among other things.
+          //span#bear ʅʕ•ᴥ•ʔʃ
+
+      p
+        | All sounds are made up of partials, repeating vibrations that can be smaller than acorns and larger than oaks. 
+        strong With them we make worlds.
+        | We're musicians, but we also make apps, video games, and art.
+
+      a.btn.btn-default.call-to-action.hover-yellow(href='https://www.youtube.com/channel/UCQh5Sxu9Rvtaqg7Fo4xMogw') Watch some videos!
+
+    .col-md-6.embed-responsive.embed-responsive-16by9
+      iframe#player.embed-responsive-item(src='https://www.youtube.com/embed/nKOF5qtlO0w?color=white&controls=2&enablejsapi=1&autohide=1&showinfo=0', allowfullscreen='')
