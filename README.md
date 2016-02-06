@@ -4,8 +4,11 @@ Our website is built on Google's [Web Starter Kit](https://developers.google.com
 ## Quickstart
 
 `gulp serve` to run a development server on your machine.
+
 `gulp serve:dist` to run the optimized deployment version of the app.
+
 `gulp` to build the app for deployment.
+
 `firebase deploy` to upload the most recent build to Firebase.
 
 See the [commands](docs/commands.md) documentation for more details.
