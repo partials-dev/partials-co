@@ -29,8 +29,8 @@
 }
 
 #home .nav > li > a {
-  padding-left: 30px;
-  padding-right: 0;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 #home .navbar-header .navbar-brand {
@@ -135,8 +135,12 @@ body {
   }
 }
 
+#home .embed-responsive-youtube {
+  padding-bottom: 64%;
+}
+
 @media (min-width: 992px) {
-  .embed-responsive-16by9 {
+  #home .embed-responsive-youtube {
     padding-bottom: 33%;
   }
   #home .pull-down {
@@ -251,7 +255,7 @@ section {
   .visible-xxs-block {
     display: block;
   }
-  .visible-xs-block {
+  #home .visible-xs-block {
     display: none !important;
   }
 }
