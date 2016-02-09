@@ -15,6 +15,8 @@ See the [commands](docs/commands.md) documentation for more details.
 
 ## Troubleshooting
 
+If you're not seeing your changes when running `gulp serve:dist` or after deploying, open the URL in an incognito window or clear your cache.
+
 If you run into build problems, you may need to run
 
 `npm install imagemin`
