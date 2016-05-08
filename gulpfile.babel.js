@@ -60,7 +60,6 @@ gulp.task('images', () =>
 gulp.task('copy', () =>
   gulp.src([
     'app/*',
-    '!app/*.html',
     'node_modules/apache-server-configs/dist/.htaccess',
     // don't copy jade-related files
     '!app/**/*.jade',
@@ -131,17 +130,17 @@ gulp.task('scripts', () =>
 gulp.task('jade', () => {
   return gulp.src(['app/**/*.jade', '!app/partials/**/*.jade'])
     .pipe($.jade({pretty: true}))
-    .pipe(gulp.dest('app'));
+    .pipe(gulp.dest('.tmp'));
 });
 
 // Scan your HTML for assets & optimize them
 gulp.task('html', ['jade'], () => {
-  return gulp.src('app/**/*.html')
+  return gulp.src('.tmp/**/*.html')
     .pipe($.useref({searchPath: '{.tmp,app}'}))
     // Remove any unused CSS
     .pipe($.if('*.css', $.uncss({
       html: [
-        'app/index.html'
+        '.tmp/index.html'
       ],
       // CSS Selectors for UnCSS to ignore
       ignore: ['.collapse.in', '.collapsing']
@@ -176,7 +175,7 @@ gulp.task('serve', ['jade', 'scripts', 'styles'], () => {
   browserSync({
     notify: false,
     // Customize the Browsersync console logging prefix
-    logPrefix: 'WSK',
+    logPrefix: 'PS',
     // Allow scroll syncing across breakpoints
     scrollElementMapping: ['main', '.mdl-layout'],
     // Run as an https by uncommenting 'https: true'
@@ -187,8 +186,8 @@ gulp.task('serve', ['jade', 'scripts', 'styles'], () => {
     port: 3000
   });
 
-  gulp.watch(['app/**/*.jade'], ['jade']);
-  gulp.watch(['app/**/*.html'], reload);
+  gulp.watch(['app/**/*.jade'], ['jade', reload]);
+  gulp.watch(['.tmp/**/*.html'], reload);
   gulp.watch(['app/styles/**/*.{scss,css}'], ['styles', reload]);
   gulp.watch(['app/scripts/**/*.js'], ['lint', 'scripts']);
   gulp.watch(['app/images/**/*'], reload);

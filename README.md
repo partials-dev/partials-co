@@ -1,5 +1,5 @@
 ## Overview
-Our website is built on Google's [Web Starter Kit](https://developers.google.com/web/starter-kit), a framework for writing great web apps.
+Our website is built on Google's [Web Starter Kit](https://developers.google.com/web/starter-kit), a framework for writing fast, modern web apps.
 
 ## Quickstart
 
@@ -32,4 +32,4 @@ Contributions, questions and comments are all welcome and encouraged.
 ## License
 
 Apache 2.0  
-Copyright 2015 Partials
+Copyright 2016 Partials
