@@ -140,7 +140,9 @@ gulp.task('html', ['jade'], () => {
     // Remove any unused CSS
     .pipe($.if('*.css', $.uncss({
       html: [
-        '.tmp/index.html'
+        '.tmp/index.html',
+        '.tmp/booking.html',
+        '.tmp/shows.html'
       ],
       // CSS Selectors for UnCSS to ignore
       ignore: ['.collapse.in', '.collapsing']
@@ -153,7 +155,7 @@ gulp.task('html', ['jade'], () => {
     // Minify any HTML
     .pipe($.if('*.html', $.htmlmin({
       removeComments: true,
-      collapseWhitespace: true,
+      //collapseWhitespace: true,
       collapseBooleanAttributes: true,
       removeAttributeQuotes: true,
       removeRedundantAttributes: true,

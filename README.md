@@ -8,7 +8,7 @@ Our website is built on Google's [Web Starter Kit](https://developers.google.com
 
 `gulp` to build the app for deployment.
 
-`firebase deploy` to upload the most recent build to Firebase.
+`npm run deploy` to build the deployment version of the app and upload it to Firebase.
 
 See the [commands](docs/commands.md) documentation for more details.
 
