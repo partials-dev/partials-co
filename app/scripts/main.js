@@ -80,4 +80,15 @@
   }
 
   // Your custom JavaScript goes here
+  function expandSection(event) {
+    var $self = $(this);
+
+    // show appropriate siblings and their children
+    $self.closest('section').removeClass('abridged');
+
+    // prevent navigation
+    event.preventDefault();
+  }
+
+  $('.read-more').click(expandSection);
 })();
