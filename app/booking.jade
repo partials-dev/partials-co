@@ -1,0 +1,101 @@
+extends ./partials/layout.jade
+
+block content
+    .middle.container
+      section#intro.text-center.pull-down
+        h2 Hi! We made a press kit for you. 
+          a(href="../files/partials-press-kit.pdf") Download
+          it here.
+        p It has all our images, contact info, and an easy-to-grab bio.
+
+      section#bio.abridged
+        .row
+          .col-md-6.info
+            h2 Bio
+            a(name="bio")
+            p
+              strong We make beautiful new sounds that get people dancing. 
+              We formed a year and a half ago in Athens, Georgia, and what we care about most is introducing you to new music. 
+              a.read-more(href="#") more
+
+            p
+              We’re recording a song every two weeks. We dig up thousands of musics and put them in a very small cauldron. 
+              Much of what goes in is psychedelic and danceable. Much of what comes out is ocean noise, but we’re working hard to make it something you’ll like.
+
+            p
+              If you’re curious, we handmade our website so you can talk to us. It’s 
+              a(href="/") partials.co
+
+          .col-md-6.embed-responsive.embed-responsive-16by9
+            iframe#player.embed-responsive-item(src="https://www.youtube.com/embed/nKOF5qtlO0w?color=white&controls=2&enablejsapi=1&autohide=1&showinfo=0" allowfullscreen)
+
+      section#live-videos
+        .row
+          .col-md-6.info
+            h2 Live Videos
+            a(name="live-videos")
+          .col-md-6.embed-responsive.embed-responsive-16by9
+            iframe#player.embed-responsive-item(src="https://www.youtube.com/embed/videoseries?list=PLEFwcC4Sko3l5VzIdpWwEghBB6S-xLWiq&color=white&controls=2&enablejsapi=1&autohide=1&showinfo=1" allowfullscreen)
+
+      section#recordings
+        .row
+          .col-md-6.info
+            h2 Recordings
+            a(name="recordings")
+          .col-md-6.text-center
+            // BandPage doesn't have responsive widgets, so we *make* them responsive!
+            .visible-xxs-block
+              .bp-extension(data-bandpage-bid="535201957946593280")
+            .visible-xs-block
+              .bp-extension(data-bandpage-bid="535202243939414016")
+            .visible-sm-block
+              .bp-extension(data-bandpage-bid="535201462431518720")
+            .visible-md-block
+              .bp-extension(data-bandpage-bid="535201031450005504")
+            .visible-lg-block
+              .bp-extension(data-bandpage-bid="535195217779773440")
+
+      section#shows
+        .row
+          .col-md-6.info
+            h2 Shows
+            a(name="shows")
+          .col-md-6.text-center
+            // BandPage doesn't have responsive widgets, so we *make* them responsive!
+            .visible-xxs-block
+              .bp-extension(data-bandpage-bid="535216100476981248")
+            .visible-xs-block
+              .bp-extension(data-bandpage-bid="535215982273114112")
+            .visible-sm-block
+              .bp-extension(data-bandpage-bid="535215844368584704")
+            .visible-md-block
+              .bp-extension(data-bandpage-bid="535215531972628480")
+            .visible-lg-block
+              .bp-extension(data-bandpage-bid="535215374459740160")
+
+      section#photos.abridged
+        .row
+          .col-md-6.info
+            h2 Photos
+            a(name="photos")
+          .col-md-6.text-center
+            // BandPage doesn't have responsive widgets, so we *make* them responsive!
+            .visible-xxs-block
+              .bp-extension(data-bandpage-bid="536666619993149440")
+            .visible-xs-block
+              .bp-extension(data-bandpage-bid="536666073273999360")
+            .visible-sm-block
+              .bp-extension(data-bandpage-bid="536665842591473664")
+            .visible-md-block
+              .bp-extension(data-bandpage-bid="536665338935263232")
+            .visible-lg-block
+              .bp-extension(data-bandpage-bid="535188702075297792")
+
+      section#contact
+        .row
+          .col-md-12.info.text-center
+            h3 Wanna talk? 
+              script
+                // obfuscate email address from nefarious robots
+                generateMailtoLink('hi', 'partials.co')
+            a(name="contact")
