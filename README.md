@@ -2,7 +2,6 @@
 Our website is built on Google's [Web Starter Kit](https://developers.google.com/web/starter-kit), a framework for writing fast, modern web apps.
 
 ## Quickstart
-
 `gulp serve` to run a development server on your machine.
 
 `gulp serve:dist` to run the optimized deployment version of the app.

@@ -4,8 +4,8 @@ block content
     .middle.container
       section#intro.text-center.pull-down
         h2 Hi! We made a press kit for you. 
-          a(href="../files/partials-press-kit.pdf") Download
-          it here.
+          a(href="../files/partials-press-kit.pdf") Download 
+          | it here.
         p It has all our images, contact info, and an easy-to-grab bio.
 
       section#bio.abridged
@@ -26,7 +26,7 @@ block content
               If you’re curious, we handmade our website so you can talk to us. It’s 
               a(href="/") partials.co
 
-          .col-md-6.embed-responsive.embed-responsive-16by9
+          .col-md-6.embed-responsive.embed-responsive-youtube
             iframe#player.embed-responsive-item(src="https://www.youtube.com/embed/nKOF5qtlO0w?color=white&controls=2&enablejsapi=1&autohide=1&showinfo=0" allowfullscreen)
 
       section#live-videos
@@ -34,7 +34,7 @@ block content
           .col-md-6.info
             h2 Live Videos
             a(name="live-videos")
-          .col-md-6.embed-responsive.embed-responsive-16by9
+          .col-md-6.embed-responsive.embed-responsive-youtube
             iframe#player.embed-responsive-item(src="https://www.youtube.com/embed/videoseries?list=PLEFwcC4Sko3l5VzIdpWwEghBB6S-xLWiq&color=white&controls=2&enablejsapi=1&autohide=1&showinfo=1" allowfullscreen)
 
       section#recordings
@@ -73,7 +73,7 @@ block content
             .visible-lg-block
               .bp-extension(data-bandpage-bid="535215374459740160")
 
-      section#photos.abridged
+      section#photos
         .row
           .col-md-6.info
             h2 Photos
@@ -95,7 +95,15 @@ block content
         .row
           .col-md-12.info.text-center
             h3 Wanna talk? 
-              script
+              script.
                 // obfuscate email address from nefarious robots
-                generateMailtoLink('hi', 'partials.co')
+                function generateMailtoLink(lhs, rhs) {
+                  document.write('<a href="mailto');
+                  document.write(':' + lhs + '@');
+                  document.write(rhs + '">' + lhs + '@' + rhs + '</a>');
+                }
+                generateMailtoLink('hi', 'partials.co');
+
+block append unprocessed-scripts
+  script(async src='//www.bandpage.com/extensionsdk')
             a(name="contact")

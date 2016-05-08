@@ -80,12 +80,4 @@
   }
 
   // Your custom JavaScript goes here
- 
-  // Obfuscate email address from nefarious robots
-  function generateMailtoLink(lhs, rhs) {
-    document.write('<a href="mailto');
-    document.write(':' + lhs + '@');
-    document.write(rhs + '">' + lhs + '@' + rhs + '</a>');
-  }
-  window.generateMailtoLink = generateMailtoLink;
 })();
