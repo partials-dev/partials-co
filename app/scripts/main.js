@@ -82,7 +82,7 @@
   /**
    * An event listener that powers "read more" functionality.
    * Expands the closest section to the click event.
-   * @param event {Object} - a dom event object
+   * @param {Object} event - a dom event object
    */
   function expandSection(event) {
     var $self = $(this);
