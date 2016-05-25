@@ -1,5 +1,5 @@
 ## Overview
-Our website is built on Google's [Web Starter Kit](https://developers.google.com/web/starter-kit), a framework for writing fast, modern web apps.
+Our website is built on Google's [Web Starter Kit](https://developers.google.com/web/starter-kit). It's made with simple, beautiful technology.
 
 ## Quickstart
 `gulp serve` to run a development server on your machine.

@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "production": "partials-co",
+    "default": "partials-co"
+  }
+}

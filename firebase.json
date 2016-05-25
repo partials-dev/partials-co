@@ -1,22 +1,29 @@
 {
-  "firebase": "open-website-test",
-  "public": "dist",
   "cleanUrls": true,
   "ignore": [
     "firebase.json",
     "**/node_modules/**",
     "/**/.*"
   ],
-  "headers": [ {
-    "source" : "**",
-    "headers" : [ {
-      "key" : "Cache-Control",
-      "value" : "max-age=0"
-    } ]
-  }],
-  "redirects": [ {
-    "source" : "/facebook",
-    "destination" : "http://facebook.com/partialcinema",
-    "type" : 302
-  }]
+  "headers": [
+    {
+      "source": "**",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "max-age=0"
+        }
+      ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/facebook",
+      "destination": "http://facebook.com/partialcinema",
+      "type": 302
+    }
+  ],
+  "hosting": {
+    "public": "dist"
+  }
 }
