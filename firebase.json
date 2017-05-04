@@ -1,29 +1,29 @@
 {
-  "cleanUrls": true,
-  "ignore": [
-    "firebase.json",
-    "**/node_modules/**",
-    "/**/.*"
-  ],
-  "headers": [
-    {
-      "source": "**",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "max-age=0"
-        }
-      ]
-    }
-  ],
-  "redirects": [
-    {
-      "source": "/facebook",
-      "destination": "http://facebook.com/partialcinema",
-      "type": 302
-    }
-  ],
   "hosting": {
+    "cleanUrls": true,
+    "ignore": [
+      "firebase.json",
+      "**/node_modules/**",
+      "/**/.*"
+    ],
+    "headers": [
+      {
+        "source": "**",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=0"
+          }
+        ]
+      }
+    ],
+    "redirects": [
+      {
+        "source": "/facebook",
+        "destination": "http://facebook.com/partialcinema",
+        "type": 302
+      }
+    ],
     "public": "dist"
   }
 }
