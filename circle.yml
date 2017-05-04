@@ -5,4 +5,4 @@ deployment:
   production:
     branch: v2
     commands:
-      - npm run ci-deploy
+      - npm run deploy
