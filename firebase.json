@@ -12,6 +12,12 @@
         "key" : "Cache-Control",
         "value" : "max-age=0"
       }]
+    }, {
+        "source" : "static/js/**/*.js",
+        "headers" : [{
+          "key" : "Cache-Control",
+          "value" : "max-age=3600"
+        }]
     }]
   }
 }
