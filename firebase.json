@@ -1,6 +1,17 @@
 {
   "hosting": {
     "public": "build",
-    "cleanUrls": true
+    "cleanUrls": true,
+    "rewrites": [{
+      "source": "**",
+      "destination": "/index.html"
+    }],
+    "headers": [{
+      "source" : "**/service-worker.js",
+      "headers" : [{
+        "key" : "Cache-Control",
+        "value" : "max-age=0"
+      }]
+    }]
   }
 }
