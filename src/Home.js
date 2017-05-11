@@ -1,21 +1,18 @@
-import React, { Component } from 'react'
-import Analytics from './Analytics'
+import React from 'react'
 import Kaleidoscope from './Kaleidoscope'
+import Helmet from 'react-helmet'
 
-class App extends Component {
-  render () {
-    return (
-      <div>
-        <div className='App'>
-          <h2>We are Radiohead</h2>
-          <p>
-            We're making the music that you're listening to.
-          </p>
-        </div>
-        <Kaleidoscope />
-      </div>
-    )
-  }
+const Home = () => {
+  return <div>
+    <Helmet title='Partials' />
+    <div>
+      <h2>We are Radiohead</h2>
+      <p>
+        We're making the music that you're listening to.
+      </p>
+    </div>
+    <Kaleidoscope />
+  </div>
 }
 
-export default App
+export default Home
