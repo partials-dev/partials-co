@@ -4,6 +4,7 @@
   "private": true,
   "devDependencies": {
     "firebase-tools": "^3.6.1",
+    "glob": "^7.1.1",
     "react-scripts": "0.9.5",
     "react-snapshot": "^1.0.4"
   },
@@ -15,7 +16,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && react-snapshot && node precacheServiceWorker.js",
+    "build": "react-scripts build && react-snapshot && node asyncScriptTagTransform.js && node precacheServiceWorker.js",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "deploy": "npm run build && firebase deploy"
