@@ -54,7 +54,7 @@ function registerServiceWorker () {
                 console.error('The installing service worker became redundant.')
                 break
               default:
-                console.error('Hit the default case in registerServiceWorker. That probably shouldn\'t happen.')
+                console.info('Hit the default case in registerServiceWorker: ' + installingWorker.state)
                 break
             }
           }
