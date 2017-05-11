@@ -9,6 +9,10 @@
     "react-snapshot": "^1.0.4"
   },
   "dependencies": {
+    "preact": "^8.1.0",
+    "preact-helmet": "^4.0.0-alpha-2",
+    "preact-render-to-string": "^3.6.1",
+    "preact-router": "^2.5.2",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-helmet": "^4.0.0",

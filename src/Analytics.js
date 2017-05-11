@@ -1,4 +1,4 @@
-import React from 'react'
+import { h } from 'preact' /** @jsx h */
 
 const Analytics = render => {
   return <div />

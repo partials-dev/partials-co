@@ -1,5 +1,5 @@
-import React from 'react'
-import Helmet from 'react-helmet'
+import { h } from 'preact' /** @jsx h */
+import Helmet from 'preact-helmet'
 
 const Glossolalia = props => {
   return <div>

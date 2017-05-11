@@ -1,11 +1,11 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { h } from 'preact' /** @jsx h */
+import { Link } from 'preact-router'
 
 const Navigation = () => {
   return <nav>
-    <NavLink to='/'>Home</NavLink>
-    <NavLink to='/glossolalia'>The New EP</NavLink>
-    <NavLink to='/about'>About</NavLink>
+    <Link href='/'>Home</Link>
+    <Link href='/glossolalia'>The New EP</Link>
+    <Link href='/about'>About</Link>
   </nav>
 }
 

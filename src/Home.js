@@ -1,6 +1,6 @@
-import React from 'react'
+import { h } from 'preact' /** @jsx h */
+import Helmet from 'preact-helmet'
 import Kaleidoscope from './Kaleidoscope'
-import Helmet from 'react-helmet'
 
 const Home = () => {
   return <div>

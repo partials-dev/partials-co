@@ -1,8 +1,5 @@
-import React from 'react'
-import {
-  BrowserRouter as Router,
-  Route
-} from 'react-router-dom'
+import { h } from 'preact' /** @jsx h */
+import Router from 'preact-router'
 
 import Navigation from './Navigation'
 import Home from './Home'
@@ -11,15 +8,15 @@ import Glossolalia from './Glossolalia'
 import Analytics from './Analytics'
 
 const App = () => {
-  return <Router>
-    <div>
-      <Navigation />
-      <Route exact path='/' component={Home} />
-      <Route path='/about' component={About} />
-      <Route path='/glossolalia' component={Glossolalia} />
-      <Analytics />
-    </div>
-  </Router>
+  return <div>
+    <Navigation />
+    <Router>
+      <Home path='/' />
+      <About path='/about' />
+      <Glossolalia path='/glossolalia' />
+    </Router>
+    <Analytics />
+  </div>
 }
 
 export default App
