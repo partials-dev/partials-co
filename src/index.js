@@ -1,8 +1,9 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import App from './App'
+import { render } from 'react-snapshot'
+import './index.css'
 
-ReactDOM.render(
+render(
   <App />,
   document.getElementById('root')
 )

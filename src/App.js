@@ -1,18 +1,25 @@
-import React, { Component } from 'react'
+import React from 'react'
+import {
+  BrowserRouter as Router,
+  Route
+} from 'react-router-dom'
 
-class App extends Component {
-  render () {
-    return (
-      <div className='App'>
-        <div className='App-header'>
-          <h2>We are Radiohead</h2>
-        </div>
-        <p className='App-intro'>
-          We're making the music that you're listening to.
-        </p>
-      </div>
-    )
-  }
+import Navigation from './Navigation'
+import Home from './Home'
+import About from './About'
+import Glossolalia from './Glossolalia'
+import Analytics from './Analytics'
+
+const App = () => {
+  return <Router>
+    <div>
+      <Navigation />
+      <Route exact path='/' component={Home} />
+      <Route path='/about' component={About} />
+      <Route path='/glossolalia' component={Glossolalia} />
+      <Analytics />
+    </div>
+  </Router>
 }
 
 export default App
