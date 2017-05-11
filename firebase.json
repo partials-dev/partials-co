@@ -13,10 +13,16 @@
         "value" : "max-age=0"
       }]
     }, {
-        "source" : "static/js/**/*.js",
+        "source" : "/static/js/**/*.js",
         "headers" : [{
           "key" : "Cache-Control",
-          "value" : "max-age=3600"
+          "value" : "max-age=2592000"
+        }]
+    }, {
+        "source" : "/favicon.ico",
+        "headers" : [{
+          "key" : "Cache-Control",
+          "value" : "max-age=2592000"
         }]
     }]
   }
