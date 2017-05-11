@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Analytics = render => {
-  return null
+  return <div />
 }
 
 export default Analytics

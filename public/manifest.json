@@ -1,0 +1,25 @@
+{
+  "short_name": "Partials",
+  "name": "Partials",
+  "icons": [
+    {
+      "src": "penrose.png",
+      "type": "image/png",
+      "sizes": "48x48"
+    },
+    {
+      "src": "penrose.png",
+      "type": "image/png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "penrose.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ],
+  "start_url": "index.html",
+  "display": "browser",
+  "background_color": "#2196F3",
+  "theme_color": "#2196F3"
+}

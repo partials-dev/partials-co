@@ -3,7 +3,6 @@
   "version": "2.0.0",
   "private": true,
   "devDependencies": {
-    "amphtml-validator": "^1.0.20",
     "firebase-tools": "^3.6.1",
     "react-scripts": "0.9.5",
     "react-snapshot": "^1.0.4"

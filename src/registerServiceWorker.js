@@ -15,6 +15,9 @@
  */
 
 function registerServiceWorker () {
+  if (process.env.NODE_ENV === 'development') {
+    return
+  }
   if ('serviceWorker' in navigator) {
   // Delay registration until after the page has loaded, to ensure that our
   // precaching requests don't degrade the first visit experience.
@@ -49,6 +52,9 @@ function registerServiceWorker () {
 
               case 'redundant':
                 console.error('The installing service worker became redundant.')
+                break
+              default:
+                console.error('Hit the default case in registerServiceWorker. That probably shouldn\'t happen.')
                 break
             }
           }
