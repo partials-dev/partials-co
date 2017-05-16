@@ -7,23 +7,23 @@
       "destination": "/index.html"
     }],
     "headers": [{
+      "source" : "/",
+      "headers" : [{
+        "key" : "Cache-Control",
+        "value" : "max-age=2592000"
+      }]
+    }, {
+      "source" : "/**/*",
+      "headers" : [{
+        "key" : "Cache-Control",
+        "value" : "max-age=2592000"
+      }]
+    }, {
       "source" : "**/service-worker.js",
       "headers" : [{
         "key" : "Cache-Control",
         "value" : "max-age=0"
       }]
-    }, {
-        "source" : "/static/js/**/*.js",
-        "headers" : [{
-          "key" : "Cache-Control",
-          "value" : "max-age=2592000"
-        }]
-    }, {
-        "source" : "/favicon.ico",
-        "headers" : [{
-          "key" : "Cache-Control",
-          "value" : "max-age=2592000"
-        }]
     }]
   }
 }
