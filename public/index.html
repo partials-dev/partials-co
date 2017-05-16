@@ -4,9 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
     <meta name="google-site-verification" content="J29zBDRWvl1jPXk0_UEJQGy-EKZRjstAvsfVT0OobzE" />
-    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
     <meta name="theme-color" content="#2196F3">
+    <noscript>
+      <!-- when JavaScript is enabled, these get loaded after the page finishes loading -->
+      <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+      <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+    </noscript>
     <!--
       Notice the use of %PUBLIC_URL% in the tag above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -27,5 +30,28 @@
     <div id="root">
       <!-- {app} -->
     </div>
+    <script>
+      // asynchronously load manifest and favicon
+      var cb = function () {
+        var manifest = document.createElement('link')
+        manifest.rel = 'manifest'
+        manifest.href = '%PUBLIC_URL%/manifest.json'
+
+        var favicon = document.createElement('link')
+        favicon.rel = 'shortcut icon'
+        favicon.href = '%PUBLIC_URL%/favicon.ico'
+
+        var h = document.getElementsByTagName('head')[0]
+        h.parentNode.insertBefore(manifest, h)
+        h.parentNode.insertBefore(favicon, h)
+      }
+      var raf = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
+                window.webkitRequestAnimationFrame || window.msRequestAnimationFrame
+      if (raf) {
+        raf(cb)
+      } else {
+        window.addEventListener('load', cb)
+      }
+    </script>
   </body>
 </html>
