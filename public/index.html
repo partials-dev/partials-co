@@ -20,8 +20,45 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <style type="text/css">
+      .container {
+        margin-right: auto;
+        margin-left: auto;
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+      .container::before, .container::after {
+        content: ' ';
+        display: table;
+      }
+      @media (min-width: 768px)
+        .container {
+        width: 750px;
+      }
+      *:before, *:after {
+        box-sizing: border-box;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      @media (max-width: 767px)
+        .header .navigation {
+        margin-left: 0;
+      }
+      .header .navigation {
+        margin-left: 1em;
+        float: left;
+      }
+      #logo {
+        padding: 0.5em;
+        float: left;
+        font-family: Helvetica;
+      }
       body {
-        color: black;
+        color: #333333;
+        font-family: sans-serif;
+      }
+      h1 {
+        font-size: 2.25em;
       }
     </style>
     <title>Partials</title>

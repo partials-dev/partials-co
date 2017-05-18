@@ -7,7 +7,7 @@ const Home = () => {
   return <div>
     <Helmet title='Partials' />
     <div>
-      <h2>We are Radiohead</h2>
+      <h1>Glossolalia</h1>
       <p>
         And we're making the music that you're listening to.
       </p>
