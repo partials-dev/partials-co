@@ -4,7 +4,13 @@ import { h } from 'preact' /** @jsx h */
 
 const Header = () => {
   return <div className='container'>
-    <div className='header'>
+    <div className='header' background="kaleidoscope.png">
+		<div id="overlay">
+		G L O S S A L A L I A
+		<div id="action-button">
+		Get our latest Ep
+		</div>
+		</div>
       <Logo />
       <Navigation />
     </div>

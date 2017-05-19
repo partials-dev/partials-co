@@ -16,7 +16,7 @@ const regularLettersStyle = {
 
 const aStyle = {
   fontHeight: '50px',
-  transform: 'translate(0, -2px) scale(1,1.3)',
+  transform: 'translate(0, -1px) scale(1,1.1)',
   display: 'inline-block',
   fontWeight: 'lighter'
 }
