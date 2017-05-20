@@ -1,6 +1,6 @@
 import { h, Component } from 'preact' /** @jsx h */
 import latest from 'promise-latest'
-import push from './push'
+import push from '../push'
 
 const setLatestPushNotificationsEnabled = latest(push.setEnabled)
 

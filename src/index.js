@@ -1,5 +1,5 @@
 import { h } from 'preact' /** @jsx h */
-import App from './App'
+import App from './components/App'
 import render from './render'
 import awaitServiceWorkerRegistration from './awaitServiceWorkerRegistration'
 
