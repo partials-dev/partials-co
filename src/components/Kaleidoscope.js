@@ -1,8 +1,19 @@
-import { h } from 'preact' /** @jsx h */
+import { connect } from 'preact-redux'
+import KaleidoscopeCanvas from './KaleidoscopeCanvas'
 
-const Kaleidoscope = props => {
-  // return <amp-video layout="fill" autoplay muted loop src="https://media.giphy.com/media/3o6ZtbAPhiFTVWTM9a/giphy.mp4"></amp-video>
-  return <div />
+const mapStateToProps = state => {
+  return {
+    slices: state.slices,
+    imageSource: state.imageSource,
+    xPanSpeed: state.xPanSpeed,
+    yPanSpeed: state.yPanSpeed,
+    tilePosition: state.tilePosition
+  }
 }
 
+const mapDispatchToProps = dispatch => {
+  return {}
+}
+
+const Kaleidoscope = connect(mapStateToProps, mapDispatchToProps)(KaleidoscopeCanvas)
 export default Kaleidoscope

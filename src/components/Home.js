@@ -7,7 +7,6 @@ const Home = () => {
   return <div>
     <Helmet title='Partials' />
     <Hero />
-    <PushPermissionToggle />
   </div>
 }
 

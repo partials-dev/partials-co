@@ -10,6 +10,7 @@
       <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
       <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
     </noscript>
+    <script src="pixi.min.js"></script>
     <!--
       Notice the use of %PUBLIC_URL% in the tag above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -20,6 +21,11 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <style type="text/css">
+      @media (min-width: 768px) {
+        .container {
+          width: 750px;
+        }
+      }
       .container {
         margin-right: auto;
         margin-left: auto;
@@ -55,12 +61,10 @@
         border: 2px solid black;
         text-shadow: none;
       }
-      /*.header {
-        height: 300px;
-        background: url(kaleidoscope.png) no-repeat 0 -200px;
-      }*/
       .header {
         overflow: hidden;
+        min-height: 45px;
+        padding: 0.5em;
       }
       .header .navigation {
         margin-left: 1em;
