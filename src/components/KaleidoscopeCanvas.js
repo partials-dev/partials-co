@@ -9,7 +9,7 @@ class KaleidoscopeCanvas extends Preact.Component {
   render () {
     const style = {
       width: '100vw',
-      height: '100vh',
+      height: '500px',
       position: 'absolute',
       left: '0',
       top: '0',
