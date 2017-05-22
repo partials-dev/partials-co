@@ -31,6 +31,9 @@
           font-size: 1.8em;
         }
       }
+      .header a.active {
+        text-decoration: underline;
+      }
       .container {
         width: 100%;
         display: flex;
@@ -84,7 +87,7 @@
         padding: 0.5em 0.75em;
       }
       .call-to-action > span:nth-child(2) {
-        border-left: 2px solid black
+        /*border-left: 2px solid black*/
       }
       .header {
         position: absolute;
@@ -113,7 +116,7 @@
       }
       .inverted-a {
         display: inline-block;
-        transform: rotate(180deg) translateY(1.5px);
+        transform: scale(1, -1);
       }
       body {
         margin: 0;
