@@ -7,14 +7,11 @@ class KaleidoscopeCanvas extends Preact.Component {
     this.kaleidoscope = new Kaleidoscope(options)
   }
   render () {
-    const style = {
-      width: '100vw',
-      height: '500px',
-      position: 'absolute',
-      left: '0',
-      top: '0',
-      zIndex: -2
-    }
+    // const style = {
+    //   width: '100vw',
+    //   height: '500px',
+    //   zIndex: -2
+    // }
     const ref = canvas => {
       this.canvas = canvas
     }
@@ -23,7 +20,7 @@ class KaleidoscopeCanvas extends Preact.Component {
       this.kaleidoscope.setPanSpeed(this.props.xPanSpeed, this.props.yPanSpeed)
       this.kaleidoscope.setTilePosition(this.props.tilePosition)
     }
-    return <canvas ref={ref} style={style} />
+    return <canvas id='kaleidoscope' ref={ref} />
   }
 }
 

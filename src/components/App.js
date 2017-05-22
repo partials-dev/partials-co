@@ -6,18 +6,21 @@ import About from './About'
 import Glossolalia from './Glossolalia'
 import Analytics from './Analytics'
 import Header from './Header'
+import Footer from './Footer'
 
 const App = () => {
-  return <div>
-    <div class='container'>
+  return (<div>
+    <Header />
+    <div class='body container'>
       <Router>
         <Home path='/' />
         <About path='/about' />
         <Glossolalia path='/glossolalia' />
       </Router>
     </div>
+    <Footer />
     <Analytics />
-  </div>
+  </div>)
 }
 
 export default App
