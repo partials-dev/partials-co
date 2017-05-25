@@ -7,10 +7,10 @@ const Header = () => {
   const PARTIALS = <span class='logo'>P A R T I {A} L S</span>
   return (<nav class='header full-width center-contents'>
     <Link activeClassName='active' href='/contact'>contact</Link>
-    <Link activeClassName='active' href='/merch'>merch</Link>
+    <a href='javascript:;'>merch</a>
     <Link activeClassName='active' href='/'>{PARTIALS}</Link>
     <Link activeClassName='active' href='/shows'>shows</Link>
-    <Link activeClassName='active' href='/music'>music</Link>
+    <a href='javascript:;'>music</a>
   </nav>)
 }
 

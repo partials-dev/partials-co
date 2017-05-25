@@ -17,16 +17,18 @@ import Analytics from './Analytics'
 const routes = <Router>
   <Home path='/' />
   <Contact path='/contact' />
-  <Merch path='/merch' />
   <Shows path='/shows' />
-  <Music path='/music' />
 </Router>
 
 const renderContent = currentRoute => {
   const atHome = currentRoute.matches
-  const hide = atHome ? 'hide' : null
-  return (<div class={`content full-width ${hide}`}>
-    {routes}
+  const hideContent = atHome ? 'hide' : ''
+  const hideFooter = atHome ? '' : 'hide'
+  return (<div>
+    <div class={`content full-width ${hideContent}`}>
+      {routes}
+    </div>
+    <Footer />
   </div>)
 }
 
@@ -39,7 +41,6 @@ const App = () => {
     <Header />
     <Kaleidoscope />
     {content}
-    <Footer />
     <Analytics />
   </div>)
 }
