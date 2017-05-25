@@ -2,11 +2,11 @@ import Helmet from 'preact-helmet'
 import { h } from 'preact' /** @jsx h */
 
 const Music = props => {
-  return (<div>
+  return (<main>
     <Helmet title='Music | Partials' />
     <h2>Music</h2>
     These are our musics.
-  </div>)
+  </main>)
 }
 
 export default Music

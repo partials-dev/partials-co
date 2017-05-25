@@ -1,7 +1,7 @@
 import { h } from 'preact' /** @jsx h */
 
 const Footer = () =>
-  <div class='footer container'>
+  <div class='footer full-width center-contents'>
     <span class='call-to-action'>
       <span class='album-title'>G L O S S O L <span class='inverted-a'>A</span> L I A</span>
       <span class='listen-button'>

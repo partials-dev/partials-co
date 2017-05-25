@@ -1,12 +1,12 @@
 import Helmet from 'preact-helmet'
 import { h } from 'preact' /** @jsx h */
 
-const About = props => {
-  return (<div>
-    <Helmet title='About | Partials' />
-    <h2>About</h2>
-    My name is Partials.
-  </div>)
+const Contact = props => {
+  return (<main>
+    <Helmet title='Contact | Partials' />
+    <h2></h2>
+    <p></p>
+  </main>)
 }
 
-export default About
+export default Contact

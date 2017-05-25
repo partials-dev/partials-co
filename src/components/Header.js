@@ -5,7 +5,7 @@ import { Link } from 'preact-router/match'
 const Header = () => {
   const A = <span class='inverted-a'>A</span>
   const PARTIALS = <span class='logo'>P A R T I {A} L S</span>
-  return (<nav class='header container'>
+  return (<nav class='header full-width center-contents'>
     <Link activeClassName='active' href='/contact'>contact</Link>
     <Link activeClassName='active' href='/merch'>merch</Link>
     <Link activeClassName='active' href='/'>{PARTIALS}</Link>
