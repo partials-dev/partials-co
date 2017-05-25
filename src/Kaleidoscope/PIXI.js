@@ -1,3 +1,2 @@
-// import PIXI from 'pixi.js'
-// export default PIXI
-export default window.PIXI
+import * as PIXI from 'pixi.js'
+export default PIXI

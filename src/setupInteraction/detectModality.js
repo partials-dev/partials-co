@@ -5,20 +5,18 @@ const detectModality = () => {
       // only resolve when we actually see a device orientation event
       confirmOrientationSupport = event => {
         const supported = event.alpha != null && event.beta != null && event.gamma != null
-        window.removeEventListener('deviceorientation', confirmOrientationSupport)
         if (supported) {
           resolve('orientation')
         }
       }
       window.addEventListener('deviceorientation', confirmOrientationSupport)
-    } 
+    }
   })
 
   let confirmMouseSupport
   const supportsMouse = new Promise((resolve, reject) => {
     if ('MouseEvent' in window) {
       confirmMouseSupport = event => {
-        window.removeEventListener('mousemove', confirmMouseSupport)
         resolve('mouse')
       }
       window.addEventListener('mousemove', confirmMouseSupport)

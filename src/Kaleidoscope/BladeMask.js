@@ -1,5 +1,4 @@
 import PIXI from './PIXI'
-
 const bladeTip = (radius, angle) => (
   {
     x: radius * Math.cos(angle),

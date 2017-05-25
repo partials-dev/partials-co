@@ -3,7 +3,6 @@ import App from './components/App'
 import render from './render'
 import awaitServiceWorkerRegistration from './awaitServiceWorkerRegistration'
 
-// redux stuff
 import { Provider } from 'preact-redux'
 import { createStore } from 'redux'
 import reducer from './reducers'
