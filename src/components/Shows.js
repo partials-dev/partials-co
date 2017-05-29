@@ -2,6 +2,7 @@ import Helmet from 'preact-helmet'
 import { h } from 'preact' /** @jsx h */
 import PushPermissionToggle from './PushPermissionToggle'
 import Show from './Show'
+import getShows from '../getShows'
 
 const shows = [
   {
@@ -17,6 +18,8 @@ const shows = [
     link: 'https://www.facebook.com/events/393752004323423/'
   }
 ]
+
+const gotShows = getShows()
 
 const li = props =>
   <li class='show'>

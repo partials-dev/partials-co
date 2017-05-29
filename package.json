@@ -19,7 +19,8 @@
     "preact-render-to-string": "^3.6.1",
     "preact-router": "^2.5.2",
     "promise-latest": "^1.0.4",
-    "redux": "^3.6.0"
+    "redux": "^3.6.0",
+    "whatwg-fetch": "^2.0.3"
   },
   "scripts": {
     "start": "react-scripts start",
