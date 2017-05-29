@@ -8,7 +8,7 @@ const root = 'build'
 const options = {
   cacheId: pkg.name,
   root: 'build',
-  staticFileGlobs: [root + '/pixi.min.s', root + '/**/*.{html,css,png,jpg,gif,svg,eot,ttf,woff,json}', root + '/static/**/*.js'],
+  staticFileGlobs: [root + '/**/*.{html,css,png,jpg,gif,svg,eot,ttf,woff,json}', root + '/static/**/*.js'],
   stripPrefix: root,
   navigateFallback: '/200',
   verbose: true

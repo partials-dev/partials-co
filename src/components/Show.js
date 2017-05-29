@@ -1,7 +1,7 @@
 import { h } from 'preact' /** @jsx h */
 
-const Show = props =>
-  <ol class='show-details'>
+const Show = props => {
+  return <ol class='show-details'>
     <li class='date'>
       {props.date}
     </li>
@@ -12,8 +12,9 @@ const Show = props =>
       {props.venue}
     </li>
     <li class='link'>
-      <a href={props.link}>Details</a>
+      <a href={props.link} class='button'>Details</a>
     </li>
   </ol>
+}
 
 export default Show

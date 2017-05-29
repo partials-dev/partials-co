@@ -33,13 +33,23 @@ export default function (state = defaultState, action) {
       return newState
     }
     case 'UPDATE_PAN_SPEED': {
+      const update = {}
+      if (action.xPanSpeed == null) {
+        update.xPanSpeed = ui.xPanSpeedInput
+      } else {
+        update.xPanSpeed = action.xPanSpeed
+      }
+
+      if (action.yPanSpeed == null) {
+        update.yPanSpeed = ui.yPanSpeedInput
+      } else {
+        update.yPanSpeed = action.yPanSpeed
+      }
+
       const newState = Object.assign(
         {},
         state,
-        {
-          xPanSpeed: action.xPanSpeed || ui.xPanSpeedInput,
-          yPanSpeed: action.yPanSpeed || ui.yPanSpeedInput
-        }
+        update
       )
       // k.setSpeed(newState.xPanSpeed, newState.yPanSpeed)
       return newState

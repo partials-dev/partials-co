@@ -5,7 +5,7 @@ const Footer = () =>
     <span class='call-to-action'>
       <span class='album-title'>G L O S S O L <span class='inverted-a'>A</span> L I A</span>
       <span class='listen-button'>
-        <a href=''>
+        <a href='/'>
           LISTEN ON YOUTUBE
         </a>
       </span>
