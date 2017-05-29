@@ -75,7 +75,6 @@ class OffsetCalculator {
           break
       }
     }
-    console.log(previousQuadrant, currentQuadrant)
     return offset
   }
 

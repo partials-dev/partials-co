@@ -7,6 +7,12 @@ const setupInteraction = dispatch => {
     if (modality === 'mouse') {
       setupMouseInput(dispatch)
     } else if (modality === 'orientation') {
+      const updatePanSpeed = {
+        type: 'UPDATE_PAN_SPEED',
+        xPanSpeed: -0.15,
+        yPanSpeed: 0.005
+      }
+      dispatch(updatePanSpeed)
       setupOrientationInput(dispatch)
     }
   })
