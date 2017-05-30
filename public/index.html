@@ -32,6 +32,9 @@
       a {
         color: #333333;
       }
+      main {
+        height: 100%;
+      }
       .inverted-a {
         display: inline-block;
         transform: scale(1, -1);
@@ -160,9 +163,11 @@
         padding: 0;
         font-size: 1.3em;
       }
+      .show {
+        border-bottom: 1px solid #333333;
+      }
       ol.show-details {
         list-style: none;
-        border-bottom: 1px solid #333333;
         padding: 40px 0;
         margin-left: 1em;
         margin-right: 1em;
@@ -178,6 +183,32 @@
         .show-details li {
           width: 100%;
           display: block;
+        }
+      }
+      /* Spinner */
+      .loading {
+        height: 100%;
+      }
+      .loading p {
+        font-variant: small-caps;
+        font-size: 2em;
+      }
+      .sk-rotating-plane {
+        width: 40px;
+        height: 40px;
+        background-color: #333333;
+        margin: 40px 2em;
+        animation: sk-rotatePlane 1.2s infinite ease-in-out;
+      }
+      @keyframes sk-rotatePlane {
+        0% {
+          transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+        }
+        50% {
+          transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+        }
+        100% {
+          transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
         }
       }
     </style>

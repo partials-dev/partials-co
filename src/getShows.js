@@ -48,27 +48,27 @@ function parseISODate (d) {
   return new Date(year, month - 1, day, hour, minute - tzOffset, second, msec)
 }
 
-const getLocation = e => {
-  const location = e.location.split(',')
+const getLocation = show => {
+  const location = show.location.split(',')
   const stateAndZip = location[location.length - 2]
   const state = stateAndZip.replace(/\d/g, '').trim()
   const city = location[location.length - 3].trim()
   return [city, state].join(', ')
 }
 
-const getEventDate = e => {
-  const date = parseISODate(e.start.dateTime)
+const getEventDate = show => {
+  const date = parseISODate(show.start.dateTime)
   const month = months[date.getMonth()]
   const day = date.getDate()
   const year = date.getFullYear()
   return month + ' ' + day + ' ' + year
 }
 
-const formatEvent = e => {
-  const venue = e.summary
-  const date = getEventDate(e)
-  const location = getLocation(e)
-  const linkUrl = e.description
+const formatShow = show => {
+  const venue = show.summary
+  const date = getEventDate(show)
+  const location = getLocation(show)
+  const linkUrl = show.description
   return {
     location,
     venue,
@@ -80,12 +80,8 @@ const formatEvent = e => {
 const getShows = () =>
   window.fetch(calendarUrl)
     .then(response => response.json())
-    .then(json => {
-      console.log('parsed json ', JSON.stringify(json))
-      const events = json.items.map(formatEvent)
-      console.log('parsed events', JSON.stringify(events))
-      return events
-    }).catch(error => {
+    .then(json => json.items.map(formatShow))
+    .catch(error => {
       throw error
     })
 
