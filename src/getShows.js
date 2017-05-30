@@ -56,8 +56,7 @@ const getLocation = show => {
   return [city, state].join(', ')
 }
 
-const getEventDate = show => {
-  const date = parseISODate(show.start.dateTime)
+const formatDate = date => {
   const month = months[date.getMonth()]
   const day = date.getDate()
   const year = date.getFullYear()
@@ -65,8 +64,14 @@ const getEventDate = show => {
 }
 
 const formatShow = show => {
+  const now = new Date()
+  let date = parseISODate(show.start.dateTime)
+  if (date < now) {
+    // show was in the past
+    return null
+  }
+  date = formatDate(date)
   const venue = show.summary
-  const date = getEventDate(show)
   const location = getLocation(show)
   const linkUrl = show.description
   return {
@@ -77,10 +82,12 @@ const formatShow = show => {
   }
 }
 
+const exists = x => x != null
+
 const getShows = () =>
   window.fetch(calendarUrl)
     .then(response => response.json())
-    .then(json => json.items.map(formatShow))
+    .then(json => json.items.map(formatShow).filter(exists))
     .catch(error => {
       throw error
     })
