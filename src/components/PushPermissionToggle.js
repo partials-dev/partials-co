@@ -25,10 +25,12 @@ class PushPermissionToggle extends Component {
   }
   render (props, state) {
     if (state.show && push.isSupported) {
-      return <label>
+      return (<div class='push-permission-toggle'>
+        <label>
         Get notified about new shows?
         <input type='checkbox' checked={state.checked} onClick={this.onClick.bind(this)} />
       </label>
+    </div>)
     } else {
       return null
     }

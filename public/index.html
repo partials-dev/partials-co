@@ -93,29 +93,6 @@
         padding-left: 15px;
         padding-right: 15px;
       }
-      @media (max-width: 650px) {
-        .hide-on-small {
-          display: none !important;
-        }
-        .show-on-small {
-          display: initial;
-        }
-      }
-      @media (min-width: 768px) {
-        .container {
-          width: 750px;
-        }
-      }
-      @media (min-width: 992px) {
-        .container {
-          width: 970px;
-        }
-      }
-      @media (min-width: 1200px) {
-        .container {
-          width: 1170px;
-        }
-      }
       .hide {
         display: none;
       }
@@ -161,7 +138,9 @@
       ol.shows {
         list-style: none;
         padding: 0;
+        padding-top: 3em;
         font-size: 1.3em;
+        margin: 0;
       }
       .show {
         border-bottom: 1px solid #333333;
@@ -184,6 +163,15 @@
           width: 100%;
           display: block;
         }
+      }
+      .push-permission-toggle {
+        padding: 1em 0 1em 0;
+        display: inline-block;
+        font-size: 1.2em;
+        width: calc(100% - 30px);
+        position: fixed;
+        background-color: #e3e3e3;
+        border-bottom: 1px solid #333333;
       }
       /* Spinner */
       .loading {
@@ -209,6 +197,38 @@
         }
         100% {
           transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+        }
+      }
+      @media (max-width: 650px) {
+        .hide-on-small {
+          display: none !important;
+        }
+        .show-on-small {
+          display: initial;
+        }
+      }
+      @media (min-width: 768px) {
+        .container {
+          width: 750px;
+        }
+        .push-permission-toggle {
+          width: calc(750px - 30px);
+        }
+      }
+      @media (min-width: 992px) {
+        .container {
+          width: 970px;
+        }
+        .push-permission-toggle {
+          width: calc(970px - 30px);
+        }
+      }
+      @media (min-width: 1200px) {
+        .container {
+          width: 1170px;
+        }
+        .push-permission-toggle {
+          width: calc(1140px - 30px);
         }
       }
     </style>
