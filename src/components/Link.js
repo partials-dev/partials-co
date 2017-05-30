@@ -2,6 +2,7 @@ import { h } from 'preact' /** @jsx h */
 import { Link } from 'preact-router/match'
 
 export default props => {
+  console.log(props.text)
   const icon = props.showIcon
     ? <i class='material-icons'>{props.icon}</i>
     : null
