@@ -30,8 +30,7 @@ const Spinner = () =>
   </div>
 const showList = state => {
   if (state.shows) {
-    const style = { textAlign: 'left' }
-    return (<div style={style}>
+    return (<div class='shows-wrapper'>
       <PushPermissionToggle />
       <ol class='shows'>{state.shows.map(li)}</ol>
     </div>)

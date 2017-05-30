@@ -1,6 +1,7 @@
 import { h, Component } from 'preact' /** @jsx h */
 import latest from 'promise-latest'
 import push from '../push'
+import Toggle from './Toggle'
 
 const setLatestPushNotificationsEnabled = latest(push.setEnabled)
 
@@ -25,12 +26,16 @@ class PushPermissionToggle extends Component {
   }
   render (props, state) {
     if (state.show && push.isSupported) {
+      const value = state.checked ? 'yes' : 'no'
       return (<div class='push-permission-toggle'>
         <label>
-        Get notified about new shows?
-        <input type='checkbox' checked={state.checked} onClick={this.onClick.bind(this)} />
-      </label>
-    </div>)
+          Get notified about new shows?
+          <Toggle
+            checked={state.checked}
+            value={value}
+            onChange={this.onClick.bind(this)} />
+        </label>
+      </div>)
     } else {
       return null
     }

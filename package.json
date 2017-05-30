@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "canvas-prebuilt": "^1.6.5-prerelease.1",
+    "classnames": "^2.2.5",
     "pixi.js": "^4.5.2",
     "preact": "^8.1.0",
     "preact-helmet": "^4.0.0-alpha-2",
