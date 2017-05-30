@@ -30,9 +30,7 @@ const Spinner = () =>
   </div>
 const showList = state => {
   if (state.shows) {
-    return (<div class='shows-wrapper'>
-      <ol class='shows'>{state.shows.map(li)}</ol>
-    </div>)
+    return <ol class='shows'>{state.shows.map(li)}</ol>
   } else {
     return <Spinner />
   }
