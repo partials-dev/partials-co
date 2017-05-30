@@ -31,7 +31,6 @@ const Spinner = () =>
 const showList = state => {
   if (state.shows) {
     return (<div class='shows-wrapper'>
-      <PushPermissionToggle />
       <ol class='shows'>{state.shows.map(li)}</ol>
     </div>)
   } else {
@@ -49,6 +48,7 @@ class Shows extends Preact.Component {
     state = state || {}
     return (<main class='container'>
       <Helmet title='Shows | Partials' />
+      <PushPermissionToggle />
       {showList(state)}
     </main>)
   }
