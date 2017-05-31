@@ -2,13 +2,17 @@ import Logo from './Logo'
 import { h } from 'preact' /** @jsx h */
 import Link from './Link'
 import Links from './Links'
+import nbsp from '../nbsp'
+
 const LinkLinks = Links.map(Link)
 
 const hideOnSmall = component =>
   <span class='hide-on-small'>{component}</span>
 
 const A = <span class='inverted-a'>A</span>
-const PARTIALS = <span class='logo'>P A R T I {A} L S</span>
+const PARTI = nbsp('P A R T I ')
+const LS = nbsp(' L S')
+const PARTIALS = <span class='logo'>{PARTI}{A}{LS}</span>
 
 const logo = {
   href: '/',

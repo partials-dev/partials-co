@@ -48,6 +48,7 @@
         overflow: hidden;
         min-height: 45px;
         background-color: rgba(227, 227, 227, 0.9);
+        z-index: 1;
       }
       .header {
         position: absolute;
@@ -57,9 +58,11 @@
         font-size: 1.35em;
         text-shadow: 0px 0px 5px rgba(227, 227, 227, 1);
         padding: 0.5em;
+        box-shadow: 0px -1px 2px 0px #333333;
       }
       .header .logo {
         font-size: 1.15em;
+        white-space: pre;
       }
       .header a {
         padding: 1em;
@@ -87,22 +90,31 @@
         bottom: 0;
         left: 0;
         height: 72px;
+        overflow: visible;
       }
-      .tab-menu {
+      .call-to-action.tab-menu {
         width: 100%;
         text-align: center;
+        height: inherit;
+        border: none; /* remove existing borders */
+        box-shadow: 0px 1px 2px 0px black;
       }
       .tab-menu-item {
         display: inline-block;
         margin: 0;
         width: 20%;
+        font-size: 4vw;
+      }
+      @media (min-width: 540px) {
+        .tab-menu-item {
+          font-size: 22px;
+        }
       }
       .tab-menu-item a {
         text-decoration: none;
       }
       .tab-menu-item .link-text {
         font-variant: small-caps;
-        font-size: 1.2em;
       }
       .tab-menu-item i {
         display: block;
@@ -131,10 +143,10 @@
       .call-to-action > span:nth-child(2) {
         /*border-left: 2px solid black*/
       }
-      .listen-button {
+      .inverted-button {
         background-color: #333333;
       }
-      .listen-button a {
+      .inverted-button a {
         color: #e3e3e3;
         text-decoration: none;
       }
@@ -165,6 +177,9 @@
       }
       .show {
         border-bottom: 1px solid #333333;
+      }
+      .show:last-child {
+        border-bottom: none;
       }
       ol.show-details {
         list-style: none;
@@ -223,15 +238,18 @@
           text-align: center;
         }
       }
-      @media (max-width: 650px) {
+      @media (max-width: 700px) {
         .hide-on-small {
           display: none !important;
         }
         .show-on-small {
-          display: initial;
+          display: unset;
+        }
+        .show-on-small.center-contents {
+          display: flex;
         }
       }
-      @media (min-width: 651px) {
+      @media (min-width: 701px) {
         .show-on-small {
           display: none;
         }

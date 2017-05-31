@@ -1,8 +1,10 @@
+import nbsp from '../nbsp'
+
 const Links = [
-  { href: '/contact', icon: 'email', text: 'contact' },
-  { href: '/', icon: 'shopping_cart', text: 'merch' },
-  { href: '/shows', icon: 'event', text: 'shows' },
-  { href: '/', icon: 'music_note', text: 'buy' }
+  { href: '/press', icon: 'email', text: nbsp('p r e s s') },
+  { href: '/', icon: 'shopping_cart', text: nbsp('m e r c h') },
+  { href: '/shows', icon: 'event', text: nbsp('s h o w s') },
+  { href: '/', icon: 'music_note', text: nbsp('m u s i c') }
 ]
 
 export default Links
