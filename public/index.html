@@ -74,7 +74,7 @@
         position: absolute;
         background-color: #e3e3e3;
         top: 55px;
-        height: calc(100vh - 127px);
+        height: calc(100vh - 127px + 1px); /* Add an extra pixel because we had to drop the footer down by a pixel. See below. */
         overflow: scroll;
       }
       .full-width {
