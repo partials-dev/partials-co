@@ -24,12 +24,11 @@ class Kaleidoscope {
     this.xPanSpeed = options.xPanSpeed
     this.yPanSpeed = options.yPanSpeed
     this.tilePosition = options.tilePosition
-    const app = new PIXI.Application({ view: options.view })
+    const app = new PIXI.Application({ view: options.view, transparent: true })
     this.app = app
     this.blades = []
     this.onLoadedListeners = []
     this.container = new PIXI.Container()
-    app.stage.addChild(this.container)
     const blurFilter = new PIXI.filters.BlurFilter()
     blurFilter.blur = 25
     this.container.filters = [blurFilter]
@@ -38,6 +37,7 @@ class Kaleidoscope {
       this.center = resize(app, options.view)
       this.blades.forEach(blade => blade.appDidResize(app))
     }
+
     resizeApp()
     window.addEventListener('resize', resizeApp)
 
@@ -52,6 +52,7 @@ class Kaleidoscope {
     this.onLoaded(() => {
       window.setTimeout(() => { this.unblur() }, 2000)
     })
+    app.stage.addChild(this.container)
   }
   setPanSpeed (xPanSpeed, yPanSpeed) {
     this.xPanSpeed = xPanSpeed
@@ -99,6 +100,7 @@ class Kaleidoscope {
       if (newBlur < 0) {
         newBlur = 0
         ticker.destroy()
+        this.container.filters = []
       }
       blurFilter.blur = newBlur
     })

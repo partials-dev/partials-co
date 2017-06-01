@@ -3,11 +3,12 @@ import BladeMask from './BladeMask'
 
 const textureCache = {}
 const defaultSource = process.env.REACT_APP_KALEIDOSCOPE_IMAGE
-const getPlaceholderSource = source => source.replace('.jpg', '-placeholder.jpg')
+// const getPlaceholderSource = source => source.replace('.jpg', '-placeholder.jpg')
+const getPlaceholderSource = source => document.getElementById('kaleidoscope-image-placeholder')
 textureCache[defaultSource] = PIXI.Texture.fromImage(defaultSource)
 
 const defaultPlaceHolderSource = getPlaceholderSource(defaultSource)
-textureCache[defaultPlaceHolderSource] = PIXI.Texture.fromImage(defaultPlaceHolderSource)
+textureCache[defaultPlaceHolderSource] = PIXI.Texture.from(document.getElementById('kaleidoscope-image-placeholder'))
 
 // handle caching and fallback images
 const getTexture = source => {
@@ -17,11 +18,13 @@ const getTexture = source => {
     texture = PIXI.Texture.fromImage(source)
     textureCache[source] = texture
   }
+
   if (!texture.baseTexture.hasLoaded) {
+    console.log('trying to load placeholders')
     const placeholderSource = getPlaceholderSource(source)
     let placeholderTexture = textureCache[placeholderSource]
     if (!placeholderTexture) {
-      placeholderTexture = PIXI.Texture.fromImage(placeholderSource)
+      placeholderTexture = PIXI.Texture.from(document.getElementById('kaleidoscope-image-placeholder'))
       textureCache[placeholderSource] = placeholderTexture
     }
     placeholderTexture.baseTexture.on('loaded', () => {
