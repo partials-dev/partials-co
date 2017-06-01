@@ -1,6 +1,8 @@
 import detectModality from './detectModality'
 import setupMouseInput from './setupMouseInput'
 import setupOrientationInput from './setupOrientationInput'
+import setupFullTiltInput from './setupFullTiltInput'
+import setupMotionInput from './setupMotionInput'
 
 const setupInteraction = dispatch => {
   detectModality().then(modality => {
@@ -13,7 +15,7 @@ const setupInteraction = dispatch => {
         yPanSpeed: 0.005
       }
       dispatch(updatePanSpeed)
-      setupOrientationInput(dispatch)
+      setupFullTiltInput(dispatch)
     }
   })
 }

@@ -11,6 +11,7 @@
     "sharp": "^0.17.3"
   },
   "dependencies": {
+    "@hughsk/fulltilt": "^0.7.1",
     "canvas-prebuilt": "^1.6.5-prerelease.1",
     "classnames": "^2.2.5",
     "dotenv": "^4.0.0",
