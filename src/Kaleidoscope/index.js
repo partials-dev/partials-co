@@ -31,7 +31,7 @@ class Kaleidoscope {
     this.container = new PIXI.Container()
     app.stage.addChild(this.container)
     const blurFilter = new PIXI.filters.BlurFilter()
-    blurFilter.blur = 20
+    blurFilter.blur = 25
     this.container.filters = [blurFilter]
 
     const resizeApp = () => {

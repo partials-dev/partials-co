@@ -1,3 +1,4 @@
+require('dotenv').config()
 const fs = require('fs-extra')
 const path = require('path')
 const sharp = require('sharp')
@@ -59,11 +60,18 @@ const getPlaceholderFileName = file => {
   return path.join(buildDirectory, `${parsed.name}-placeholder.jpg`)
 }
 
+const placeholderScale = process.env.REACT_APP_PLACEHOLDER_SCALE
 const createPlaceholder = (file, data) => {
   const placeholderFile = getPlaceholderFileName(file)
-  sharp(data)
-    .jpeg({ quality: 1 })
-    .toFile(placeholderFile)
+  const image = sharp(data)
+  return image
+    .metadata()
+    .then(metadata =>
+      image
+        .resize(Math.round(metadata.width / placeholderScale))
+        .jpeg({ quality: 1 })
+        .toFile(placeholderFile)
+    )
 }
 
 fs.emptyDirSync(buildDirectory)

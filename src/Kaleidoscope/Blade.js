@@ -36,9 +36,13 @@ class KaleidoscopeSprite extends PIXI.extras.TilingSprite {
   static fromImage (source, width, height, debugMasks) {
     const { texture, originalTexture } = getTexture(source)
     const sprite = new KaleidoscopeSprite(texture, width, height)
+    // sprite.scale.x = process.env.REACT_APP_PLACEHOLDER_SCALE
+    // sprite.scale.y = process.env.REACT_APP_PLACEHOLDER_SCALE
     originalTexture.baseTexture.on('loaded', () => {
-      console.log('Real texture has loaded.')
       sprite.texture = originalTexture
+      // sprite.scale.x = 1
+      // sprite.scale.y = 1
+      console.log('Real texture has loaded.')
       sprite.dispatchLoaded()
     })
     // const sprite = super.fromImage(source, width, height)
