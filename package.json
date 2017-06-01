@@ -24,7 +24,7 @@
     "whatwg-fetch": "^2.0.3"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "npm run resizeImages && react-scripts start",
     "build": "react-scripts build && npm run resizeImages && react-snapshot && node asyncScriptTagTransform.js && node precacheServiceWorker.js",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",

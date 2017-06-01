@@ -1,16 +1,70 @@
 import PIXI from './PIXI'
 import BladeMask from './BladeMask'
 
-class KaleidoscopeImage extends PIXI.extras.TilingSprite {
+const textureCache = {}
+const defaultSource = process.env.REACT_APP_KALEIDOSCOPE_IMAGE
+const getPlaceholderSource = source => source.replace('.jpg', '-placeholder.jpg')
+textureCache[defaultSource] = PIXI.Texture.fromImage(defaultSource)
+
+const defaultPlaceHolderSource = getPlaceholderSource(defaultSource)
+textureCache[defaultPlaceHolderSource] = PIXI.Texture.fromImage(defaultPlaceHolderSource)
+
+// handle caching and fallback images
+const getTexture = source => {
+  let texture = textureCache[source]
+  let originalTexture = texture
+  if (!texture) {
+    texture = PIXI.Texture.fromImage(source)
+    textureCache[source] = texture
+  }
+  if (!texture.baseTexture.hasLoaded) {
+    const placeholderSource = getPlaceholderSource(source)
+    let placeholderTexture = textureCache[placeholderSource]
+    if (!placeholderTexture) {
+      placeholderTexture = PIXI.Texture.fromImage(placeholderSource)
+      textureCache[placeholderSource] = placeholderTexture
+    }
+    placeholderTexture.baseTexture.on('loaded', () => {
+      console.log('Placeholder texture has loaded.')
+    })
+    texture = placeholderTexture
+  }
+  return { texture, originalTexture }
+}
+
+class KaleidoscopeSprite extends PIXI.extras.TilingSprite {
   static fromImage (source, width, height, debugMasks) {
-    const image = super.fromImage(source, width, height)
-    image.anchor.set(0.5)
+    const { texture, originalTexture } = getTexture(source)
+    const sprite = new KaleidoscopeSprite(texture, width, height)
+    originalTexture.baseTexture.on('loaded', () => {
+      console.log('Real texture has loaded.')
+      sprite.texture = originalTexture
+      sprite.dispatchLoaded()
+    })
+    // const sprite = super.fromImage(source, width, height)
+    sprite.anchor.set(0.5)
     if (!debugMasks) {
-      image.mask = new BladeMask()
-      return image
+      sprite.mask = new BladeMask()
+      return sprite
     } else {
       return { mask: new BladeMask() }
     }
+  }
+  constructor (...args) {
+    super(...args)
+    this.textureLoadedListeners = []
+    this.loaded = false
+  }
+  onLoaded (listener) {
+    if (this.loaded) {
+      listener()
+    } else {
+      this.textureLoadedListeners.push(listener)
+    }
+  }
+  dispatchLoaded () {
+    this.loaded = true
+    this.textureLoadedListeners.forEach(listener => listener())
   }
 }
 
@@ -41,10 +95,10 @@ class KaleidoscopeContainer extends PIXI.Container {
 class Blade {
   constructor (i, imageSource, app, center, numberOfBlades, debugMasks = false) {
     const offset = ((2 * Math.PI) / numberOfBlades)
-    const image = KaleidoscopeImage.fromImage(imageSource, app.renderer.width * 2, app.renderer.height * 2, debugMasks)
+    const image = KaleidoscopeSprite.fromImage(imageSource, app.renderer.width * 2, app.renderer.height * 2, debugMasks)
     const container = new KaleidoscopeContainer(image, offset, center, i, numberOfBlades, debugMasks)
     image.mask.draw(offset)
-    app.stage.addChild(container)
+    // app.stage.addChild(container)
     this.image = image
     this.container = container
 
@@ -70,6 +124,12 @@ class Blade {
   destroy () {
     this.image.destroy()
     this.container.destroy()
+  }
+  onLoaded (listener) {
+    this.image.onLoaded(listener)
+  }
+  get loaded () {
+    return this.image.loaded
   }
 }
 

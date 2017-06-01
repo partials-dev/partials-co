@@ -4,17 +4,21 @@ const sharp = require('sharp')
 
 const sourceDirectory = path.join(__dirname, 'src', 'images')
 const buildDirectory = path.join(__dirname, 'public', 'images')
-const imageFiles = fs.readdirSync(sourceDirectory)
 
-fs.emptyDirSync(buildDirectory)
+// Operates on files in the *source* directory
+const resizeImages = () => {
+  console.log('Resizing images.')
+  const imageFiles = fs.readdirSync(sourceDirectory)
 
-imageFiles.forEach(imageFile => {
+  const awaitAllFiles = imageFiles.map(imageFile => readAndResize(imageFile))
+  return Promise.all(awaitAllFiles)
+}
+
+const readAndResize = imageFile => {
   const imagePath = path.join(sourceDirectory, imageFile)
-  fs.readFile(imagePath, (err, data) => {
-    if (err) throw err
-    resize(imagePath, data)
-  })
-})
+  return fs.readFile(imagePath)
+    .then(data => resize(imagePath, data))
+}
 
 const getResizedFileName = (file, width) => {
   const parsed = path.parse(file)
@@ -23,10 +27,46 @@ const getResizedFileName = (file, width) => {
 
 const widths = [320, 400, 768, 1000, 2000]
 const resize = (file, data) => {
-  widths.forEach(width => {
-    const resizedFile = getResizedFileName(file, width)
-    sharp(data)
-      .resize(width, null)
-      .toFile(resizedFile)
+  console.log('Resizing ', file)
+  const awaitAllWidths = widths.map(width => resizeToWidth(file, data, width))
+  return Promise.all(awaitAllWidths)
+}
+
+const resizeToWidth = (file, data, width) => {
+  const resizedFile = getResizedFileName(file, width)
+  return sharp(data)
+    .resize(width, null)
+    .toFile(resizedFile)
+}
+
+// Operates on files in the *build* directory
+const createPlaceholders = () => {
+  console.log('Creating placeholders.')
+  const imageFiles = fs.readdirSync(buildDirectory)
+
+  imageFiles.forEach(imageFile => {
+    const imagePath = path.join(buildDirectory, imageFile)
+    console.log('Creating placeholder for ', imagePath)
+    fs.readFile(imagePath, (err, data) => {
+      if (err) throw err
+      createPlaceholder(imagePath, data)
+    })
   })
 }
+
+const getPlaceholderFileName = file => {
+  const parsed = path.parse(file)
+  return path.join(buildDirectory, `${parsed.name}-placeholder.jpg`)
+}
+
+const createPlaceholder = (file, data) => {
+  const placeholderFile = getPlaceholderFileName(file)
+  sharp(data)
+    .jpeg({ quality: 1 })
+    .toFile(placeholderFile)
+}
+
+fs.emptyDirSync(buildDirectory)
+resizeImages().then(() => {
+  createPlaceholders()
+})

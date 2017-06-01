@@ -5,8 +5,12 @@ export default props => {
   const icon = props.showIcon
     ? <i class='material-icons'>{props.icon}</i>
     : null
-  return (<Link activeClassName='active' href={props.href}>
+  let Tag = Link
+  if (props.isExternal) {
+    Tag = 'a'
+  }
+  return (<Tag activeClassName='active' href={props.href}>
     {icon}
     <span class='link-text'>{props.text}</span>
-  </Link>)
+  </Tag>)
 }
