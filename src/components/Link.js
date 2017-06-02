@@ -6,10 +6,12 @@ export default props => {
     ? <i class='material-icons'>{props.icon}</i>
     : null
   let Tag = Link
+  let target = ''
   if (props.isExternal) {
     Tag = 'a'
+    target = '_blank' // open external pages in a new tab
   }
-  return (<Tag activeClassName='active' href={props.href}>
+  return (<Tag activeClassName='active' href={props.href} target={target}>
     {icon}
     <span class='link-text'>{props.text}</span>
   </Tag>)

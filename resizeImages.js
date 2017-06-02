@@ -26,7 +26,8 @@ const getResizedFileName = (file, width) => {
   return path.join(buildDirectory, `${parsed.name}-${width}.jpg`)
 }
 
-const widths = [320, 400, 768, 1000, 2000]
+// const widths = [320, 400, 768, 1000, 2000]
+const widths = [1000]
 const resize = (file, data) => {
   console.log('Resizing ', file)
   const awaitAllWidths = widths.map(width => resizeToWidth(file, data, width))
