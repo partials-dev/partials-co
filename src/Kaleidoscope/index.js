@@ -15,8 +15,6 @@ const assignDefaults = options => {
   return Object.assign({}, defaultOptions, options)
 }
 
-const CLARIFY_RATE = 0.5
-
 class Kaleidoscope {
   constructor (options) {
     options = assignDefaults(options)
@@ -29,9 +27,6 @@ class Kaleidoscope {
     this.blades = []
     this.onLoadedListeners = []
     this.container = new PIXI.Container()
-    const blurFilter = new PIXI.filters.BlurFilter()
-    blurFilter.blur = 25
-    this.container.filters = [blurFilter]
 
     const resizeApp = () => {
       this.center = resize(app, options.view)
@@ -49,9 +44,6 @@ class Kaleidoscope {
       })
     }
     app.ticker.add(updateBlades)
-    this.onLoaded(() => {
-      window.setTimeout(() => { this.unblur() }, 2000)
-    })
     app.stage.addChild(this.container)
   }
   setPanSpeed (xPanSpeed, yPanSpeed) {
@@ -90,21 +82,6 @@ class Kaleidoscope {
   }
   dispatchLoaded () {
     this.onLoadedListeners.forEach(listener => listener())
-  }
-  unblur () {
-    const ticker = new PIXI.ticker.Ticker()
-    ticker.stop()
-    ticker.add(deltaTime => {
-      const blurFilter = this.container.filters[0]
-      let newBlur = blurFilter.blur - (deltaTime * CLARIFY_RATE)
-      if (newBlur < 0) {
-        newBlur = 0
-        ticker.destroy()
-        this.container.filters = []
-      }
-      blurFilter.blur = newBlur
-    })
-    ticker.start()
   }
 }
 

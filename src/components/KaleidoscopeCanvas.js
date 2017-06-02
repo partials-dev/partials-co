@@ -29,7 +29,9 @@ class KaleidoscopeCanvas extends Preact.Component {
       this.kaleidoscope.setPanSpeed(props.xPanSpeed, props.yPanSpeed)
       this.kaleidoscope.setTilePosition(props.tilePosition)
     }
-    return <canvas id='kaleidoscope' ref={ref} />
+    let blur = 'blur'
+    if (state.loaded) blur = ''
+    return <canvas id='kaleidoscope' class={blur} ref={ref} />
   }
 }
 
