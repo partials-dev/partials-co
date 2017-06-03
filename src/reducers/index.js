@@ -12,8 +12,8 @@ const defaultState = {
   xPanSpeed: -0.3,
   yPanSpeed: 0.01,
   tilePosition: {
-    x: 0,
-    y: 0
+    x: -0.3,
+    y: 0.1
   }
 }
 

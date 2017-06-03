@@ -3,6 +3,9 @@ import Links from './Links'
 import Link from './Link'
 import nbsp from '../nbsp'
 
+const listen = nbsp('l i s t e n')
+const free = nbsp('f r e e')
+
 const LinkLinks = Links.map(l => {
   l.showIcon = false
   return Link(l)
@@ -31,9 +34,6 @@ const tabMenuItem = (component, index) => {
     {component}
   </span>)
 }
-
-const listen = nbsp('l i s t e n')
-const free = nbsp('f r e e')
 
 const TabMenu = () =>
   <span class='tab-menu show-on-small center-contents call-to-action'>

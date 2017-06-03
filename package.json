@@ -15,15 +15,13 @@
     "canvas-prebuilt": "^1.6.5-prerelease.1",
     "classnames": "^2.2.5",
     "dotenv": "^4.0.0",
-    "pixi.js": "^4.5.2",
+    "pixi.js": "4.5.2",
     "preact": "^8.1.0",
-    "preact-helmet": "^4.0.0-alpha-2",
     "preact-redux": "^2.0.1",
     "preact-render-to-string": "^3.6.1",
     "preact-router": "^2.5.2",
     "promise-latest": "^1.0.4",
-    "redux": "^3.6.0",
-    "whatwg-fetch": "^2.0.3"
+    "redux": "^3.6.0"
   },
   "scripts": {
     "start": "npm run resizeImages && react-scripts start",

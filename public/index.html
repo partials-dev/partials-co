@@ -157,9 +157,18 @@
       }
 
       /* Kaleidoscope */
-      #kaleidoscope, #kaleidoscope-placeholder {
+      #kaleidoscope {
         width: 100vw;
         height: 100vh;
+        z-index: -2;
+        position: absolute;
+        left: 0;
+        top: 0;
+        transition: 1s filter ease-in-out;
+      }
+      #kaleidoscope-placeholder {
+        width: 100vw;
+        height: auto;
         z-index: -2;
         position: absolute;
         left: 0;
@@ -406,7 +415,7 @@
     <title>Partials</title>
   </head>
   <body>
-    <img style='display: none;' id='kaleidoscope-placeholder' src='%PUBLIC_URL%/images/kaleidoscope-image-bw-1000-placeholder.jpg' />
+    <img style='display: none;' id='kaleidoscope-placeholder-image' src='%PUBLIC_URL%/images/kaleidoscope-image-bw-1000-placeholder.jpg' />
     <div id="root">
       <!-- {app} -->
     </div>

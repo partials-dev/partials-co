@@ -1,9 +1,9 @@
 import preact from 'preact'
 import renderToString from 'preact-render-to-string'
-import isServerSide from './isServerSide'
+import isServer from './isServer'
 
 const render = (rootComponent, domElement) => {
-  if (isServerSide()) {
+  if (isServer()) {
     domElement.innerHTML = renderToString(rootComponent)
   } else {
     preact.render(rootComponent, domElement)

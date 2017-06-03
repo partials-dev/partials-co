@@ -1,8 +1,9 @@
 import { h } from 'preact' /** @jsx h */
-import Helmet from 'preact-helmet'
+import updateTitle from '../updateTitle'
 
 const Home = () => {
-  return <Helmet title='Partials' />
+  updateTitle('Partials')
+  return null
 }
 
 export default Home

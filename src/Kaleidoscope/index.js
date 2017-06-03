@@ -9,8 +9,7 @@ const assignDefaults = options => {
     slices: 16,
     imageSource: 'oldplum.png',
     xPanSpeed: 0.15,
-    yPanSpeed: 0.15,
-    view: document.getElementById('kaleidoscope')
+    yPanSpeed: 0.15
   }
   return Object.assign({}, defaultOptions, options)
 }
@@ -19,8 +18,13 @@ class Kaleidoscope {
   constructor (options) {
     options = assignDefaults(options)
     this.slices = options.slices * 2
-    this.xPanSpeed = options.xPanSpeed
-    this.yPanSpeed = options.yPanSpeed
+    if (process.env.REACT_APP_GENERATE_STATIC_PLACEHOLDER) {
+      this.xPanSpeed = 0
+      this.yPanSpeed = 0
+    } else {
+      this.xPanSpeed = options.xPanSpeed
+      this.yPanSpeed = options.yPanSpeed
+    }
     this.tilePosition = options.tilePosition
     const app = new PIXI.Application({ view: options.view, transparent: true })
     this.app = app

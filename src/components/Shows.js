@@ -1,9 +1,8 @@
-import Helmet from 'preact-helmet'
 import Preact, { h } from 'preact' /** @jsx h */
 import PushPermissionToggle from './PushPermissionToggle'
 import Show from './Show'
 import getShows from '../getShows'
-
+import updateTitle from '../updateTitle'
 // const shows = [
 //   {
 //     date: 'May 26 2017',
@@ -43,9 +42,9 @@ class Shows extends Preact.Component {
     awaitShows.then(shows => this.setState({ shows }))
   }
   render (props, state) {
+    updateTitle('Shows | Partials')
     state = state || {}
     return (<main class='container'>
-      <Helmet title='Shows | Partials' />
       <PushPermissionToggle />
       {showList(state)}
     </main>)
