@@ -64,18 +64,18 @@ function registerServiceWorker () {
           reject(e)
         })
       })
+    } else { // service worker doesn't exist
+      reject('Service workers not supported')
     }
   })
 }
 
-registerServiceWorker()
+let registrationPromise = null
+const awaitServiceWorkerRegistration = () => {
+  if (!registrationPromise) {
+    registrationPromise = registerServiceWorker()
+  }
+  return registrationPromise
+}
 
-// let registrationPromise = null
-// const awaitServiceWorkerRegistration = () => {
-//   if (!registrationPromise) {
-//     registrationPromise = registerServiceWorker()
-//   }
-//   return registrationPromise
-// }
-//
-// export default awaitServiceWorkerRegistration
+export default awaitServiceWorkerRegistration

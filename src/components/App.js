@@ -7,10 +7,8 @@ import Footer from './Footer'
 
 import Home from './Home'
 import Contact from './Contact'
-import Merch from './Merch'
 import Kaleidoscope from './Kaleidoscope'
 import Shows from './Shows'
-import Music from './Music'
 
 import Analytics from './Analytics'
 
@@ -23,7 +21,6 @@ const routes = <Router>
 const renderContent = currentRoute => {
   const atHome = currentRoute.matches
   const hideContent = atHome ? 'hide' : ''
-  const hideFooter = atHome ? '' : 'hide'
   return (<div>
     <div class={`content full-width ${hideContent}`}>
       {routes}

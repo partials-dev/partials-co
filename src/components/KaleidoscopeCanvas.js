@@ -1,6 +1,5 @@
 import Kaleidoscope from '../Kaleidoscope'
 import Preact, { h } from 'preact' /** @jsx h */
-import isServer from '../isServer'
 
 class KaleidoscopeCanvas extends Preact.Component {
   constructor (...args) {
@@ -11,7 +10,6 @@ class KaleidoscopeCanvas extends Preact.Component {
     const options = Object.assign({}, this.props, { view: this.canvas })
     this.kaleidoscope = new Kaleidoscope(options)
     this.kaleidoscope.onLoaded(() => {
-      console.log('kaleidoscope loaded')
       this.setState({ loaded: true })
     })
   }

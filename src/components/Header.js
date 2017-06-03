@@ -1,4 +1,3 @@
-import Logo from './Logo'
 import { h } from 'preact' /** @jsx h */
 import Link from './Link'
 import Links from './Links'

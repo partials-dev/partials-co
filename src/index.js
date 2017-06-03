@@ -11,18 +11,20 @@ import setupInteraction from './setupInteraction/index'
 const reduxDevTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 const store = createStore(reducer, reduxDevTools)
 
-console.log('bundle loaded')
+const init = () => {
+  const root = document.getElementById('root')
+  // clear out any prerendered content in root
+  root.innerHTML = ''
+  render(
+    <Provider store={store}>
+      <App />
+    </Provider>,
+    root
+  )
+
+  setupInteraction(store.dispatch.bind(store))
+}
 
 awaitServiceWorkerRegistration()
 
-const root = document.getElementById('root')
-// clear out any prerendered content in root
-root.innerHTML = ''
-render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  root
-)
-
-setupInteraction(store.dispatch.bind(store))
+init()
