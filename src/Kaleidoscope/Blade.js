@@ -20,16 +20,15 @@ const getTexture = source => {
   }
 
   if (!texture.baseTexture.hasLoaded) {
-    console.log('trying to load placeholders')
     const placeholderSource = getPlaceholderSource(source)
     let placeholderTexture = textureCache[placeholderSource]
     if (!placeholderTexture) {
       placeholderTexture = PIXI.Texture.from(document.getElementById('kaleidoscope-placeholder-image'))
       textureCache[placeholderSource] = placeholderTexture
     }
-    placeholderTexture.baseTexture.on('loaded', () => {
-      console.log('Placeholder texture has loaded.')
-    })
+    // placeholderTexture.baseTexture.on('loaded', () => {
+    //   console.log('Placeholder texture has loaded.')
+    // })
     texture = placeholderTexture
   }
   return { texture, originalTexture }
@@ -45,7 +44,7 @@ class KaleidoscopeSprite extends PIXI.extras.TilingSprite {
       sprite.texture = originalTexture
       // sprite.scale.x = 1
       // sprite.scale.y = 1
-      console.log('Real texture has loaded.')
+      // console.log('Real texture has loaded.')
       sprite.dispatchLoaded()
     })
     // const sprite = super.fromImage(source, width, height)
