@@ -6,10 +6,22 @@ const sharp = require('sharp')
 const sourceDirectory = path.join(__dirname, 'src', 'images')
 const buildDirectory = path.join(__dirname, 'public', 'images')
 
+const contains = (array, value) => array.indexOf(value) >= 0
+
+const isJPG = fileName =>
+  contains(fileName.toLowerCase(), 'jpg') ||
+  contains(fileName.toLowerCase(), 'jpeg')
+
+const isPNG = fileName =>
+  contains(fileName.toLowerCase(), 'png')
+
+const isImage = fileName => isJPG(fileName) || isPNG(fileName)
+
+const readImages = directory => fs.readdirSync(directory).filter(isImage)
+
 // Operates on files in the *source* directory
 const resizeImages = () => {
-  console.log('Resizing images.')
-  const imageFiles = fs.readdirSync(sourceDirectory)
+  const imageFiles = readImages(sourceDirectory)
 
   const awaitAllFiles = imageFiles.map(imageFile => readAndResize(imageFile))
   return Promise.all(awaitAllFiles)
@@ -21,32 +33,39 @@ const readAndResize = imageFile => {
     .then(data => resize(imagePath, data))
 }
 
-const getResizedFileName = (file, width) => {
-  const parsed = path.parse(file)
-  return path.join(buildDirectory, `${parsed.name}-${width}.jpg`)
-}
-
 // const widths = [320, 400, 768, 1000, 2000]
 const widths = [1000]
 const resize = (file, data) => {
   console.log('Resizing ', file)
-  const awaitAllWidths = widths.map(width => resizeToWidth(file, data, width))
+  const awaitAllWidths = widths.map(width => {
+    resizeToWidth(file, data, width)
+  })
   return Promise.all(awaitAllWidths)
 }
 
-const resizeToWidth = (file, data, width) => {
-  const resizedFile = getResizedFileName(file, width)
-  return sharp(data)
-    .resize(width, null)
-    .toFile(resizedFile)
+const shouldProcess = fileName => fileName.indexOf('icon') < 0
+
+const resizeToWidth = (filePath, data, width) => {
+  let parsed = path.parse(filePath)
+  let fileName = parsed.base // name + extension
+  let image = sharp(data)
+  if (shouldProcess(fileName)) {
+    fileName = `${parsed.name}-${width}.jpg`
+    image = image.resize(width, null)
+  }
+  return saveInBuildDirectory(image, fileName)
+}
+
+const saveInBuildDirectory = (sharpImage, fileName) => {
+  const newFilePath = path.join(buildDirectory, fileName)
+  return sharpImage.toFile(newFilePath)
 }
 
 // Operates on files in the *build* directory
 const createPlaceholders = () => {
+  const imageFiles = readImages(buildDirectory)
   console.log('Creating placeholders.')
-  const imageFiles = fs.readdirSync(buildDirectory)
-
-  imageFiles.forEach(imageFile => {
+  imageFiles.filter(shouldProcess).forEach(imageFile => {
     const imagePath = path.join(buildDirectory, imageFile)
     console.log('Creating placeholder for ', imagePath)
     fs.readFile(imagePath, (err, data) => {

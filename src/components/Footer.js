@@ -6,6 +6,9 @@ import nbsp from '../nbsp'
 const listen = nbsp('l i s t e n')
 const free = nbsp('f r e e')
 
+// const listen = nbsp('listen')
+// const free = nbsp('free')
+
 const LinkLinks = Links.map(l => {
   l.showIcon = false
   return Link(l)
@@ -30,7 +33,7 @@ const ListenOnYouTube = () => {
 }
 
 const tabMenuItem = (component, index) => {
-  return (<span class='tab-menu-item'>
+  return (<span class='tab-menu-item center-contents'>
     {component}
   </span>)
 }
