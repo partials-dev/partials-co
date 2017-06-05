@@ -18,8 +18,8 @@
       "sizes": "192x192"
     }
   ],
-  "start_url": "index.html",
-  "display": "browser",
-  "background_color": "#2196F3",
+  "start_url": "./",
+  "display": "minimal-ui",
+  "background_color": "#e3e3e3",
   "theme_color": "#2196F3"
 }
