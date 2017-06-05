@@ -27,7 +27,7 @@ class PushPermissionToggle extends Component {
   render (props, state) {
     if (state.show && push.isSupported) {
       const value = state.checked ? 'yes' : 'no'
-      return (<div class='push-permission-toggle'>
+      return (<div class='push-permission-toggle normal-spacing'>
         <label>
           Get notified about new shows?
           <Toggle

@@ -9,8 +9,11 @@ const hideOnSmall = component =>
   <span class='hide-on-small'>{component}</span>
 
 const A = <span class='inverted-a'>A</span>
-const PARTI = nbsp('P A R T I ')
-const LS = nbsp(' L S')
+// const PARTI = nbsp('P A R T I ')
+// const LS = nbsp(' L S')
+const PARTI = nbsp('PARTI')
+const LS = nbsp('LS')
+
 const PARTIALS = <span class='logo'>{PARTI}{A}{LS}</span>
 
 const logo = {

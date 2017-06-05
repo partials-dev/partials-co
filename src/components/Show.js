@@ -1,7 +1,7 @@
 import { h } from 'preact' /** @jsx h */
 
 const Show = props => {
-  return <ol class='show-details'>
+  return <ol class='show-details normal-spacing'>
     <li class='date'>
       {props.date}
     </li>

@@ -28,6 +28,10 @@
         margin: 0;
         color: #333333;
         font-family: sans-serif;
+        letter-spacing: 0.3em;
+      }
+      body .normal-spacing {
+        letter-spacing: normal;
       }
       a {
         color: #333333;
@@ -162,12 +166,10 @@
       .call-to-action.tab-menu > span {
         display: flex;
       }
-      .call-to-action > span:nth-child(2) {
-        border-left: 2px solid black
-      }
       .inverted-button {
         background-color: #333333;
         transition: background-color 0.3s;
+        border-left: 2px solid black
       }
       .inverted-button:hover {
         background-color: #222222;
@@ -279,6 +281,12 @@
         }
         .push-permission-toggle {
           text-align: center;
+        }
+        .normal-spacing-on-extra-small {
+          letter-spacing: normal;
+        }
+        .bigger-links-on-extra-small .link-text {
+          font-size: 1.3em;
         }
       }
       @media (max-width: 700px) {
