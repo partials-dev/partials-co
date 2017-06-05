@@ -163,14 +163,22 @@
         display: flex;
       }
       .call-to-action > span:nth-child(2) {
-        /*border-left: 2px solid black*/
+        border-left: 2px solid black
       }
       .inverted-button {
         background-color: #333333;
+        transition: background-color 0.3s;
+      }
+      .inverted-button:hover {
+        background-color: #222222;
       }
       .inverted-button a {
         color: #e3e3e3;
         text-decoration: none;
+        transition: color 0.3s;
+      }
+      .inverted-button:hover a {
+        /*color: #f4f4f4;*/
       }
       .button {
         padding: 0.5em 0.75em;
