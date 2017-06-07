@@ -29,12 +29,12 @@ const a = <span class='inverted-a'>A</span>
 const lia = 'LIA'
 
 const ListenOnYouTube = () => {
-  return (<span class='call-to-action hide-on-small'>
+  return (<a href='https://www.youtube.com' class='call-to-action hide-on-small'>
     <span class='album-title'>{glossol}{a}{lia}</span>
     <span class='inverted-button normal-spacing'>
-      {Link({ YouTube, ...{ text: 'LISTEN ON YOUTUBE' } })}
+      <span class='link-text'>LISTEN ON YOUTUBE</span>
     </span>
-  </span>)
+  </a>)
 }
 
 const tabMenuItem = (component, index) => {

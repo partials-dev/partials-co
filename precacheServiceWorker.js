@@ -11,7 +11,8 @@ const options = {
   staticFileGlobs: [root + '/**/*.{html,css,png,jpg,gif,svg,eot,ttf,woff,json}', root + '/static/**/*.js'],
   stripPrefix: root,
   navigateFallback: '/200',
-  verbose: true
+  verbose: true,
+  dontCacheBustUrlsMatching: /main\..*\.js/
 }
 
 console.log('')

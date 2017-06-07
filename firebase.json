@@ -10,13 +10,13 @@
       "source" : "/",
       "headers" : [{
         "key" : "Cache-Control",
-        "value" : "max-age=2592000"
+        "value" : "max-age=0"
       }]
     }, {
       "source" : "/**/*",
       "headers" : [{
         "key" : "Cache-Control",
-        "value" : "max-age=2592000"
+        "value" : "max-age=31540000"
       }]
     }, {
       "source" : "**/service-worker.js",

@@ -26,15 +26,18 @@ class Kaleidoscope {
       this.yPanSpeed = options.yPanSpeed
     }
     this.tilePosition = options.tilePosition
-    const app = new PIXI.Application({ view: options.view, transparent: true })
+    const app = new PIXI.Application({ view: options.view, transparent: false })
     this.app = app
     this.blades = []
     this.onLoadedListeners = []
     this.container = new PIXI.Container()
 
     const resizeApp = () => {
-      this.center = resize(app, options.view)
-      this.blades.forEach(blade => blade.appDidResize(app))
+      const newCenter = resize(app, options.view)
+      if (newCenter) {
+        this.center = newCenter
+        this.blades.forEach(blade => blade.appDidResize(app))
+      }
     }
 
     resizeApp()
