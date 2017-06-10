@@ -10,7 +10,12 @@ const createKaleidoscopeImageElement = onImageLoaded => {
   img.id = imageId
   img.style.display = 'none'
   img.src = '/images/manley-palmer-hall-bw-1000.jpg'
-  if (img.complete) onImageLoaded()
+  const intervalId = window.setInterval(() => {
+    if (img.complete) {
+      onImageLoaded()
+      window.clearInterval(intervalId)
+    }
+  }, 200)
 
   const picture = document.createElement('picture')
 
