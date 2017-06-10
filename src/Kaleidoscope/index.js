@@ -26,7 +26,7 @@ class Kaleidoscope {
       this.yPanSpeed = options.yPanSpeed
     }
     this.tilePosition = options.tilePosition
-    const app = new PIXI.Application({ view: options.view, transparent: false })
+    const app = new PIXI.Application({ view: options.view, transparent: true })
     this.app = app
     this.blades = []
     this.onLoadedListeners = []

@@ -1,19 +1,17 @@
 import PIXI from './PIXI'
 import BladeMask from './BladeMask'
 import createKaleidoscopeImageElement from './createKaleidoscopeImageElement'
-
-const placeholderTexture = PIXI.Texture.from(document.getElementById('kaleidoscope-placeholder-image'))
-
 class KaleidoscopeSprite extends PIXI.extras.TilingSprite {
   static fromImage (source, width, height, debugMasks) {
+    const placeholderTexture = PIXI.Texture.from(document.getElementById('kaleidoscope-placeholder-image'))
     const sprite = new KaleidoscopeSprite(placeholderTexture, width, height)
 
-    const onOriginalTextureLoaded = () => {
+    const onOriginalTextureLoaded = imageId => {
       const originalTexture = PIXI.Texture.from(document.getElementById(imageId))
       sprite.texture = originalTexture
       sprite.dispatchLoaded()
     }
-    const imageId = createKaleidoscopeImageElement(onOriginalTextureLoaded)
+    createKaleidoscopeImageElement(onOriginalTextureLoaded)
 
     // sprite.scale.x = process.env.REACT_APP_PLACEHOLDER_SCALE
     // sprite.scale.y = process.env.REACT_APP_PLACEHOLDER_SCALE

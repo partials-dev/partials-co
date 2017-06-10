@@ -9,6 +9,7 @@ class KaleidoscopeCanvas extends Preact.Component {
   componentDidMount () {
     const options = Object.assign({}, this.props, { view: this.canvas })
     this.kaleidoscope = new Kaleidoscope(options)
+    this.setState({ mounted: true })
     this.kaleidoscope.onLoaded(() => {
       this.setState({ loaded: true })
     })
@@ -29,7 +30,12 @@ class KaleidoscopeCanvas extends Preact.Component {
     if (state.loaded) {
       blur = ''
     }
-    return <canvas id='kaleidoscope' class={blur} ref={ref} />
+    let fadeIn = ''
+    if (state.mounted) {
+      fadeIn = 'fade-in'
+    }
+
+    return <canvas id='kaleidoscope' class={`${fadeIn} ${blur}`} ref={ref} />
   }
 }
 
