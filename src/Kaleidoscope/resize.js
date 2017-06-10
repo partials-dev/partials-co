@@ -1,7 +1,7 @@
 import PIXI from './PIXI'
 import debounce from './debounce'
 
-const resize = (app, view) => {
+export const resize = (app, view) => {
   view.style.width = window.innerWidth + 'px'
   view.style.height = window.innerHeight + 'px'
   const { width, height } = view.getBoundingClientRect()
@@ -10,6 +10,8 @@ const resize = (app, view) => {
   return newCenter
 }
 
-const debouncedResize = debounce(resize, 200, { leading: true })
+const resizePromise = (...args) => Promise.resolve(resize(...args))
+
+export const debouncedResize = debounce(resizePromise, 200)
 
 export default debouncedResize

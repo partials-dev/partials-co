@@ -2,7 +2,11 @@ import PIXI from './PIXI'
 import BladeMask from './BladeMask'
 
 const textureCache = {}
+
 const defaultSource = process.env.REACT_APP_KALEIDOSCOPE_IMAGE
+// const getTexture = () => {
+//
+// }
 // const getPlaceholderSource = source => source.replace('.jpg', '-placeholder.jpg')
 const getPlaceholderSource = source => document.getElementById('kaleidoscope-placeholder-image')
 textureCache[defaultSource] = PIXI.Texture.fromImage(defaultSource)
@@ -26,9 +30,6 @@ const getTexture = source => {
       placeholderTexture = PIXI.Texture.from(document.getElementById('kaleidoscope-placeholder-image'))
       textureCache[placeholderSource] = placeholderTexture
     }
-    // placeholderTexture.baseTexture.on('loaded', () => {
-    //   console.log('Placeholder texture has loaded.')
-    // })
     texture = placeholderTexture
   }
   return { texture, originalTexture }
@@ -37,6 +38,7 @@ const getTexture = source => {
 class KaleidoscopeSprite extends PIXI.extras.TilingSprite {
   static fromImage (source, width, height, debugMasks) {
     const { texture, originalTexture } = getTexture(source)
+    // return getTexture().then(({ texture, originalTexture }) => {
     const sprite = new KaleidoscopeSprite(texture, width, height)
     // sprite.scale.x = process.env.REACT_APP_PLACEHOLDER_SCALE
     // sprite.scale.y = process.env.REACT_APP_PLACEHOLDER_SCALE
@@ -55,6 +57,7 @@ class KaleidoscopeSprite extends PIXI.extras.TilingSprite {
     } else {
       return { mask: new BladeMask() }
     }
+    // })
   }
   constructor (...args) {
     super(...args)

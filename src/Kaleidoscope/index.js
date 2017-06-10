@@ -1,6 +1,6 @@
 import Blade from './Blade'
 import PIXI from './PIXI'
-import resize from './resize'
+import { resize, debouncedResize } from './resize'
 
 PIXI.settings.PRECISION_FRAGMENT = 'highp'
 
@@ -32,16 +32,17 @@ class Kaleidoscope {
     this.onLoadedListeners = []
     this.container = new PIXI.Container()
 
-    const resizeApp = () => {
-      const newCenter = resize(app, options.view)
-      if (newCenter) {
-        this.center = newCenter
-        this.blades.forEach(blade => blade.appDidResize(app))
-      }
+    const updateCenter = newCenter => {
+      this.center = newCenter
+      this.blades.forEach(blade => blade.appDidResize(app))
     }
 
-    resizeApp()
-    window.addEventListener('resize', resizeApp)
+    updateCenter(resize(app, options.view))
+
+    window.addEventListener(
+      'resize',
+      () => debouncedResize(app, options.view).then(updateCenter)
+    )
 
     this.createBlades(options.imageSource, options.debugMasks)
 
