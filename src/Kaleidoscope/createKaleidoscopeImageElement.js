@@ -6,7 +6,7 @@ const createKaleidoscopeImageElement = onImageLoaded => {
 
   alreadyCreated = true
   const img = document.createElement('img')
-  img.onload = onImageLoaded
+  // img.onload = onImageLoaded
   img.id = imageId
   img.style.display = 'none'
   img.src = '/images/manley-palmer-hall-bw-1000.jpg'
@@ -31,6 +31,11 @@ const createKaleidoscopeImageElement = onImageLoaded => {
   picture.appendChild(img)
 
   document.body.insertBefore(picture, document.body.firstChild)
+
+  var tmpImg = new window.Image()
+  tmpImg.src = img.src
+  tmpImg.onload = onImageLoaded
+
   return img.id
 }
 
