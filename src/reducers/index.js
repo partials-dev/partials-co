@@ -8,7 +8,6 @@ const getId = url => {
 
 const defaultState = {
   slices: 7,
-  imageSource: 'images/manley-palmer-hall-bw-1000.jpg',
   // imageSource: 'images/old-plum-1000.jpg',
   xPanSpeed: -0.3,
   yPanSpeed: 0.01,

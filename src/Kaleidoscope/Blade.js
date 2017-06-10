@@ -1,55 +1,29 @@
 import PIXI from './PIXI'
 import BladeMask from './BladeMask'
+import createKaleidoscopeImageElement from './createKaleidoscopeImageElement'
 
-const textureCache = {}
-
-const defaultSource = process.env.REACT_APP_KALEIDOSCOPE_IMAGE
-// const getTexture = () => {
-//
-// }
-// const getPlaceholderSource = source => source.replace('.jpg', '-placeholder.jpg')
-const getPlaceholderSource = source => document.getElementById('kaleidoscope-placeholder-image')
-textureCache[defaultSource] = PIXI.Texture.fromImage(defaultSource)
-
-const defaultPlaceHolderSource = getPlaceholderSource(defaultSource)
-textureCache[defaultPlaceHolderSource] = PIXI.Texture.from(document.getElementById('kaleidoscope-placeholder-image'))
-
-// handle caching and fallback images
-const getTexture = source => {
-  let texture = textureCache[source]
-  let originalTexture = texture
-  if (!texture) {
-    texture = PIXI.Texture.fromImage(source)
-    textureCache[source] = texture
-  }
-
-  if (!texture.baseTexture.hasLoaded) {
-    const placeholderSource = getPlaceholderSource(source)
-    let placeholderTexture = textureCache[placeholderSource]
-    if (!placeholderTexture) {
-      placeholderTexture = PIXI.Texture.from(document.getElementById('kaleidoscope-placeholder-image'))
-      textureCache[placeholderSource] = placeholderTexture
-    }
-    texture = placeholderTexture
-  }
-  return { texture, originalTexture }
-}
+const placeholderTexture = PIXI.Texture.from(document.getElementById('kaleidoscope-placeholder-image'))
 
 class KaleidoscopeSprite extends PIXI.extras.TilingSprite {
   static fromImage (source, width, height, debugMasks) {
-    const { texture, originalTexture } = getTexture(source)
-    // return getTexture().then(({ texture, originalTexture }) => {
-    const sprite = new KaleidoscopeSprite(texture, width, height)
+    const sprite = new KaleidoscopeSprite(placeholderTexture, width, height)
+
+    const onOriginalTextureLoaded = () => {
+      const originalTexture = PIXI.Texture.from(document.getElementById(imageId))
+      sprite.texture = originalTexture
+      sprite.dispatchLoaded()
+    }
+    const imageId = createKaleidoscopeImageElement(onOriginalTextureLoaded)
+
     // sprite.scale.x = process.env.REACT_APP_PLACEHOLDER_SCALE
     // sprite.scale.y = process.env.REACT_APP_PLACEHOLDER_SCALE
-    originalTexture.baseTexture.on('loaded', () => {
-      sprite.texture = originalTexture
-      // sprite.scale.x = 1
-      // sprite.scale.y = 1
-      // console.log('Real texture has loaded.')
-      sprite.dispatchLoaded()
-    })
-    // const sprite = super.fromImage(source, width, height)
+    // originalTexture.baseTexture.on('loaded', () => {
+    //   sprite.texture = originalTexture
+    //   // sprite.scale.x = 1
+    //   // sprite.scale.y = 1
+    //   // console.log('Real texture has loaded.')
+    //   sprite.dispatchLoaded()
+    // })
     sprite.anchor.set(0.5)
     if (!debugMasks) {
       sprite.mask = new BladeMask()
@@ -57,7 +31,6 @@ class KaleidoscopeSprite extends PIXI.extras.TilingSprite {
     } else {
       return { mask: new BladeMask() }
     }
-    // })
   }
   constructor (...args) {
     super(...args)

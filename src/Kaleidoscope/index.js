@@ -82,8 +82,8 @@ class Kaleidoscope {
     })
   }
   setImage (imageSource, debugMasks) {
-    const texture = PIXI.Texture.fromImage(imageSource)
-    this.blades.forEach(blade => blade.setImageTexture(texture))
+    // const texture = PIXI.Texture.fromImage(imageSource)
+    // this.blades.forEach(blade => blade.setImageTexture(texture))
   }
   onLoaded (listener) {
     this.onLoadedListeners.push(listener)
