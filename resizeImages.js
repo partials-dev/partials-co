@@ -95,7 +95,7 @@ const createPlaceholder = (file, data) => {
       .then(metadata =>
         image
           .resize(Math.round(metadata.width / placeholderScale))
-          .jpeg({ quality: 1 })
+          .jpeg({ quality: 1, progressive: true })
           .toFile(path.join(buildDirectory, `${parsed.name}-placeholder.jpg`))
       )
   const awaitWebp = image
