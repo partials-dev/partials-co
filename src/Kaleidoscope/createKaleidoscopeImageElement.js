@@ -1,15 +1,19 @@
-let alreadyCreated = false
+let creating = false
+let created = false
 const imageId = 'kaleidoscope-image'
 
 let imageLoadedListeners = []
 
 const createKaleidoscopeImageElement = onImageLoaded => {
   imageLoadedListeners.push(onImageLoaded)
-  if (alreadyCreated) {
+  if (creating) {
+    if (created) {
+      onImageLoaded(imageId)
+    }
     return
   }
 
-  alreadyCreated = true
+  creating = true
   const img = document.createElement('img')
   // img.onload = onImageLoaded
   img.id = imageId
@@ -17,6 +21,7 @@ const createKaleidoscopeImageElement = onImageLoaded => {
   img.src = '/images/manley-palmer-hall-bw-1000.jpg'
   const intervalId = window.setInterval(() => {
     if (img.complete) {
+      created = true
       window.clearInterval(intervalId)
       imageLoadedListeners.forEach(listener => listener(imageId))
     }

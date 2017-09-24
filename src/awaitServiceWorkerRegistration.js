@@ -14,63 +14,90 @@
  * limitations under the License.
  */
 
-function registerServiceWorker () {
+import createKaleidoscopeImageElement from './Kaleidoscope/createKaleidoscopeImageElement'
+
+const awaitKaleidoscopeImagePath = new Promise(resolve => {
+  createKaleidoscopeImageElement(id => {
+    const currentSrc = document.getElementById(id).currentSrc
+    const pathname = new window.URL(currentSrc).pathname
+    resolve(pathname)
+  })
+})
+
+function registerServiceWorker (kaleidoscopeImageEnding) {
   return new Promise((resolve, reject) => {
     if ('serviceWorker' in navigator) {
       // Delay registration until after the page has loaded, to ensure that our
       // precaching requests don't degrade the first visit experience.
       // See https://developers.google.com/web/fundamentals/instant-and-offline/service-worker/registration
-      window.addEventListener('load', function () {
-        // Your service-worker.js *must* be located at the top-level directory relative to your site.
-        // It won't be able to control pages unless it's located at the same level or higher than them.
-        // *Don't* register service worker file in, e.g., a scripts/ sub-directory!
-        // See https://github.com/slightlyoff/ServiceWorker/issues/468
-        navigator.serviceWorker.register('service-worker.js').then(function (reg) {
-          // updatefound is fired if service-worker.js changes.
-          resolve(reg)
-          reg.onupdatefound = function () {
-            // The updatefound event implies that reg.installing is set; see
-            // https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-container-updatefound-event
-            var installingWorker = reg.installing
+      // window.addEventListener('load', function () {
+      const e = kaleidoscopeImageEnding // for example, '1000-jpg'
+      const serviceWorkerFilename = `service-worker-${e}.js`
+      // console.log('registering ', serviceWorkerFilename)
+      // Your service-worker.js *must* be located at the top-level directory relative to your site.
+      // It won't be able to control pages unless it's located at the same level or higher than them.
+      // *Don't* register service worker file in, e.g., a scripts/ sub-directory!
+      // See https://github.com/slightlyoff/ServiceWorker/issues/468
+      navigator.serviceWorker.register(serviceWorkerFilename).then(function (reg) {
+        resolve(reg)
 
-            installingWorker.onstatechange = function () {
-              switch (installingWorker.state) {
-                case 'installed':
-                  if (navigator.serviceWorker.controller) {
-                    // At this point, the old content will have been purged and the fresh content will
-                    // have been added to the cache.
-                    // It's the perfect time to display a "New content is available; please refresh."
-                    // message in the page's interface.
-                    console.log('New or updated content is available.')
-                  } else {
-                    // At this point, everything has been precached.
-                    // It's the perfect time to display a "Content is cached for offline use." message.
-                    console.log('Content is now available offline!')
-                  }
-                  break
+        // updatefound is fired if service-worker.js changes.
+        reg.onupdatefound = function () {
+          // The updatefound event implies that reg.installing is set; see
+          // https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-container-updatefound-event
+          var installingWorker = reg.installing
+          installingWorker.onstatechange = function () {
+            switch (installingWorker.state) {
+              case 'installed':
+                if (navigator.serviceWorker.controller) {
+                  // At this point, the old content will have been purged and the fresh content will
+                  // have been added to the cache.
+                  // It's the perfect time to display a "New content is available; please refresh."
+                  // message in the page's interface.
+                  console.log('New or updated content is available.')
+                } else {
+                  // At this point, everything has been precached.
+                  // It's the perfect time to display a "Content is cached for offline use." message.
+                  console.log('Content is now available offline!')
+                }
+                break
 
-                case 'redundant':
-                  console.error('The installing service worker became redundant.')
-                  break
-                default:
-                  console.info('Hit the default case in registerServiceWorker: ' + installingWorker.state)
-                  break
-              }
+              case 'redundant':
+                console.error('The installing service worker became redundant.')
+                break
+              default:
+                // console.info('Hit the default case in registerServiceWorker: ' + installingWorker.state)
+                break
             }
           }
-        }).catch(function (e) {
-          console.error('Error during service worker registration:', e)
-          reject(e)
-        })
+        }
+      }).catch(function (e) {
+        console.error('Error during service worker registration:', e)
+        reject(e)
       })
+      // })
     }
   })
+}
+
+const last = ary => ary[ary.length - 1]
+
+// const getImageEnding = pathname => {
+//   const splitByHyphens = pathname.split('-')
+//   return last(splitByHyphens)
+// }
+
+const getImageEnding = pathname => {
+  // console.log('getting image ending')
+  return '1000-webp'
 }
 
 let registrationPromise = null
 const awaitServiceWorkerRegistration = () => {
   if (!registrationPromise) {
-    registrationPromise = registerServiceWorker()
+    registrationPromise = awaitKaleidoscopeImagePath
+      .then(getImageEnding)
+      .then(registerServiceWorker)
   }
   return registrationPromise
 }
