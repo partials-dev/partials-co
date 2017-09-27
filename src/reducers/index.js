@@ -8,7 +8,7 @@ const getId = url => {
 
 const defaultState = {
   slices: 7,
-  // imageSource: 'images/old-plum-1000.jpg',
+  // imageSource: 'images/manley-palmer-hall-bw.png',
   xPanSpeed: -0.3,
   yPanSpeed: 0.01,
   tilePosition: {
@@ -17,16 +17,14 @@ const defaultState = {
   }
 }
 
-export default function (state = defaultState, action) {
+export default function(state = defaultState, action) {
   const ui = uiReducer(state.ui, action)
   state = Object.assign({}, state, { ui })
   switch (action.type) {
     case 'UPDATE_IMAGE_SOURCE': {
-      const newState = Object.assign(
-        {},
-        state,
-        { imageSource: action.imageSource }
-      )
+      const newState = Object.assign({}, state, {
+        imageSource: action.imageSource
+      })
       const id = getId(newState.imageSource)
       window.history.pushState(null, null, '/' + id)
       // k.setImage(newState.imageSource)
@@ -46,23 +44,20 @@ export default function (state = defaultState, action) {
         update.yPanSpeed = action.yPanSpeed
       }
 
-      const newState = Object.assign(
-        {},
-        state,
-        update
-      )
+      const newState = Object.assign({}, state, update)
       // k.setSpeed(newState.xPanSpeed, newState.yPanSpeed)
       return newState
     }
     case 'UPDATE_TILE_POSITION': {
       // const newTilePosition = addPositions(state.tilePosition, action.tilePosition)
-      const newTilePosition = { x: action.tilePosition.x + state.xPanSpeed, y: action.tilePosition.y + state.yPanSpeed }
+      const newTilePosition = {
+        x: action.tilePosition.x + state.xPanSpeed,
+        y: action.tilePosition.y + state.yPanSpeed
+      }
 
-      const newState = Object.assign(
-        {},
-        state,
-        { tilePosition: newTilePosition }
-      )
+      const newState = Object.assign({}, state, {
+        tilePosition: newTilePosition
+      })
       return newState
     }
     default:

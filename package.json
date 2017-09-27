@@ -17,6 +17,7 @@
     "classnames": "^2.2.5",
     "dotenv": "^4.0.0",
     "pixi.js": "4.5.2",
+    "potrace": "^2.1.1",
     "preact": "^8.1.0",
     "preact-redux": "^2.0.1",
     "preact-render-to-string": "^3.6.1",
