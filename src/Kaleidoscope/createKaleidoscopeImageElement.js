@@ -1,3 +1,5 @@
+import streamBackground from './streamBackground'
+
 let creating = false
 let created = false
 const imageId = 'kaleidoscope-image'
@@ -18,8 +20,8 @@ const createKaleidoscopeImageElement = onImageLoaded => {
   // img.onload = onImageLoaded
   img.id = imageId
   img.style.display = 'none'
-  // img.src = '/images/manley-palmer-hall-bw original-1000.jpg'
-  img.src = '/images/mph.svg'
+  img.src = '/images/manley-palmer-hall-bw original-1000.jpg'
+  // img.src = '/images/output.svg'
   const intervalId = window.setInterval(() => {
     if (img.complete) {
       created = true
@@ -27,6 +29,11 @@ const createKaleidoscopeImageElement = onImageLoaded => {
       imageLoadedListeners.forEach(listener => listener(imageId))
     }
   }, 200)
+  // const intervalId = window.setInterval(() => {
+  //   created = true
+  //   window.clearInterval(intervalId)
+  //   imageLoadedListeners.forEach(listener => listener(imageId))
+  // }, 200)
 
   const picture = document.createElement('picture')
   //
