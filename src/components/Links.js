@@ -9,8 +9,18 @@ import nbsp from '../nbsp'
 
 const Links = [
   { href: '/shows', icon: 'event', text: nbsp('shows') },
-  { href: 'https://partialsmusic.bandcamp.com/', icon: 'shopping_cart', text: nbsp('store'), isExternal: true },
-  { href: 'https://www.sonicbids.com/band/partials/', icon: 'email', text: nbsp('press'), isExternal: true },
+  {
+    href: '/store',
+    icon: 'shopping_cart',
+    text: nbsp('store'),
+    isExternal: false
+  },
+  {
+    href: 'https://www.sonicbids.com/band/partials/',
+    icon: 'email',
+    text: nbsp('press'),
+    isExternal: true
+  },
   { href: '/contact', icon: 'music_note', text: nbsp('contact') }
 ]
 

@@ -1436,10 +1436,15 @@ const src = paths => {
 export default img => {
   img.src = src([])
   let i = 0
-  setInterval(() => {
+  const intervalId = setInterval(() => {
+    if (i > splitPaths.length - 1) {
+      clearInterval(intervalId)
+      return
+    }
     loadedPaths.push(splitPaths[i])
     img.src = src(loadedPaths)
     i++
-    console.log(img.src.length)
+    console.log(i / splitPaths.length)
+    // console.log(img.src.length)
   })
 }

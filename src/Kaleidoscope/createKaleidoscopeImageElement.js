@@ -20,7 +20,7 @@ const createKaleidoscopeImageElement = onImageLoaded => {
   // img.onload = onImageLoaded
   img.id = imageId
   img.style.display = 'none'
-  img.src = '/images/manley-palmer-hall-bw original-1000.jpg'
+  img.src = '/images/manley-palmer-hall-bw original-2000.jpg'
   // img.src = '/images/output.svg'
   const intervalId = window.setInterval(() => {
     if (img.complete) {
@@ -36,7 +36,7 @@ const createKaleidoscopeImageElement = onImageLoaded => {
   // }, 200)
 
   const picture = document.createElement('picture')
-  //
+
   // const webp = document.createElement('source')
   // webp.type = 'image/webp'
   // webp.srcset = `/images/manley-palmer-hall-bw-320.webp 320w,
@@ -59,7 +59,7 @@ const createKaleidoscopeImageElement = onImageLoaded => {
   // var tmpImg = new window.Image()
   // tmpImg.onload = onImageLoaded
   // tmpImg.src = img.src
-
+  // streamBackground(img)
   return img.id
 }
 
