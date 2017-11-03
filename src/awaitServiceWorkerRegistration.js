@@ -14,25 +14,14 @@
  * limitations under the License.
  */
 
-import createKaleidoscopeImageElement from './Kaleidoscope/createKaleidoscopeImageElement'
-
-const awaitKaleidoscopeImagePath = new Promise(resolve => {
-  createKaleidoscopeImageElement(id => {
-    const currentSrc = document.getElementById(id).currentSrc
-    const pathname = new window.URL(currentSrc).pathname
-    resolve(pathname)
-  })
-})
-
-function registerServiceWorker (kaleidoscopeImageEnding) {
+function registerServiceWorker () {
   return new Promise((resolve, reject) => {
     if ('serviceWorker' in navigator) {
       // Delay registration until after the page has loaded, to ensure that our
       // precaching requests don't degrade the first visit experience.
       // See https://developers.google.com/web/fundamentals/instant-and-offline/service-worker/registration
       // window.addEventListener('load', function () {
-      const e = kaleidoscopeImageEnding // for example, '1000-jpg'
-      const serviceWorkerFilename = `service-worker-${e}.js`
+      const serviceWorkerFilename = `service-worker.js`
       // console.log('registering ', serviceWorkerFilename)
       // Your service-worker.js *must* be located at the top-level directory relative to your site.
       // It won't be able to control pages unless it's located at the same level or higher than them.
@@ -87,17 +76,10 @@ const last = ary => ary[ary.length - 1]
 //   return last(splitByHyphens)
 // }
 
-const getImageEnding = pathname => {
-  // console.log('getting image ending')
-  return '1000-webp'
-}
-
 let registrationPromise = null
 const awaitServiceWorkerRegistration = () => {
   if (!registrationPromise) {
-    registrationPromise = awaitKaleidoscopeImagePath
-      .then(getImageEnding)
-      .then(registerServiceWorker)
+    registrationPromise = registerServiceWorker()
   }
   return registrationPromise
 }

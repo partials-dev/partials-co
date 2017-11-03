@@ -84,12 +84,12 @@ const formatShow = show => {
 
 const exists = x => x != null
 
-const getShows = () =>
-  window.fetch(calendarUrl)
-    .then(response => response.json())
-    .then(json => json.items.map(formatShow).filter(exists))
-    .catch(error => {
-      throw error
-    })
+const getShows = () => {}
+  // window.fetch(calendarUrl)
+  //   .then(response => response.json())
+  //   .then(json => json.items.map(formatShow).filter(exists))
+  //   .catch(error => {
+  //     throw error
+  //   })
 
 export default getShows
