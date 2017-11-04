@@ -10,6 +10,9 @@ class KaleidoscopeCanvas extends Preact.Component {
     const options = Object.assign({}, this.props, { view: this.canvas })
     this.kaleidoscope = new Kaleidoscope(options)
     this.setState({ mounted: true })
+    this.kaleidoscope.onLoadProgress(loadProgress => {
+      this.setState({ loadProgress })
+    })
     this.kaleidoscope.onLoaded(() => {
       this.setState({ loaded: true })
     })
@@ -34,8 +37,13 @@ class KaleidoscopeCanvas extends Preact.Component {
     if (state.mounted) {
       fadeIn = 'fade-in'
     }
+    const blurRadius = Math.max(25 - (state.loadProgress * 25), 0)
+    const style = {
+      opacity: state.loadProgress,
+      filter: `blur(${blurRadius}px)`
+    }
 
-    return <canvas id='kaleidoscope' class={`${fadeIn} ${blur}`} ref={ref} />
+    return <canvas id='kaleidoscope' class={`${fadeIn} ${blur}`} style={style} ref={ref} />
   }
 }
 

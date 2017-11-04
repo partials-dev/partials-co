@@ -1,14 +1,10 @@
 import PIXI from './PIXI'
 import BladeMask from './BladeMask'
-import SvgStreamTexture from './SvgStreamTexture'
-import cachedPaths from './cachedPaths'
-
-const svgStreamTexture = new SvgStreamTexture('sortedPaths.json', cachedPaths)
 
 class KaleidoscopeSprite extends PIXI.extras.TilingSprite {
-  static fromImage (source, width, height, debugMasks) {
-    const sprite = new KaleidoscopeSprite(svgStreamTexture.texture, width, height)
-    svgStreamTexture.onDone(() => setTimeout(() => sprite.dispatchLoaded()))
+  static fromStreamTexture (streamTexture, width, height, debugMasks) {
+    const sprite = new KaleidoscopeSprite(streamTexture.texture, width, height)
+    streamTexture.onDone(() => setTimeout(() => sprite.dispatchLoaded()))
 
     sprite.anchor.set(0.5)
     if (!debugMasks) {
@@ -61,9 +57,9 @@ class KaleidoscopeContainer extends PIXI.Container {
 }
 
 class Blade {
-  constructor (i, imageSource, app, center, numberOfBlades, debugMasks = false) {
+  constructor (i, streamTexture, app, center, numberOfBlades, debugMasks = false) {
     const offset = ((2 * Math.PI) / numberOfBlades)
-    const image = KaleidoscopeSprite.fromImage(imageSource, app.renderer.width * 2, app.renderer.height * 2, debugMasks)
+    const image = KaleidoscopeSprite.fromStreamTexture(streamTexture, app.renderer.width * 2, app.renderer.height * 2, debugMasks)
     const container = new KaleidoscopeContainer(image, offset, center, i, numberOfBlades, debugMasks)
     image.mask.draw(offset)
     // app.stage.addChild(container)
@@ -95,6 +91,9 @@ class Blade {
   }
   onLoaded (listener) {
     this.image.onLoaded(listener)
+  }
+  onLoadProgress (listener) {
+    this.image.onLoadProgress(listener)
   }
   get loaded () {
     return this.image.loaded

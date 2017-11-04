@@ -1,13 +1,14 @@
 import Blade from './Blade'
 import PIXI from './PIXI'
 import { resize, debouncedResize } from './resize'
+import SvgStreamTexture from './SvgStreamTexture'
+import cachedPaths from './cachedPaths'
 
 PIXI.settings.PRECISION_FRAGMENT = 'highp'
 
 const assignDefaults = options => {
   const defaultOptions = {
     slices: 16,
-    imageSource: 'oldplum.png',
     xPanSpeed: 0.15,
     yPanSpeed: 0.15
   }
@@ -17,6 +18,7 @@ const assignDefaults = options => {
 class Kaleidoscope {
   constructor (options) {
     options = assignDefaults(options)
+    this.streamTexture = new SvgStreamTexture('sortedPaths.json', cachedPaths)
     this.slices = options.slices * 2
     this.xPanSpeed = options.xPanSpeed
     this.yPanSpeed = options.yPanSpeed
@@ -39,7 +41,7 @@ class Kaleidoscope {
       () => debouncedResize(app, options.view).then(updateCenter)
     )
 
-    this.createBlades(options.imageSource, options.debugMasks)
+    this.createBlades(options.debugMasks)
 
     const updateBlades = delta => {
       this.blades.forEach(blade => {
@@ -56,11 +58,11 @@ class Kaleidoscope {
   setTilePosition (tilePosition) {
     this.tilePosition = tilePosition
   }
-  createBlades (imageSource, debugMasks) {
+  createBlades (debugMasks) {
     this.blades.forEach(blade => blade.destroy())
     const blades = []
     for (let i = 0; i < this.slices; i++) {
-      blades.push(new Blade(i, imageSource, this.app, this.center, this.slices, debugMasks))
+      blades.push(new Blade(i, this.streamTexture, this.app, this.center, this.slices, debugMasks))
     }
 
     this.blades = blades
@@ -85,6 +87,9 @@ class Kaleidoscope {
   }
   dispatchLoaded () {
     this.onLoadedListeners.forEach(listener => listener())
+  }
+  onLoadProgress (listener) {
+    this.streamTexture.onUpdate(listener)
   }
 }
 

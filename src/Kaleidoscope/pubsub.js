@@ -7,7 +7,6 @@ export default {
   },
   emit (event, ...args) {
     const listeners = this[event]
-    console.log('Emitting event ' + event)
     if (listeners) {
       listeners.forEach(listener => {
         listener(...args)

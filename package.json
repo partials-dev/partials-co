@@ -33,7 +33,7 @@
   },
   "scripts": {
     "start": "node sortSvgPaths.js && react-scripts start",
-    "build": "node sortSvgPaths.js && react-scripts build && react-snapshot && node asyncScriptTagTransform.js && node precacheServiceWorker.js",
+    "build": "node sortSvgPaths.js && react-scripts build && node asyncScriptTagTransform.js && node precacheServiceWorker.js",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "deploy": "npm run build && firebase deploy",

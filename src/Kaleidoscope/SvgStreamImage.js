@@ -11,7 +11,7 @@ class Batch {
     if (Batch._maxSize) {
       return Batch._maxSize
     }
-    Batch._maxSize = Number(queryString.parse(window.location.search).batchSize) || 200
+    Batch._maxSize = Number(queryString.parse(window.location.search).batchSize) || 500
     console.log(`Rendering SVG paths in batches with maximum size ${Batch._maxSize}`)
     return Batch._maxSize
   }
@@ -108,7 +108,7 @@ class BatchManager {
       return
     }
     const renderNextBatch = () => this.renderNextBatch()
-    this.renderLoopIntervalId = setInterval(renderNextBatch, 200)
+    this.renderLoopIntervalId = setInterval(renderNextBatch, 500)
   }
   stopRenderLoop () {
     clearInterval(this.renderLoopIntervalId)
