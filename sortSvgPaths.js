@@ -1,3 +1,4 @@
+const fs = require('fs')
 const window = require('svgdom')
 const svg = require('svg.js')(window)
 
@@ -44,9 +45,21 @@ const paths = pathStrings
   // convert back to strings for serialization
   .map(pathToString)
 
+// prepend metadata
 paths.unshift({ totalPaths: paths.length })
+
+// These will be cached in the JS bundle so we have something to show
+// without making an extra network request.
+const cachedPaths = paths.slice(0, 20)
+
+// These will be streamed over the network.
+const networkPaths = paths.slice(cachedPaths.length, paths.length)
 
 console.log(paths.slice(0, 4))
 
 // save as json so we can use Oboe to stream the file into the browser later
-require('fs').writeFileSync('./public/sorted-paths.json', JSON.stringify(paths))
+fs.writeFileSync('./public/sortedPaths.json', JSON.stringify(networkPaths))
+
+// save into the JS bundle so we don't need to make a network request to show a
+// basic form of the kaleidoscope
+fs.writeFileSync('./src/Kaleidoscope/cachedPaths.json', JSON.stringify(cachedPaths))

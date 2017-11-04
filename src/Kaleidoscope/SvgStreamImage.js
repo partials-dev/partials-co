@@ -11,7 +11,7 @@ class Batch {
     if (Batch._maxSize) {
       return Batch._maxSize
     }
-    Batch._maxSize = Number(queryString.parse(window.location.search).batchSize) || 100
+    Batch._maxSize = Number(queryString.parse(window.location.search).batchSize) || 200
     console.log(`Rendering SVG paths in batches with maximum size ${Batch._maxSize}`)
     return Batch._maxSize
   }
@@ -21,8 +21,8 @@ class Batch {
   get size () {
     return this.paths.length
   }
-  constructor () {
-    this.paths = []
+  constructor (paths = []) {
+    this.paths = paths
   }
   push (path) {
     this.paths.push(path)
@@ -65,21 +65,27 @@ class Renderer {
 
 // Takes svg paths as they are available from the network and adds them to the
 // current batch of paths. Once the current batch is complete, it's added to the
-// render queue. Ten times a second, the RenderManager pulls the oldest batch
+// render queue. Ten times a second, the BatchManager pulls the oldest batch
 // from the render queue and asks the Renderer to render it.
-class RenderManager {
-  constructor (img) {
+class BatchManager {
+  constructor (img, metadata, initialPaths) {
+    if (!metadata.totalPaths) {
+      throw new Error(`Got invalid metadata. Expected totalPaths in ${JSON.stringify(metadata)}`)
+    }
+    this.totalPaths = metadata.totalPaths
     this.currentBatch = new Batch()
     this.renderQueue = []
     this.renderer = new Renderer(img)
     this.hasRenderedFinalBatch = false
     this.isDone = false
-    this.totalPaths = null // how many paths we're going to get over the network
     this.pathsRendered = 0
+
+    const initialBatch = new Batch(initialPaths)
+    this.render(initialBatch)
   }
   addToBatch (path) {
     if (this.isDone) {
-      throw new Error('done() was already called on this RenderManager. Can\'t add more paths.')
+      throw new Error('done() was already called on this BatchManager. Can\'t add more paths.')
     }
     this.currentBatch.push(path)
     if (this.currentBatch.isComplete) {
@@ -88,21 +94,21 @@ class RenderManager {
     }
   }
   onBatchRendered (listener) {
-    pubsub.on('batchRendered', listener)
+    pubsub.on('SvgStreamImage.batchRendered', listener)
   }
   onFinalBatchRendered (listener) {
     if (this.hasRenderedFinalBatch) {
       listener()
       return
     }
-    pubsub.on('finalBatchRendered', listener)
+    pubsub.on('SvgStreamImage.finalBatchRendered', listener)
   }
   startRenderLoop () {
     if (this.renderLoopIntervalId) {
       return
     }
     const renderNextBatch = () => this.renderNextBatch()
-    this.renderLoopIntervalId = setInterval(renderNextBatch, 250)
+    this.renderLoopIntervalId = setInterval(renderNextBatch, 200)
   }
   stopRenderLoop () {
     clearInterval(this.renderLoopIntervalId)
@@ -110,14 +116,17 @@ class RenderManager {
   renderNextBatch () {
     const nextBatch = this.renderQueue.shift()
     if (nextBatch) {
-      this.renderer.render(nextBatch)
-      this.pathsRendered += nextBatch.size
-      pubsub.emit('batchRendered', this.getProgress())
-      if (this.renderQueue.length === 0 && this.isDone) {
-        pubsub.emit('finalBatchRendered')
-        this.hasRenderedFinalBatch = true
-        this.stopRenderLoop()
-      }
+      this.render(nextBatch)
+    }
+  }
+  render (batch) {
+    this.renderer.render(batch)
+    this.pathsRendered += batch.size
+    pubsub.emit('SvgStreamImage.batchRendered', this.getProgress())
+    if (this.renderQueue.length === 0 && this.isDone) {
+      pubsub.emit('SvgStreamImage.finalBatchRendered')
+      this.hasRenderedFinalBatch = true
+      this.stopRenderLoop()
     }
   }
   done () {
@@ -132,32 +141,23 @@ class RenderManager {
   }
 }
 
-class Streamer {
-  constructor (img, url) {
-    this.manager = new RenderManager(img)
+class SvgStreamImage {
+  constructor (url, initialPaths) {
+    const metadata = initialPaths.shift()
+
+    this.manager = new BatchManager(this.img, metadata, initialPaths)
     if (isBeingCrawledByReactSnapshot()) {
       return
     }
     this.manager.startRenderLoop()
-    const handleMetadata = ({ totalPaths }) => {
-      this.manager.totalPaths = totalPaths
-    }
 
-    const handlePath = node => {
+    const handlePath = path => {
       // Pass this to setTimeout so it gets called in the next tick of the event
       // loop instead of blocking.
-      this.manager.addToBatch(node)
+      this.manager.addToBatch(path)
       // We've already stored the path to be rendered later,
       // so tell oboe not to keep this node in memory
       return oboe.drop
-    }
-
-    const handleNode = node => {
-      if (node.totalPaths) {
-        handleMetadata(node)
-      } else {
-        handlePath(node)
-      }
     }
 
     const handleDone = () => {
@@ -173,8 +173,16 @@ class Streamer {
     this.stream = oboe(url)
       // This event listener (handlePath) gets called whenever Oboe gets a complete
       // element of the array from the network.
-      .node('*', handleNode)
+      .node('*', handlePath)
       .done(handleDone)
+  }
+  get img () {
+    if (!this._img) {
+      this._img = document.createElement('img')
+      this._img.style.display = 'none'
+      document.body.insertBefore(this.img, document.body.firstChild)
+    }
+    return this._img
   }
   onUpdate (listener) {
     this.manager.onBatchRendered(listener)
@@ -184,4 +192,4 @@ class Streamer {
   }
 }
 
-export default Streamer
+export default SvgStreamImage

@@ -18,13 +18,8 @@ class Kaleidoscope {
   constructor (options) {
     options = assignDefaults(options)
     this.slices = options.slices * 2
-    if (process.env.REACT_APP_GENERATE_STATIC_PLACEHOLDER) {
-      this.xPanSpeed = 0
-      this.yPanSpeed = 0
-    } else {
-      this.xPanSpeed = options.xPanSpeed
-      this.yPanSpeed = options.yPanSpeed
-    }
+    this.xPanSpeed = options.xPanSpeed
+    this.yPanSpeed = options.yPanSpeed
     this.tilePosition = options.tilePosition
     const app = new PIXI.Application({ view: options.view, transparent: true })
     this.app = app

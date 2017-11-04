@@ -1,44 +1,15 @@
 import PIXI from './PIXI'
 import BladeMask from './BladeMask'
-import Streamer from './Streamer'
-import isBeingCrawledByReactSnapshot from '../isBeingCrawledByReactSnapshot'
+import SvgStreamTexture from './SvgStreamTexture'
+import cachedPaths from './cachedPaths'
 
-const img = document.createElement('img')
-img.id = 'kaleidoscope-image'
-img.style.display = 'none'
-document.body.insertBefore(img, document.body.firstChild)
-const canvas = document.createElement('canvas')
-canvas.width = 1000
-canvas.height = 1000
-canvas.style.display = 'none'
-document.body.insertBefore(canvas, document.body.firstChild)
-const context = canvas.getContext('2d')
-context.globalAlpha = 1
-const handleUpdate = progress => {
-  setTimeout(() => {
-    // context.clearRect(0, 0, canvas.width, canvas.height)
-    context.drawImage(img, 0, 0)
-  })
-}
-
-const streamer = new Streamer(img, 'sorted-paths.json')
-streamer.onUpdate(handleUpdate)
+const svgStreamTexture = new SvgStreamTexture('sortedPaths.json', cachedPaths)
 
 class KaleidoscopeSprite extends PIXI.extras.TilingSprite {
   static fromImage (source, width, height, debugMasks) {
+    const sprite = new KaleidoscopeSprite(svgStreamTexture.texture, width, height)
+    svgStreamTexture.onDone(() => setTimeout(() => sprite.dispatchLoaded()))
 
-    // setTimeout(() => {
-    //   const newTexture = PIXI.Texture.from(img)
-    //   sprite.texture = newTexture
-    // }, 2000)
-
-    const texture = PIXI.Texture.from(canvas)
-    const sprite = new KaleidoscopeSprite(texture, width, height)
-    const handleDone = () => setTimeout(() => sprite.dispatchLoaded())
-    streamer.onDone(handleDone)
-    streamer.onUpdate(() => {
-      setTimeout(() => texture.update())
-    })
     sprite.anchor.set(0.5)
     if (!debugMasks) {
       sprite.mask = new BladeMask()
