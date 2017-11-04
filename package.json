@@ -8,7 +8,9 @@
     "glob": "^7.1.1",
     "lodash": "^4.17.4",
     "react-scripts": "1.0.5",
-    "react-snapshot": "^1.0.4"
+    "react-snapshot": "^1.0.4",
+    "svg.js": "^2.6.3",
+    "svgdom": "0.0.15"
   },
   "dependencies": {
     "@hughsk/fulltilt": "^0.7.1",
@@ -30,8 +32,8 @@
     "sw-toolbox": "^3.6.0"
   },
   "scripts": {
-    "start": "npm run resizeImages && react-scripts start",
-    "build": "react-scripts build && npm run resizeImages && react-snapshot && node asyncScriptTagTransform.js && node precacheServiceWorker.js",
+    "start": "node sortSvgPaths.js && react-scripts start",
+    "build": "node sortSvgPaths.js && react-scripts build && react-snapshot && node asyncScriptTagTransform.js && node precacheServiceWorker.js",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "deploy": "npm run build && firebase deploy",

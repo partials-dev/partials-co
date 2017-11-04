@@ -1,18 +1,44 @@
 import PIXI from './PIXI'
 import BladeMask from './BladeMask'
-import createKaleidoscopeImageElement from './createKaleidoscopeImageElement'
+import Streamer from './Streamer'
+import isBeingCrawledByReactSnapshot from '../isBeingCrawledByReactSnapshot'
+
+const img = document.createElement('img')
+img.id = 'kaleidoscope-image'
+img.style.display = 'none'
+document.body.insertBefore(img, document.body.firstChild)
+const canvas = document.createElement('canvas')
+canvas.width = 1000
+canvas.height = 1000
+canvas.style.display = 'none'
+document.body.insertBefore(canvas, document.body.firstChild)
+const context = canvas.getContext('2d')
+context.globalAlpha = 1
+const handleUpdate = progress => {
+  setTimeout(() => {
+    // context.clearRect(0, 0, canvas.width, canvas.height)
+    context.drawImage(img, 0, 0)
+  })
+}
+
+const streamer = new Streamer(img, 'sorted-paths.json')
+streamer.onUpdate(handleUpdate)
+
 class KaleidoscopeSprite extends PIXI.extras.TilingSprite {
   static fromImage (source, width, height, debugMasks) {
-    const sprite = new KaleidoscopeSprite(null, width, height)
 
-    const onOriginalTextureLoaded = imageId => {
-      const originalTexture = PIXI.Texture.from(document.getElementById(imageId))
-      sprite.texture = originalTexture
-      sprite.dispatchLoaded()
-    }
+    // setTimeout(() => {
+    //   const newTexture = PIXI.Texture.from(img)
+    //   sprite.texture = newTexture
+    // }, 2000)
 
-    createKaleidoscopeImageElement(onOriginalTextureLoaded)
-
+    const texture = PIXI.Texture.from(canvas)
+    const sprite = new KaleidoscopeSprite(texture, width, height)
+    const handleDone = () => setTimeout(() => sprite.dispatchLoaded())
+    streamer.onDone(handleDone)
+    streamer.onUpdate(() => {
+      setTimeout(() => texture.update())
+    })
     sprite.anchor.set(0.5)
     if (!debugMasks) {
       sprite.mask = new BladeMask()
@@ -21,8 +47,8 @@ class KaleidoscopeSprite extends PIXI.extras.TilingSprite {
       return { mask: new BladeMask() }
     }
   }
-  constructor (...args) {
-    super(...args)
+  constructor (texture, width, height) {
+    super(texture, width, height)
     this.textureLoadedListeners = []
     this.loaded = false
   }

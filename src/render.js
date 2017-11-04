@@ -1,10 +1,11 @@
 import preact from 'preact'
 import renderToString from 'preact-render-to-string'
-import isServer from './isServer'
+import isBeingCrawledByReactSnapshot from './isBeingCrawledByReactSnapshot'
 
 const render = (rootComponent, domElement) => {
-  if (isServer()) {
+  if (isBeingCrawledByReactSnapshot()) {
     domElement.innerHTML = renderToString(rootComponent)
+    window.reactSnapshotRender()
   } else {
     preact.render(rootComponent, domElement)
   }
