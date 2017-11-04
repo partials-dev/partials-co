@@ -4,7 +4,7 @@ import Preact, { h } from 'preact' /** @jsx h */
 class KaleidoscopeCanvas extends Preact.Component {
   constructor (...args) {
     super(...args)
-    this.state = { loaded: false, showImage: false }
+    this.state = { loaded: false, showImage: false, loadProgress: 0, mounted: false }
   }
   componentDidMount () {
     const options = Object.assign({}, this.props, { view: this.canvas })

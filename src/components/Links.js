@@ -11,17 +11,18 @@ const Links = [
   { href: '/shows', icon: 'event', text: nbsp('shows') },
   {
     href: '/store',
-    icon: 'shopping_cart',
     text: nbsp('store'),
     isExternal: false
   },
   {
     href: 'https://www.sonicbids.com/band/partials/',
-    icon: 'email',
     text: nbsp('press'),
     isExternal: true
   },
-  { href: '/contact', icon: 'music_note', text: nbsp('contact') }
+  {
+    href: '/contact',
+    text: nbsp('contact')
+  }
 ]
 
 export default Links
