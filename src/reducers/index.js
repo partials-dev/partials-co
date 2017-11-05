@@ -1,5 +1,3 @@
-import uiReducer from './ui'
-
 const getId = url => {
   const parser = document.createElement('a')
   parser.href = url
@@ -18,36 +16,7 @@ const defaultState = {
 }
 
 export default function(state = defaultState, action) {
-  const ui = uiReducer(state.ui, action)
-  state = Object.assign({}, state, { ui })
   switch (action.type) {
-    case 'UPDATE_IMAGE_SOURCE': {
-      const newState = Object.assign({}, state, {
-        imageSource: action.imageSource
-      })
-      const id = getId(newState.imageSource)
-      window.history.pushState(null, null, '/' + id)
-      // k.setImage(newState.imageSource)
-      return newState
-    }
-    case 'UPDATE_PAN_SPEED': {
-      const update = {}
-      if (action.xPanSpeed == null) {
-        update.xPanSpeed = ui.xPanSpeedInput
-      } else {
-        update.xPanSpeed = action.xPanSpeed
-      }
-
-      if (action.yPanSpeed == null) {
-        update.yPanSpeed = ui.yPanSpeedInput
-      } else {
-        update.yPanSpeed = action.yPanSpeed
-      }
-
-      const newState = Object.assign({}, state, update)
-      // k.setSpeed(newState.xPanSpeed, newState.yPanSpeed)
-      return newState
-    }
     case 'UPDATE_TILE_POSITION': {
       // const newTilePosition = addPositions(state.tilePosition, action.tilePosition)
       const newTilePosition = {

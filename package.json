@@ -29,6 +29,7 @@
     "query-string": "^5.0.1",
     "redux": "^3.6.0",
     "sharp": "^0.18.4",
+    "shopify-buy": "^0.7.1",
     "sw-toolbox": "^3.6.0"
   },
   "scripts": {

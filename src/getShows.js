@@ -1,4 +1,4 @@
-const apiKey = process.env.REACT_APP_GOOGLE_PUBLIC_API_KEY
+const apiKey = process.env.REACT_APP_GOOGLE_CALENDAR_API_KEY
 const calendarId = window.encodeURIComponent(process.env.REACT_APP_SHOWS_CALENDAR_ID)
 const calendarUrl = `https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events?key=${apiKey}`
 
@@ -83,13 +83,56 @@ const formatShow = show => {
 }
 
 const exists = x => x != null
-
-const getShows = () => {}
-  window.fetch(calendarUrl)
-    .then(response => response.json())
-    .then(json => json.items.map(formatShow).filter(exists))
-    .catch(error => {
-      throw error
-    })
+const shows = [
+  {
+    date: 'May 26 2017',
+    location: 'George, WA, United States',
+    venue: "Smith's Olde Bar",
+    link: 'https://www.facebook.com/events/1896051557318043/'
+  },
+  {
+    date: 'Jun 24 2017',
+    location: 'Athens, GA',
+    venue: 'AthFest',
+    link: 'https://www.facebook.com/events/393752004323423/'
+  },
+  {
+    date: 'Jun 24 2017',
+    location: 'Athens, GA',
+    venue: 'AthFest',
+    link: 'https://www.facebook.com/events/393752004323423/'
+  },
+  {
+    date: 'Jun 24 2017',
+    location: 'Athens, GA',
+    venue: 'AthFest',
+    link: 'https://www.facebook.com/events/393752004323423/'
+  },
+  {
+    date: 'Jun 24 2017',
+    location: 'Athens, GA',
+    venue: 'AthFest',
+    link: 'https://www.facebook.com/events/393752004323423/'
+  },
+  {
+    date: 'Jun 24 2017',
+    location: 'Athens, GA',
+    venue: 'AthFest',
+    link: 'https://www.facebook.com/events/393752004323423/'
+  },
+  {
+    date: 'Jun 24 2017',
+    location: 'Athens, GA',
+    venue: 'AthFest',
+    link: 'https://www.facebook.com/events/393752004323423/'
+  }
+]
+const getShows = () => Promise.resolve(shows)
+  // window.fetch(calendarUrl)
+  //   .then(response => response.json())
+  //   .then(json => json.items.map(formatShow).filter(exists))
+  //   .catch(error => {
+  //     throw error
+  //   })
 
 export default getShows
