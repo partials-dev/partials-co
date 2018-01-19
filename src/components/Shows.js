@@ -3,6 +3,7 @@ import PushPermissionToggle from './PushPermissionToggle'
 import Show from './Show'
 import getShows from '../getShows'
 import updateTitle from '../updateTitle'
+import Spinner from './Spinner'
 // const shows = [
 //   {
 //     date: 'May 26 2017',
@@ -18,36 +19,39 @@ import updateTitle from '../updateTitle'
 //   }
 // ]
 
-const li = props =>
-  <li class='show'>
+const li = props => (
+  <li class="show">
     <Show {...props} />
   </li>
-const Spinner = () =>
-  <div class='loading center-contents'>
-    <p>loading shows</p>
-    <div class='sk-rotating-plane' />
-  </div>
+)
 const showList = state => {
   if (state.shows) {
-    return <ol class='shows'>{state.shows.map(li)}</ol>
+    return <ol class="shows">{state.shows.map(li)}</ol>
   } else {
-    return <Spinner />
+    return (
+      <div class="loading center-contents">
+        <p>loading shows</p>
+        <Spinner />
+      </div>
+    )
   }
 }
 
 const awaitShows = getShows()
 
 class Shows extends Preact.Component {
-  componentWillMount () {
+  componentWillMount() {
     awaitShows.then(shows => this.setState({ shows }))
   }
-  render (props, state) {
+  render(props, state) {
     updateTitle('Shows | Partials')
     state = state || {}
-    return (<main class='container'>
-      <PushPermissionToggle />
-      {showList(state)}
-    </main>)
+    return (
+      <main class="container">
+        <PushPermissionToggle />
+        {showList(state)}
+      </main>
+    )
   }
 }
 

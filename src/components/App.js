@@ -10,8 +10,8 @@ import Contact from './Contact'
 import Kaleidoscope from './Kaleidoscope'
 import Shows from './Shows'
 import Store from './Store'
-
 import Analytics from './Analytics'
+import Spinner from './Spinner'
 
 const routes = (
   <Router>
@@ -22,20 +22,29 @@ const routes = (
   </Router>
 )
 
-const renderContent = currentRoute => {
+const renderContent = showSpinner => currentRoute => {
   const atHome = currentRoute.matches
-  const hideContent = atHome ? 'hide' : ''
+  let hideContent = ''
+  let content = routes
+  if (showSpinner) {
+    content = (
+      <div class="loading center-contents">
+        <Spinner />
+      </div>
+    )
+  } else if (atHome) {
+    hideContent = 'hide'
+  }
   return (
     <div>
-      <div class={`content full-width ${hideContent}`}>{routes}</div>
+      <div class={`content full-width ${hideContent}`}>{content}</div>
       <Footer />
     </div>
   )
 }
 
-const content = <Match path="/">{renderContent}</Match>
-
-const App = () => {
+const App = ({ showSpinner }) => {
+  const content = <Match path="/">{renderContent(showSpinner)}</Match>
   return (
     <div>
       <Header />

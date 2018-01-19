@@ -270,22 +270,67 @@
         font-variant: small-caps;
         font-size: 2em;
       }
-      .sk-rotating-plane {
-        width: 40px;
-        height: 40px;
-        background-color: #333333;
-        margin: 40px 2em;
-        animation: sk-rotatePlane 1.2s infinite ease-in-out;
+      .sk-cube-grid {
+        width: 15vw;
+        height: 15vw;
+        max-width: 100px;
+        max-height: 100px;
+        margin: 100px auto;
       }
-      @keyframes sk-rotatePlane {
-        0% {
-          transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+
+      .sk-cube-grid .sk-cube {
+        width: 33%;
+        height: 33%;
+        background-color: #333;
+        float: left;
+        -webkit-animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
+                animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
+      }
+      .sk-cube-grid .sk-cube1 {
+        -webkit-animation-delay: 0.2s;
+                animation-delay: 0.2s; }
+      .sk-cube-grid .sk-cube2 {
+        -webkit-animation-delay: 0.3s;
+                animation-delay: 0.3s; }
+      .sk-cube-grid .sk-cube3 {
+        -webkit-animation-delay: 0.4s;
+                animation-delay: 0.4s; }
+      .sk-cube-grid .sk-cube4 {
+        -webkit-animation-delay: 0.1s;
+                animation-delay: 0.1s; }
+      .sk-cube-grid .sk-cube5 {
+        -webkit-animation-delay: 0.2s;
+                animation-delay: 0.2s; }
+      .sk-cube-grid .sk-cube6 {
+        -webkit-animation-delay: 0.3s;
+                animation-delay: 0.3s; }
+      .sk-cube-grid .sk-cube7 {
+        -webkit-animation-delay: 0s;
+                animation-delay: 0s; }
+      .sk-cube-grid .sk-cube8 {
+        -webkit-animation-delay: 0.1s;
+                animation-delay: 0.1s; }
+      .sk-cube-grid .sk-cube9 {
+        -webkit-animation-delay: 0.2s;
+                animation-delay: 0.2s; }
+
+      @-webkit-keyframes sk-cubeGridScaleDelay {
+        0%, 70%, 100% {
+          -webkit-transform: scale3D(1, 1, 1);
+                  transform: scale3D(1, 1, 1);
+        } 35% {
+          -webkit-transform: scale3D(0, 0, 1);
+                  transform: scale3D(0, 0, 1);
         }
-        50% {
-          transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
-        }
-        100% {
-          transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+      }
+
+      @keyframes sk-cubeGridScaleDelay {
+        0%, 70%, 100% {
+          -webkit-transform: scale3D(1, 1, 1);
+                  transform: scale3D(1, 1, 1);
+        } 35% {
+          -webkit-transform: scale3D(0, 0, 1);
+                  transform: scale3D(0, 0, 1);
         }
       }
       @media only screen and (max-width: 500px) {
@@ -464,6 +509,7 @@
       .react-toggle:active:not(.react-toggle--disabled) .react-toggle-thumb {
         box-shadow: 0px 0px 5px 5px #444444;
       }
+
     </style>
     <title>Partials</title>
   </head>
@@ -472,27 +518,30 @@
       <!-- {app} -->
     </div>
     <script>
-      // asynchronously load manifest and favicon
-      var cb = function () {
-        var manifest = document.createElement('link')
-        manifest.rel = 'manifest'
-        manifest.href = '%PUBLIC_URL%/manifest.json'
+    // asynchronously load manifest and favicon
+var cb = function() {
+  var manifest = document.createElement('link')
+  manifest.rel = 'manifest'
+  manifest.href = '%PUBLIC_URL%/manifest.json'
 
-        var favicon = document.createElement('link')
-        favicon.rel = 'shortcut icon'
-        favicon.href = '%PUBLIC_URL%/favicon.ico'
+  var favicon = document.createElement('link')
+  favicon.rel = 'shortcut icon'
+  favicon.href = '%PUBLIC_URL%/favicon.ico'
 
-        var h = document.getElementsByTagName('head')[0]
-        h.parentNode.insertBefore(manifest, h)
-        h.parentNode.insertBefore(favicon, h)
-      }
-      var raf = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
-                window.webkitRequestAnimationFrame || window.msRequestAnimationFrame
-      if (raf) {
-        raf(cb)
-      } else {
-        window.addEventListener('load', cb)
-      }
-    </script>
+  var h = document.getElementsByTagName('head')[0]
+  h.parentNode.insertBefore(manifest, h)
+  h.parentNode.insertBefore(favicon, h)
+}
+var raf =
+  window.requestAnimationFrame ||
+  window.mozRequestAnimationFrame ||
+  window.webkitRequestAnimationFrame ||
+  window.msRequestAnimationFrame
+if (raf) {
+  raf(cb)
+} else {
+  window.addEventListener('load', cb)
+}
+</script>
   </body>
 </html>
