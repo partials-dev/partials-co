@@ -10,9 +10,9 @@ import nbsp from '../nbsp'
 const Links = [
   { href: '/shows', icon: 'event', text: nbsp('shows') },
   {
-    href: '/store',
+    href: 'https://www.shopify.com',
     text: nbsp('store'),
-    isExternal: false
+    isExternal: true
   },
   {
     href: 'https://www.sonicbids.com/band/partials/',

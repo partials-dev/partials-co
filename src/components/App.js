@@ -9,7 +9,6 @@ import Home from './Home'
 import Contact from './Contact'
 import Kaleidoscope from './Kaleidoscope'
 import Shows from './Shows'
-import Store from './Store'
 import Analytics from './Analytics'
 import Spinner from './Spinner'
 
@@ -18,7 +17,6 @@ const routes = (
     <Home path="/" />
     <Contact path="/contact" />
     <Shows path="/shows" />
-    <Store path="/store" />
   </Router>
 )
 
