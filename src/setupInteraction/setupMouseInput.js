@@ -31,7 +31,7 @@ const setupMouseInput = dispatch => {
 
     const x = getAveragedX(db) * -2
     const y = getAveragedY(dg) * 2
-    dispatch({ type: 'UPDATE_TILE_POSITION', tilePosition: { x, y }})
+    dispatch({ type: 'UPDATE_TILE_POSITION', tilePosition: { x, y } })
     window.requestAnimationFrame(updateKaleidoscopeFromMouse)
   }
 

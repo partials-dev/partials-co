@@ -6,7 +6,9 @@ console.log('😴  Adding async attribute to script tags')
 console.log('')
 
 const handleError = (context, error) => {
-  console.error('Error trying to perform <script> → <script async> in build directory')
+  console.error(
+    'Error trying to perform <script> → <script async> in build directory'
+  )
   console.error(context)
   console.error(error)
 }
@@ -14,7 +16,7 @@ const handleError = (context, error) => {
 const transformHtml = (html, filename) => {
   const scriptSearchString = '<script'
   if (html.indexOf(scriptSearchString) < 0) {
-    console.warn('Didn\'t find any script tags in ' + filename)
+    console.warn("Didn't find any script tags in " + filename)
   } else {
     return html.replace(/<script/g, '<script async')
   }
@@ -40,6 +42,6 @@ glob('build/*.html', (error, files) => {
   } else if (files) {
     files.forEach(transformFile)
   } else {
-    console.warn('Couldn\'t find any html files')
+    console.warn("Couldn't find any html files")
   }
 })

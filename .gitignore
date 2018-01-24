@@ -4,3 +4,4 @@ build/
 app.yaml
 *.log
 .env
+**/.DS_Store

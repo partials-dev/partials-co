@@ -9,11 +9,13 @@ const pathStrings = require('./paths').split('\n')
 
 const parseAttributes = path => {
   const dataRegex = /d="[^"]*"/g // matches d="anything"
-  const pathData = path.match(dataRegex)[0]
+  const pathData = path
+    .match(dataRegex)[0]
     .replace(/d=/g, '') // remove d=
     .replace(/"/g, '') // remove double quotes
   const fillRegex = /fill="[^"]*"/g
-  const fill = path.match(fillRegex)[0]
+  const fill = path
+    .match(fillRegex)[0]
     .replace(/fill=/g, '') // remove fill=
     .replace(/"/g, '') // remove double quotes
   return { pathData, fill }
@@ -29,7 +31,8 @@ const comparePathLengths = (a, b) => compare(a.length(), b.length())
 const pathToString = path => {
   const xmlnsRegex = /xmlns="[^"]*" /g
   const idRegex = /id="[^"]*" /g
-  return path.svg()
+  return path
+    .svg()
     .replace(xmlnsRegex, '') // remove xmlns="http://www.w3.org/2000/svg"
     .replace(idRegex, '') // remove id="SvgjsPath1013"
 }
@@ -62,4 +65,7 @@ fs.writeFileSync('./public/sortedPaths.json', JSON.stringify(networkPaths))
 
 // save into the JS bundle so we don't need to make a network request to show a
 // basic form of the kaleidoscope
-fs.writeFileSync('./src/Kaleidoscope/cachedPaths.json', JSON.stringify(cachedPaths))
+fs.writeFileSync(
+  './src/Kaleidoscope/cachedPaths.json',
+  JSON.stringify(cachedPaths)
+)

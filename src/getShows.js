@@ -1,5 +1,9 @@
+import isBeingCrawledByReactSnapshot from './isBeingCrawledByReactSnapshot'
+
 const apiKey = process.env.REACT_APP_GOOGLE_CALENDAR_API_KEY
-const calendarId = window.encodeURIComponent(process.env.REACT_APP_SHOWS_CALENDAR_ID)
+const calendarId = window.encodeURIComponent(
+  process.env.REACT_APP_SHOWS_CALENDAR_ID
+)
 const calendarUrl = `https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events?key=${apiKey}`
 
 const dateRegex = /^(\d{4})-(\d{2})-(\d{2})[T ](\d{2}):(\d{2}):(\d{2})\.?(\d{3})?(?:(?:([+-]\d{2}):?(\d{2}))|Z)?$/
@@ -83,7 +87,7 @@ const formatShow = show => {
 }
 
 const exists = x => x != null
-const shows = [
+const fakeShows = [
   {
     date: 'May 26 2017',
     location: 'George, WA, United States',
@@ -127,12 +131,23 @@ const shows = [
     link: 'https://www.facebook.com/events/393752004323423/'
   }
 ]
-const getShows = () => Promise.resolve(shows)
-  // window.fetch(calendarUrl)
-  //   .then(response => response.json())
-  //   .then(json => json.items.map(formatShow).filter(exists))
-  //   .catch(error => {
-  //     throw error
-  //   })
+
+const getShows = () => {
+  if (isBeingCrawledByReactSnapshot()) {
+    return Promise.resolve([])
+  } else if (process.env.NODE_ENV === 'development') {
+    return Promise.resolve(fakeShows)
+  } else {
+    return window
+      .fetch(calendarUrl, { method: 'GET', credentials: 'include' })
+      .then(response => {
+        return response.json()
+      })
+      .then(json => json.items.map(formatShow).filter(exists))
+      .catch(error => {
+        throw error
+      })
+  }
+}
 
 export default getShows

@@ -1,10 +1,16 @@
 import Kaleidoscope from '../Kaleidoscope'
 import Preact, { h } from 'preact' /** @jsx h */
+import Spinner from './Spinner'
 
 class KaleidoscopeCanvas extends Preact.Component {
   constructor (...args) {
     super(...args)
-    this.state = { loaded: false, showImage: false, loadProgress: 0, mounted: false }
+    this.state = {
+      loaded: false,
+      showImage: false,
+      loadProgress: 0,
+      mounted: false
+    }
   }
   componentDidMount () {
     const options = Object.assign({}, this.props, { view: this.canvas })
@@ -37,13 +43,34 @@ class KaleidoscopeCanvas extends Preact.Component {
     if (state.mounted) {
       fadeIn = 'fade-in'
     }
-    const blurRadius = Math.max(25 - (state.loadProgress * 25), 0)
+    const blurRadius = Math.max(25 - state.loadProgress * 25, 0)
     const style = {
       opacity: state.loadProgress,
       filter: `blur(${blurRadius}px)`
     }
 
-    return <canvas id='kaleidoscope' class={`${fadeIn} ${blur}`} style={style} ref={ref} />
+    let containerClass = ''
+    let spinner = null
+    if (!state.loadProgress > 0) {
+      containerClass = 'content full-width'
+      spinner = (
+        <div class="loading center-contents">
+          <Spinner />
+        </div>
+      )
+    }
+
+    return (
+      <div class={containerClass}>
+        {spinner}
+        <canvas
+          id="kaleidoscope"
+          class={`${fadeIn} ${blur}`}
+          style={style}
+          ref={ref}
+        />
+      </div>
+    )
   }
 }
 

@@ -1,8 +1,0 @@
-machine:
-  node:
-    version: 6.1.0
-deployment:
-  production:
-    branch: v2
-    commands:
-      - npm run deploy

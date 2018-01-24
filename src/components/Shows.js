@@ -25,12 +25,17 @@ const li = props => (
   </li>
 )
 const showList = state => {
-  if (state.shows) {
+  if (state.shows && state.shows.length > 0) {
     return <ol class="shows">{state.shows.map(li)}</ol>
+  } else if (state.shows && state.shows.length === 0) {
+    return (
+      <div class="center-text">
+        <p>No shows on the books right now.</p>
+      </div>
+    )
   } else {
     return (
       <div class="loading center-contents">
-        <p>loading shows</p>
         <Spinner />
       </div>
     )
@@ -40,18 +45,19 @@ const showList = state => {
 const awaitShows = getShows()
 
 class Shows extends Preact.Component {
-  componentWillMount() {
-    awaitShows.then(shows => this.setState({ shows }))
+  componentWillMount () {
+    awaitShows.then(shows => {
+      this.setState({ shows })
+    })
   }
-  render(props, state) {
+  render (props, state) {
     updateTitle('Shows | Partials')
     state = state || {}
-    return (
-      <main class="container">
-        <PushPermissionToggle />
-        {showList(state)}
-      </main>
-    )
+    const shouldCenterContents = state.shows && state.shows.length === 0
+    const classes = shouldCenterContents
+      ? 'container center-contents'
+      : 'container'
+    return <main className={classes}>{showList(state)}</main>
   }
 }
 

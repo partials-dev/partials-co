@@ -148,12 +148,15 @@
       .big-text {
         font-size: 1.3em;
       }
+      .contact h2 {
+        font-weight: initial;
+      }
       .social-media-icons {
         /*padding-top: 1.5em;*/
       }
       .social-media-icon {
         padding: 0 6px;
-        height: 1.5em;
+        height: 2em;
       }
 
       /* Footer */
@@ -261,6 +264,85 @@
         position: fixed;
         background-color: #e3e3e3;
         border-bottom: 1px solid #333333;
+      }
+      /* Press */
+      .press {
+        line-height: 1.5em;
+        letter-spacing: normal;
+        padding-left: 30px;
+        padding-right: 30px;
+      }
+      .press header {
+        border-bottom: 1px solid #333333;
+        padding-bottom: 40px;
+        padding-left: 0;
+        padding-right: 0;
+        margin: 0 15px;
+      }
+      .press p:first-of-type {
+        padding-top: 40px;
+        margin-top: 0;
+      }
+      .press .column {
+        padding-bottom: 40px;
+        margin-bottom: 0;
+      }
+      .press .heading-container {
+        padding-top: 60px;
+        padding-bottom: calc(60px - 1em);
+        text-align: justify;
+        margin: 0 15%;
+        font-size: 2em;
+      }
+      .press .heading-container:after {
+        content: "";
+        display: inline-block;
+        width: 100%;
+      }
+      .column {
+        width: 50%;
+        float: left;
+        padding: 0 15px;
+      }
+      @media only screen and (max-width: 640px){
+        .press .right.column p:first-of-type {
+          padding-top: 0;
+        }
+        .press .column {
+          float: none !important;
+          width: auto !important;
+        }
+        .press .left.column {
+          padding-bottom: 0;
+        }
+        .press .right.column {
+          margin: 0;
+          padding-bottom: 40px;
+        }
+        .press .heading-container {
+          margin: 0 10%;
+          font-size: 1.75em;
+          padding-bottom: 25px;
+        }
+      }
+      @media only screen and (max-width: 400px) {
+        .press {
+          padding-left: 15px;
+          padding-right: 15px;
+        }
+        .press .heading-container {
+          margin: 0 15px;
+          padding-top: 40px;
+          padding-bottom: 5px;
+          font-size: 1.5em;
+        }
+        .press header {
+          border-bottom: 1px solid #333333;
+          margin: 0 15px;
+        }
+        .press p:first-of-type {
+          padding-top: 40px;
+        }
       }
       /* Spinner */
       .loading {
@@ -378,14 +460,6 @@
         }
         .push-permission-toggle {
           width: calc(970px - 30px);
-        }
-      }
-      @media (min-width: 1200px) {
-        .container {
-          width: 1170px;
-        }
-        .push-permission-toggle {
-          width: calc(1140px - 30px);
         }
       }
       .react-toggle {
@@ -512,36 +586,50 @@
 
     </style>
     <title>Partials</title>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script src="https://www.googletagmanager.com/gtag/js?id=UA-113019355-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || []
+function gtag() {
+  dataLayer.push(arguments)
+}
+gtag('js', new Date())
+
+gtag('config', 'UA-113019355-1')
+</script>
+
   </head>
   <body>
     <div id="root">
       <!-- {app} -->
     </div>
     <script>
-    // asynchronously load manifest and favicon
-var cb = function() {
-  var manifest = document.createElement('link')
-  manifest.rel = 'manifest'
-  manifest.href = '%PUBLIC_URL%/manifest.json'
+;(function() {
+  // asynchronously load manifest and favicon
+  var cb = function() {
+    var manifest = document.createElement('link')
+    manifest.rel = 'manifest'
+    manifest.href = '%PUBLIC_URL%/manifest.json'
 
-  var favicon = document.createElement('link')
-  favicon.rel = 'shortcut icon'
-  favicon.href = '%PUBLIC_URL%/favicon.ico'
+    var favicon = document.createElement('link')
+    favicon.rel = 'shortcut icon'
+    favicon.href = '%PUBLIC_URL%/favicon.ico'
 
-  var h = document.getElementsByTagName('head')[0]
-  h.parentNode.insertBefore(manifest, h)
-  h.parentNode.insertBefore(favicon, h)
-}
-var raf =
-  window.requestAnimationFrame ||
-  window.mozRequestAnimationFrame ||
-  window.webkitRequestAnimationFrame ||
-  window.msRequestAnimationFrame
-if (raf) {
-  raf(cb)
-} else {
-  window.addEventListener('load', cb)
-}
+    var h = document.getElementsByTagName('head')[0]
+    h.parentNode.insertBefore(manifest, h)
+    h.parentNode.insertBefore(favicon, h)
+  }
+  var raf =
+    window.requestAnimationFrame ||
+    window.mozRequestAnimationFrame ||
+    window.webkitRequestAnimationFrame ||
+    window.msRequestAnimationFrame
+  if (raf) {
+    raf(cb)
+  } else {
+    window.addEventListener('load', cb)
+  }
+})()
 </script>
   </body>
 </html>

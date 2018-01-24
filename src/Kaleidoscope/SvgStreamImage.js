@@ -1,8 +1,8 @@
-import oboe from 'oboe'
 import queryString from 'query-string'
 import includes from 'lodash.includes'
 import pubsub from './pubsub'
 import isBeingCrawledByReactSnapshot from '../isBeingCrawledByReactSnapshot'
+import oboe from 'oboe'
 
 // Holds a group of svg path objects. We keep them together because they'll all
 // be rendered at the same time.
@@ -11,8 +11,11 @@ class Batch {
     if (Batch._maxSize) {
       return Batch._maxSize
     }
-    Batch._maxSize = Number(queryString.parse(window.location.search).batchSize) || 500
-    console.log(`Rendering SVG paths in batches with maximum size ${Batch._maxSize}`)
+    const { batchSize } = queryString.parse(window.location.search)
+    Batch._maxSize = Number(batchSize) || 500
+    console.log(
+      `Rendering SVG paths in batches with maximum size ${Batch._maxSize}`
+    )
     return Batch._maxSize
   }
   get isComplete () {
@@ -40,15 +43,15 @@ class Renderer {
 
     // Encode svg into a data URI in an IE-friendly way.
     // More details: https://codepen.io/tigt/post/optimizing-svgs-in-data-uris
-    var uriPayload = encodeURIComponent(svgString) // encode URL-unsafe characters
+    const uriPayload = encodeURIComponent(svgString) // encode URL-unsafe characters
       .replace(/%0A/g, '') // remove newlines
       .replace(/%20/g, ' ') // put spaces back in
       .replace(/%3D/g, '=') // ditto equals signs
       .replace(/%3A/g, ':') // ditto colons
       .replace(/%2F/g, '/') // ditto slashes
-      .replace(/%22/g, "'"); // replace quotes with apostrophes (may break certain SVGs)
+      .replace(/%22/g, "'") // replace quotes with apostrophes (may break certain SVGs)
 
-    return 'data:image/svg+xml,' + uriPayload;
+    return 'data:image/svg+xml,' + uriPayload
   }
   constructor (img) {
     this.svgStart = `<svg viewBox="0 0 984 1065" height="1065.0px" width="984.0px" xmlns="http://www.w3.org/2000/svg" version="1.1">`
@@ -70,7 +73,11 @@ class Renderer {
 class BatchManager {
   constructor (img, metadata, initialPaths) {
     if (!metadata.totalPaths) {
-      throw new Error(`Got invalid metadata. Expected totalPaths in ${JSON.stringify(metadata)}`)
+      throw new Error(
+        `Got invalid metadata. Expected totalPaths in ${JSON.stringify(
+          metadata
+        )}`
+      )
     }
     this.totalPaths = metadata.totalPaths
     this.currentBatch = new Batch()
@@ -85,7 +92,9 @@ class BatchManager {
   }
   addToBatch (path) {
     if (this.isDone) {
-      throw new Error('done() was already called on this BatchManager. Can\'t add more paths.')
+      throw new Error(
+        "done() was already called on this BatchManager. Can't add more paths."
+      )
     }
     this.currentBatch.push(path)
     if (this.currentBatch.isComplete) {
@@ -130,7 +139,10 @@ class BatchManager {
     }
   }
   done () {
-    const currentBatchInRenderQueue = includes(this.renderQueue, this.currentBatch)
+    const currentBatchInRenderQueue = includes(
+      this.renderQueue,
+      this.currentBatch
+    )
     if (!currentBatchInRenderQueue) {
       this.renderQueue.push(this.currentBatch)
     }
@@ -162,7 +174,7 @@ class SvgStreamImage {
 
     const handleDone = () => {
       this.manager.done()
-      console.log('done streaming')
+      console.log('Done streaming.')
     }
 
     // Oboe is a streaming JSON parser. It allows you to process parts of a large
@@ -171,7 +183,7 @@ class SvgStreamImage {
     // features load earlier and fine details load later.
     // sorted-paths.json just contains an array of strings.
     this.stream = oboe(url)
-      // This event listener (handlePath) gets called whenever Oboe gets a complete
+      // handlePath gets called whenever Oboe gets a complete
       // element of the array from the network.
       .node('*', handlePath)
       .done(handleDone)
