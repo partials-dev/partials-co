@@ -3,22 +3,23 @@ import Links from './Links'
 import Link from './Link'
 import nbsp from '../nbsp'
 
-const listen = nbsp('listen')
-const free = nbsp('free')
+// const listen = nbsp('listen')
+// const free = nbsp('free')
+
+const pre = nbsp('pre')
+const order = nbsp('order')
 
 const LinkLinks = Links.map(l => {
   l.showIcon = false
   return Link(l)
 })
 const YouTube = {
-  href: 'https://www.youtube.com/channel/UCQh5Sxu9Rvtaqg7Fo4xMogw',
-  icon: 'play_arrow',
-  showIcon: false,
+  href: 'https://store.partialsband.com',
   text: (
     <span>
-      {listen}
+      {pre}
       <br />
-      {free}
+      {order}
     </span>
   ),
   isExternal: true
