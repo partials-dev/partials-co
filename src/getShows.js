@@ -127,8 +127,7 @@ const fakeShows = [
   {
     date: 'Jun 24 2017',
     location: 'Athens, GA',
-    venue: 'AthFest',
-    link: 'https://www.facebook.com/events/393752004323423/'
+    venue: 'AthFest'
   }
 ]
 

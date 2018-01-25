@@ -1,10 +1,11 @@
 import PIXI from './PIXI'
 import BladeMask from './BladeMask'
 
+const random = Math.max(Math.random())
+
 class KaleidoscopeSprite extends PIXI.extras.TilingSprite {
-  static fromStreamTexture (streamTexture, width, height, debugMasks) {
-    const sprite = new KaleidoscopeSprite(streamTexture.texture, width, height)
-    streamTexture.onDone(() => setTimeout(() => sprite.dispatchLoaded()))
+  static fromTexture (texture, width, height, debugMasks) {
+    const sprite = new KaleidoscopeSprite(texture, width, height)
 
     sprite.anchor.set(0.5)
     if (!debugMasks) {
@@ -32,7 +33,7 @@ class KaleidoscopeSprite extends PIXI.extras.TilingSprite {
   }
 }
 
-const isEven = n => (n % 2) === 0
+const isEven = n => n % 2 === 0
 
 class KaleidoscopeContainer extends PIXI.Container {
   constructor (image, offset, center, i, numberOfBlades, debugMasks) {
@@ -44,7 +45,7 @@ class KaleidoscopeContainer extends PIXI.Container {
     }
     // this.pivot = this.center
     // this.position = center
-    this.rotation = offset * i - (Math.PI / 2)
+    this.rotation = offset * i - Math.PI / 2
     if (isEven(i)) this.mirror(offset, numberOfBlades)
   }
   mirror (offset, numberOfBlades) {
@@ -57,10 +58,22 @@ class KaleidoscopeContainer extends PIXI.Container {
 }
 
 class Blade {
-  constructor (i, streamTexture, app, center, numberOfBlades, debugMasks = false) {
-    const offset = ((2 * Math.PI) / numberOfBlades)
-    const image = KaleidoscopeSprite.fromStreamTexture(streamTexture, app.renderer.width * 2, app.renderer.height * 2, debugMasks)
-    const container = new KaleidoscopeContainer(image, offset, center, i, numberOfBlades, debugMasks)
+  constructor (i, texture, app, center, numberOfBlades, debugMasks = false) {
+    const offset = 2 * Math.PI / numberOfBlades
+    const image = KaleidoscopeSprite.fromTexture(
+      texture,
+      app.renderer.width * 2,
+      app.renderer.height * 2,
+      debugMasks
+    )
+    const container = new KaleidoscopeContainer(
+      image,
+      offset,
+      center,
+      i,
+      numberOfBlades,
+      debugMasks
+    )
     image.mask.draw(offset)
     // app.stage.addChild(container)
     this.image = image
@@ -68,6 +81,8 @@ class Blade {
 
     this.x = this.image.tilePosition.x
     this.y = this.image.tilePosition.y
+    this.image.tilePosition.x = random * this.image.width
+    this.image.tilePosition.y = random * this.image.height
   }
   update (center, delta, xPanSpeed, yPanSpeed, debugMasks, tilePosition) {
     if (!debugMasks) {

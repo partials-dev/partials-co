@@ -10,7 +10,6 @@ import Contact from './Contact'
 import Kaleidoscope from './Kaleidoscope'
 import Shows from './Shows'
 import Press from './Press'
-import Spinner from './Spinner'
 
 const routes = (
   <Router>

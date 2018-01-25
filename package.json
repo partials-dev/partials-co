@@ -27,7 +27,7 @@
     "dotenv": "^4.0.0",
     "lodash.includes": "^4.3.0",
     "oboe": "^2.1.4",
-    "pixi.js": "4.5.2",
+    "pixi.js": "^4.5.2",
     "preact": "^8.1.0",
     "preact-redux": "^2.0.1",
     "preact-render-to-string": "^3.6.1",
@@ -39,8 +39,7 @@
   },
   "scripts": {
     "start": "node sortSvgPaths.js && react-scripts start",
-    "build":
-      "node sortSvgPaths.js && react-scripts build && react-snapshot && node asyncScriptTagTransform.js && workbox generate:sw",
+    "build": "node sortSvgPaths.js && react-scripts build && react-snapshot && node asyncScriptTagTransform.js && workbox generate:sw",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "deploy": "npm run build && firebase deploy",

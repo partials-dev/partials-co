@@ -1,6 +1,12 @@
 import Kaleidoscope from '../Kaleidoscope'
 import Preact, { h } from 'preact' /** @jsx h */
 import Spinner from './Spinner'
+import PIXI from '../Kaleidoscope/PIXI'
+import queryString from 'query-string'
+
+const { kaleidoscope = 'kaleidoscope' } = queryString.parse(
+  window.location.search
+)
 
 class KaleidoscopeCanvas extends Preact.Component {
   constructor (...args) {
@@ -14,13 +20,14 @@ class KaleidoscopeCanvas extends Preact.Component {
   }
   componentDidMount () {
     const options = Object.assign({}, this.props, { view: this.canvas })
-    this.kaleidoscope = new Kaleidoscope(options)
-    this.setState({ mounted: true })
-    this.kaleidoscope.onLoadProgress(loadProgress => {
-      this.setState({ loadProgress })
-    })
-    this.kaleidoscope.onLoaded(() => {
+    PIXI.loader.add('kaleidoscope', `images/${kaleidoscope}.jpg`).load(() => {
+      this.kaleidoscope = new Kaleidoscope(options)
+      this.setState({ mounted: true })
+      // this.kaleidoscope.onLoadProgress(loadProgress => {
+      //   this.setState({ loadProgress })
+      // })
       this.setState({ loaded: true })
+      this.setState({ loadProgress: 1 })
     })
   }
   render (props, state) {

@@ -26,10 +26,9 @@ const YouTube = {
 
 const YouTubeLink = Link(YouTube)
 
-// const glossolalia = `G L O S S O L ${<span class='inverted-a'>A</span>} L I A`
-const glossol = 'GLOSSOL'
-const a = <span class="inverted-a">A</span>
-const lia = 'LIA'
+// const glossol = 'GLOSSOL'
+// const a = <span class="inverted-a">A</span>
+// const lia = 'LIA'
 
 const ListenOnYouTube = () => {
   const glossolalia = <span class="album-title">GLOSSOLALIA EP</span>

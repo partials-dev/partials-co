@@ -1,10 +1,26 @@
 import Blade from './Blade'
 import PIXI from './PIXI'
 import { resize, debouncedResize } from './resize'
-import SvgStreamTexture from './SvgStreamTexture'
-import cachedPaths from './cachedPaths'
 
 PIXI.settings.PRECISION_FRAGMENT = 'highp'
+
+// function countBackgroundPixels (pixels) {
+//   const pixelInterval = 100 // Rather than inspect every single pixel in the image inspect every 5th pixel
+//   let count = 0
+//   let i = -4
+//   const length = pixels.length
+//
+//   while ((i += pixelInterval * 4) < length) {
+//     const r = pixels[i]
+//     const g = pixels[i + 1]
+//     const b = pixels[i + 2]
+//     if (r === 226 && g === 226 && b === 226) {
+//       count++
+//     }
+//   }
+//
+//   return count
+// }
 
 const assignDefaults = options => {
   const defaultOptions = {
@@ -18,7 +34,7 @@ const assignDefaults = options => {
 class Kaleidoscope {
   constructor (options) {
     options = assignDefaults(options)
-    this.streamTexture = new SvgStreamTexture('sortedPaths.json', cachedPaths)
+    this.texture = PIXI.loader.resources['kaleidoscope'].texture
     this.slices = options.slices * 2
     this.xPanSpeed = options.xPanSpeed
     this.yPanSpeed = options.yPanSpeed
@@ -28,6 +44,7 @@ class Kaleidoscope {
     this.blades = []
     this.onLoadedListeners = []
     this.container = new PIXI.Container()
+    this.frameCount = 0
 
     const updateCenter = newCenter => {
       this.center = newCenter
@@ -36,16 +53,22 @@ class Kaleidoscope {
 
     updateCenter(resize(app, options.view))
 
-    window.addEventListener(
-      'resize',
-      () => debouncedResize(app, options.view).then(updateCenter)
+    window.addEventListener('resize', () =>
+      debouncedResize(app, options.view).then(updateCenter)
     )
 
     this.createBlades(options.debugMasks)
 
     const updateBlades = delta => {
       this.blades.forEach(blade => {
-        blade.update(this.center, delta, this.xPanSpeed, this.yPanSpeed, options.debugMasks, this.tilePosition)
+        blade.update(
+          this.center,
+          delta,
+          this.xPanSpeed,
+          this.yPanSpeed,
+          options.debugMasks,
+          this.tilePosition
+        )
       })
     }
     app.ticker.add(updateBlades)
@@ -62,7 +85,16 @@ class Kaleidoscope {
     this.blades.forEach(blade => blade.destroy())
     const blades = []
     for (let i = 0; i < this.slices; i++) {
-      blades.push(new Blade(i, this.streamTexture, this.app, this.center, this.slices, debugMasks))
+      blades.push(
+        new Blade(
+          i,
+          this.texture,
+          this.app,
+          this.center,
+          this.slices,
+          debugMasks
+        )
+      )
     }
 
     this.blades = blades
@@ -87,9 +119,6 @@ class Kaleidoscope {
   }
   dispatchLoaded () {
     this.onLoadedListeners.forEach(listener => listener())
-  }
-  onLoadProgress (listener) {
-    this.streamTexture.onUpdate(listener)
   }
 }
 

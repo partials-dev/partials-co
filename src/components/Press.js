@@ -7,10 +7,12 @@ const Biography = () => (
     <div class="heading-container">B I O G R A P H Y</div>
     <header>
       Partials, an underground psychedelic-dance act from Athens, GA, will
-      release their debut EP, Glossolalia, on April 6, 2018. Continuing the
-      tradition of Talking Heads and LCD Soundsystem, Partials combines electric
-      and electronic instruments with dance beats and paradoxical vocals. Their
-      live experience has often been described as otherworldly.
+      release their debut EP, Glossolalia, on April 6, 2018. The album will be
+      distributed by True Blue Records, a new label helmed by producer /
+      engineer Drew Vandenberg (Kishi Bashi, Of Montreal, Toro Y Moi).
+      Continuing the tradition of Talking Heads and LCD Soundsystem, Partials
+      combines electric and electronic instruments with dance beats and catchy,
+      paradoxical vocals.
     </header>
     <hr class="glyph" />
     <div class="left column">
@@ -122,10 +124,16 @@ const Images = () => {
   return (
     <section class="images">
       <a href="images/partials-glossolalia-ep-high-res.jpg">
-        <img src="images/partials-glossolalia-ep-low-res.jpg" />
+        <img
+          alt="Partials - Glossolalia Album Cover, Low Resolution"
+          src="images/partials-glossolalia-ep-low-res.jpg"
+        />
       </a>
       <a href="images/partials-press-photo-high-res.jpg">
-        <img src="images/partials-press-photo-low-res.jpg" />
+        <img
+          alt="The members of Partials dressed preposterously"
+          src="images/partials-press-photo-low-res.jpg"
+        />
       </a>
     </section>
   )

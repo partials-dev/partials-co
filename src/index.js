@@ -7,8 +7,11 @@ import { Provider } from 'preact-redux'
 import { createStore } from 'redux'
 import reducer from './reducers'
 import setupInteraction from './setupInteraction/index'
-import isBeingCrawledByReactSnapshot from './isBeingCrawledByReactSnapshot'
 import Raven from 'raven-js'
+
+console.log("You've found a secret. Reopen this page using one of these links:")
+console.log('https://partialsband.com/?kaleidoscope=glossolalia')
+console.log('https://partialsband.com/?kaleidoscope=luz')
 
 if (process.env.NODE_ENV === 'production') {
   Raven.config(

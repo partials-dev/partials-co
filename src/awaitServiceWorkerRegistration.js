@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-function registerServiceWorker() {
+function registerServiceWorker () {
   return new Promise((resolve, reject) => {
     if ('serviceWorker' in navigator) {
       // Delay registration until after the page has loaded, to ensure that our
       // precaching requests don't degrade the first visit experience.
       // See https://developers.google.com/web/fundamentals/instant-and-offline/service-worker/registration
-      window.addEventListener('load', function() {
+      window.addEventListener('load', function () {
         const serviceWorkerFilename = `service-worker.js`
         // console.log('registering ', serviceWorkerFilename)
         // Your service-worker.js *must* be located at the top-level directory relative to your site.
@@ -29,15 +29,15 @@ function registerServiceWorker() {
         // See https://github.com/slightlyoff/ServiceWorker/issues/468
         navigator.serviceWorker
           .register(serviceWorkerFilename)
-          .then(function(reg) {
+          .then(function (reg) {
             resolve(reg)
 
             // updatefound is fired if service-worker.js changes.
-            reg.onupdatefound = function() {
+            reg.onupdatefound = function () {
               // The updatefound event implies that reg.installing is set; see
               // https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-container-updatefound-event
               var installingWorker = reg.installing
-              installingWorker.onstatechange = function() {
+              installingWorker.onstatechange = function () {
                 switch (installingWorker.state) {
                   case 'installed':
                     if (navigator.serviceWorker.controller) {
@@ -65,7 +65,7 @@ function registerServiceWorker() {
               }
             }
           })
-          .catch(function(e) {
+          .catch(function (e) {
             console.error('Error during service worker registration:', e)
             reject(e)
           })
@@ -73,13 +73,6 @@ function registerServiceWorker() {
     }
   })
 }
-
-const last = ary => ary[ary.length - 1]
-
-// const getImageEnding = pathname => {
-//   const splitByHyphens = pathname.split('-')
-//   return last(splitByHyphens)
-// }
 
 let registrationPromise = null
 const awaitServiceWorkerRegistration = () => {
