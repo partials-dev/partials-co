@@ -121,11 +121,11 @@ const News = () => (
 const Images = () => {
   return (
     <section class="images">
-      <a href="images/partials-press-photo-high-res.jpg">
-        <img src="images/partials-press-photo-low-res.jpg" />
-      </a>
       <a href="images/partials-glossolalia-ep-high-res.jpg">
         <img src="images/partials-glossolalia-ep-low-res.jpg" />
+      </a>
+      <a href="images/partials-press-photo-high-res.jpg">
+        <img src="images/partials-press-photo-low-res.jpg" />
       </a>
     </section>
   )
