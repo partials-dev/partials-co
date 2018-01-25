@@ -1,7 +1,7 @@
 import { h } from 'preact' /** @jsx h */
 import updateTitle from '../updateTitle'
 import nbsp from '../nbsp'
-import GlyphList from './GlyphList'
+import { GlyphListItem } from './GlyphList'
 
 const booking = nbsp('BOOKING, ETC.')
 
@@ -122,16 +122,21 @@ const socialMediaItems = [
 
 const Contact = props => {
   updateTitle('Contact | Partials')
+  const emails = emailItems.map((item, index) => (
+    <GlyphListItem {...item} index={index} />
+  ))
+  const socialMedia = socialMediaItems.map((item, index) => (
+    <GlyphListItem {...item} index={index + emails.length} />
+  ))
+
   return (
     <main class="contact center-contents container">
       <div class="channels">
         <hr class="glyph" />
-        <div class="left column">
-          <GlyphList items={emailItems} />
-        </div>
-        <div class="right column">
-          <GlyphList items={socialMediaItems} />
-        </div>
+        <ol class="glyph-list">
+          <div class="left column">{emails}</div>
+          <div class="right column">{socialMedia}</div>
+        </ol>
         <hr class="glyph" />
       </div>
     </main>

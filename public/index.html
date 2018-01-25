@@ -150,21 +150,18 @@
       .big-text {
         font-size: 1.3em;
       }
-      .contact h2 {
-        font-weight: initial;
+      .contact {
+        line-height: 2em;
+        font-size: 2em;
       }
       .contact .channels {
-        width: 400px;
+        width: 800px;
       }
       .contact .channels .column {
         padding-bottom: 40px;
       }
-      .contact .channels .left.column > * {
-        width: 120px;
-        margin: auto;
-      }
-      .contact .channels .right.column > * {
-        width: 120px;
+      .contact .channels .column > * {
+        width: 240px;
         margin: auto;
       }
       .social-media-icons {
@@ -314,8 +311,9 @@
         clear: both;
       }
       hr.glyph {
+        height: 0;
         margin-top: 40px;
-        margin-bottom: 13px;
+        margin-bottom: 40px;
       }
       hr.glyph:after {
         content: "୭";
@@ -432,15 +430,8 @@
       }
       .glyph-list li:nth-child(1n):before {
         position: absolute;
-        margin-right: 0.75em;
+        content: attr(data-glyph);
       }
-      /* Actually set markers with pseudo element unicode */
-      .glyph-list li:nth-child(1):before {content: "७";}
-      .glyph-list li:nth-child(2):before {content: "៧";}
-      .glyph-list li:nth-child(3):before {content: "ⅶ";}
-      .glyph-list li:nth-child(4):before {content: "၇";}
-      .glyph-list li:nth-child(5):before {content: "七";}
-      .glyph-list li:nth-child(6):before {content: "௭";}
 
       @media only screen and (max-width: 640px){
         .press .right.column p:first-of-type {

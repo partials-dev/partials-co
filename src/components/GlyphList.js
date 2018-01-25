@@ -1,9 +1,12 @@
 import { h } from 'preact' /** @jsx h */
 
-export const GlyphListItem = ({ href, text, suffix }) => {
+const glyphs = ['७', '៧', 'ⅶ', '၇', '七', '௭']
+
+export const GlyphListItem = ({ href, text, suffix, index }) => {
   suffix = suffix ? `  (${suffix})` : ''
+  const glyph = glyphs[index]
   return (
-    <li>
+    <li data-glyph={glyph}>
       <span className="contents">
         <a href={href}>{text}</a>
         {suffix}
@@ -13,7 +16,7 @@ export const GlyphListItem = ({ href, text, suffix }) => {
 }
 
 const GlyphList = ({ items }) => {
-  items = items.map(item => <GlyphListItem {...item} />)
+  items = items.map((item, index) => <GlyphListItem {...item} index={index} />)
   return <ol class="glyph-list">{items}</ol>
 }
 
