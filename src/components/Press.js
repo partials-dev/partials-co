@@ -6,13 +6,26 @@ const Biography = () => (
   <section class="biography">
     <div class="heading-container">B I O G R A P H Y</div>
     <header>
-      Partials, an underground psychedelic-dance act from Athens, GA, will
-      release their debut EP, Glossolalia, on April 6, 2018. The album will be
-      distributed by True Blue Records, a new label helmed by producer /
-      engineer Drew Vandenberg (Kishi Bashi, Of Montreal, Toro Y Moi).
-      Continuing the tradition of Talking Heads and LCD Soundsystem, Partials
-      combines electric and electronic instruments with dance beats and catchy,
-      paradoxical vocals.
+      <p>
+        Partials, an underground psychedelic-dance act from Athens, Georgia,
+        will release their debut EP, Glossolalia, on April 6, 2018. The album
+        will be distributed by True Blue Records, a new label helmed by producer
+        / engineer Drew Vandenberg (Kishi Bashi, Of Montreal, Toro Y Moi).
+        Continuing the tradition of Talking Heads and LCD Soundsystem, Partials
+        combines electric and electronic instruments with dance beats and
+        catchy, paradoxical vocals.
+      </p>
+      <p>
+        <em>
+          Blurs the lines between humanity and technology [...] A fusion of
+          vastly different elements, Partials thrive on this dichotomy, an
+          artistic liaison that perpetually surprises.
+        </em>{' '}
+        —{' '}
+        <a href="http://clashmusic.com/news/premiere-partials-man-made-machine">
+          Clash Magazine
+        </a>
+      </p>
     </header>
     <hr class="glyph" />
     <div class="left column">
@@ -109,7 +122,7 @@ const Biography = () => (
 const newsItems = [
   {
     text: 'Clash Magazine premieres "Man Made Machine"',
-    href: 'http://www.clashmusic.com/',
+    href: 'http://clashmusic.com/news/premiere-partials-man-made-machine',
     suffix: "Jan '18"
   }
 ]
@@ -177,6 +190,8 @@ const Press = props => {
   return (
     <main class="container press">
       <Biography />
+      <hr />
+      <News />
       <hr />
       <Images />
       <hr />
