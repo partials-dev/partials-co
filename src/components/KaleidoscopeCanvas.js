@@ -56,7 +56,7 @@ class KaleidoscopeCanvas extends Preact.Component {
       filter: `blur(${blurRadius}px)`
     }
 
-    let containerClass = ''
+    let containerClass = 'full-screen'
     let spinner = null
     if (!state.loadProgress > 0) {
       containerClass = 'content full-width'
