@@ -26,11 +26,13 @@
       }
       body {
         margin: 0;
+        line-height: 1.5em;
         color: #333333;
         font-family: sans-serif;
         letter-spacing: 0.3em;
         overflow-y: hidden;
         background-color: #e3e3e3;
+        font-weight: lighter;
       }
       body .normal-spacing {
         letter-spacing: normal;
@@ -151,11 +153,28 @@
       .contact h2 {
         font-weight: initial;
       }
+      .contact .channels {
+        width: 400px;
+      }
+      .contact .channels .column {
+        padding-bottom: 40px;
+      }
+      .contact .channels .left.column > * {
+        width: 120px;
+        margin: auto;
+      }
+      .contact .channels .right.column > * {
+        width: 120px;
+        margin: auto;
+      }
       .social-media-icons {
-        /*padding-top: 1.5em;*/
+        margin-left: 1.5em;
+      }
+      .social-media-icon:first-of-type {
+        padding-left: 0;
       }
       .social-media-icon {
-        padding: 0 6px;
+        padding: 0 0.5em;
         height: 2em;
       }
 
@@ -164,6 +183,7 @@
         border: 2px solid black;
         font-size: 1.5em;
         background-color: rgba(227, 227, 227, 0.6);
+        font-weight: initial;
       }
       .call-to-action > span {
         display: inline-block;
@@ -266,26 +286,67 @@
         border-bottom: 1px solid #333333;
       }
       /* Press */
-      .press {
-        line-height: 1.5em;
+      .press, .contact {
         letter-spacing: normal;
         padding-left: 30px;
         padding-right: 30px;
       }
+      .press > *:last-child {
+        margin-bottom: 40px;
+      }
+      .press > * {
+        margin-left: 15px;
+        margin-right: 15px;
+      }
       .press header {
-        border-bottom: 1px solid #333333;
-        padding-bottom: 40px;
         padding-left: 0;
         padding-right: 0;
-        margin: 0 15px;
+      }
+      hr {
+        overflow: visible; /* For IE */
+        padding: 0;
+        margin-top: 40px;
+        margin-bottom: 40px;
+        border: none;
+        border-top: 1px solid #333;
+        color: #333;
+        text-align: center;
+        clear: both;
+      }
+      hr.glyph {
+        margin-top: 40px;
+        margin-bottom: 13px;
+      }
+      hr.glyph:after {
+        content: "୭";
+      }
+      hr:after {
+        display: inline-block;
+        position: relative;
+        top: -0.6em;
+        font-size: 1.5em;
+        padding: 0 0.25em;
+        background: #e3e3e3;
       }
       .press p:first-of-type {
-        padding-top: 40px;
         margin-top: 0;
+      }
+      .press section {
+        clear: both;
+      }
+      .column {
+        width: 50%;
+        float: left;
       }
       .press .column {
         padding-bottom: 40px;
         margin-bottom: 0;
+      }
+      .left.column {
+        padding-right: 15px;
+      }
+      .right.column {
+        padding-left: 15px;
       }
       .press .heading-container {
         padding-top: 60px;
@@ -299,25 +360,89 @@
         display: inline-block;
         width: 100%;
       }
-      .column {
-        width: 50%;
-        float: left;
-        padding: 0 15px;
+      .glyph-list {
+        padding-left: 0;
+        list-style:decimal url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7);
+        position: relative;
       }
+      .glyph-list li {
+        position: relative;
+        margin: 1em 0;
+      }
+      .glyph-list li .contents {
+        position: absolute;
+        top: 0;
+        left: 1.5em;
+        right: 0;
+        bottom: 0;
+      }
+      .press img {
+        width: 100%;
+        margin: 20px auto;
+      }
+
+      @media (max-width: 540px) {
+        .press .glyph-list a {
+          transition: color 0.2s ease-in-out;
+          text-decoration: underline;
+          display: inline;
+        }
+        .press .glyph-list a:hover {
+          color: black;
+        }
+        .press .glyph-list a:before {
+          display: none;
+          background-color: #333;
+          content: '';
+          height: 1px;
+          position: absolute;
+          bottom: -1px;
+          left: 50%;
+          transform: translateX(-50%);
+          transition: width 0.3s ease-in-out;
+          width: 100%;
+        }
+      }
+      .glyph-list a {
+        display: inline-block;
+        position: relative;
+        text-decoration: none;
+      }
+      .glyph-list a:before {
+        background-color: #333;
+        content: '';
+        height: 1px;
+        position: absolute;
+        bottom: -1px;
+        left: 50%;
+        transform: translateX(-50%);
+        transition: width 0.3s ease-in-out;
+        width: 100%;
+      }
+      .glyph-list a:hover:before {
+        width: 0;
+      }
+      .glyph-list li:nth-child(1n):before {
+        margin-right: 0.75em;
+      }
+      /* Actually set markers with pseudo element unicode */
+      .glyph-list li:nth-child(1):before {content: "፯";}
+      .glyph-list li:nth-child(2):before {content: "៧";}
+      .glyph-list li:nth-child(3):before {content: "ⅶ";}
+      .glyph-list li:nth-child(4):before {content: "၇";}
+      .glyph-list li:nth-child(5):before {content: "七";}
+      .glyph-list li:nth-child(6):before {content: "௭";}
+
       @media only screen and (max-width: 640px){
         .press .right.column p:first-of-type {
           padding-top: 0;
         }
-        .press .column {
+        .column {
           float: none !important;
           width: auto !important;
-        }
-        .press .left.column {
-          padding-bottom: 0;
-        }
-        .press .right.column {
-          margin: 0;
-          padding-bottom: 40px;
+          padding-left: 0 !important;
+          padding-right: 0 !important;
+          padding-bottom: 0 !important;
         }
         .press .heading-container {
           margin: 0 10%;
@@ -335,13 +460,6 @@
           padding-top: 40px;
           padding-bottom: 5px;
           font-size: 1.5em;
-        }
-        .press header {
-          border-bottom: 1px solid #333333;
-          margin: 0 15px;
-        }
-        .press p:first-of-type {
-          padding-top: 40px;
         }
       }
       /* Spinner */
