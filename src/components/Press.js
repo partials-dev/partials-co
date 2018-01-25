@@ -3,7 +3,7 @@ import updateTitle from '../updateTitle'
 import GlyphList from './GlyphList'
 
 const Biography = () => (
-  <section>
+  <section class="biography">
     <div class="heading-container">B I O G R A P H Y</div>
     <header>
       Partials, an underground psychedelic-dance act from Athens, GA, will
@@ -113,14 +113,14 @@ const newsItems = [
 ]
 
 const News = () => (
-  <section>
+  <section class="news">
     <GlyphList items={newsItems} />
   </section>
 )
 
 const Images = () => {
   return (
-    <section>
+    <section class="images">
       <a href="images/partials-press-photo-high-res.jpg">
         <img src="images/partials-press-photo-low-res.jpg" />
       </a>
@@ -159,7 +159,7 @@ const memberItems = [
 ]
 
 const Members = () => (
-  <section>
+  <section class="members">
     <GlyphList items={memberItems} />
   </section>
 )

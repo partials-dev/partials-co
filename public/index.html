@@ -370,15 +370,23 @@
         margin: 1em 0;
       }
       .glyph-list li .contents {
-        position: absolute;
-        top: 0;
-        left: 1.5em;
-        right: 0;
-        bottom: 0;
+        margin-left: 1.5em;
       }
-      .press img {
-        width: 100%;
+      .press p {
         margin: 20px auto;
+      }
+      .press .images a {
+        margin: 20px auto;
+        display: block;
+      }
+      .press .images img {
+        width: 100%;
+      }
+      .press .images a:first-of-type {
+        margin-top: 0;
+      }
+      .press .images a:last-of-type {
+        margin-bottom: 0;
       }
 
       @media (max-width: 540px) {
@@ -423,10 +431,11 @@
         width: 0;
       }
       .glyph-list li:nth-child(1n):before {
+        position: absolute;
         margin-right: 0.75em;
       }
       /* Actually set markers with pseudo element unicode */
-      .glyph-list li:nth-child(1):before {content: "፯";}
+      .glyph-list li:nth-child(1):before {content: "७";}
       .glyph-list li:nth-child(2):before {content: "៧";}
       .glyph-list li:nth-child(3):before {content: "ⅶ";}
       .glyph-list li:nth-child(4):before {content: "၇";}
