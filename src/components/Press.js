@@ -178,8 +178,6 @@ const Press = props => {
     <main class="container press">
       <Biography />
       <hr />
-      <News />
-      <hr />
       <Images />
       <hr />
       <Members />
