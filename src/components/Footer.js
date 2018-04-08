@@ -32,26 +32,26 @@ const YouTubeLink = Link(YouTube)
 // const lia = 'LIA'
 
 const ListenOnYouTube = () => {
-  const glossolalia = <span class="album-title">GLOSSOLALIA EP</span>
+  const glossolalia = <span class='album-title'>GLOSSOLALIA EP</span>
   return (
     <a
-      href="https://store.partialsband.com"
-      class="call-to-action hide-on-small"
+      href='https://store.partialsband.com'
+      class='call-to-action hide-on-small'
     >
-      <span class="album-title">{glossolalia}</span>
-      <span class="inverted-button normal-spacing">
-        <span class="link-text">{nbsp('P R E - O R D E R  N O W')}</span>
+      <span class='album-title'>{glossolalia}</span>
+      <span class='inverted-button normal-spacing'>
+        <span class='link-text'>{nbsp('O R D E R  N O W')}</span>
       </span>
     </a>
   )
 }
 
 const tabMenuItem = (component, index) => {
-  return <span class="tab-menu-item center-contents">{component}</span>
+  return <span class='tab-menu-item center-contents'>{component}</span>
 }
 
 const TabMenu = () => (
-  <span class="tab-menu show-on-small center-contents call-to-action normal-spacing-on-extra-small bigger-links-on-extra-small">
+  <span class='tab-menu show-on-small center-contents call-to-action normal-spacing-on-extra-small bigger-links-on-extra-small'>
     {tabMenuItem(LinkLinks[0], 0)}
     {tabMenuItem(LinkLinks[1], 1)}
     {tabMenuItem(YouTubeLink, 2)}
@@ -61,7 +61,7 @@ const TabMenu = () => (
 )
 
 const Footer = () => (
-  <div class="footer full-width center-contents">
+  <div class='footer full-width center-contents'>
     <ListenOnYouTube />
     <TabMenu />
   </div>

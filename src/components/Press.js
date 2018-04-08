@@ -3,32 +3,45 @@ import updateTitle from '../updateTitle'
 import GlyphList from './GlyphList'
 
 const Biography = () => (
-  <section class="biography">
-    <div class="heading-container">B I O G R A P H Y</div>
+  <section class='biography'>
+    <div class='heading-container'>B I O G R A P H Y</div>
     <header>
       <p>
-        Partials, an underground psychedelic-dance act from Athens, Georgia,
-        will release their debut EP, Glossolalia, on April 6, 2018. The album
-        will be distributed by True Blue Records, a new label helmed by producer
-        / engineer Drew Vandenberg (Kishi Bashi, Of Montreal, Toro Y Moi).
-        Continuing the tradition of Talking Heads and LCD Soundsystem, Partials
-        combines electric and electronic instruments with dance beats and
-        catchy, paradoxical vocals.
+        <em>Glossolalia</em>, the debut EP from psychedelic-dance act Partials,
+        is out now. The album is distributed by True Blue Records, a new label
+        helmed by producer / engineer Drew Vandenberg (Kishi Bashi, Of Montreal,
+        Toro Y Moi). Continuing the tradition of Talking Heads and LCD
+        Soundsystem, Partials combines electric and electronic instruments with
+        dance beats and catchy, paradoxical vocals.
       </p>
       <p>
         <em>
           Blurs the lines between humanity and technology [...] A fusion of
           vastly different elements, Partials thrive on this dichotomy, an
           artistic liaison that perpetually surprises.
-        </em>{' '}
+        </em>
         —{' '}
-        <a href="http://clashmusic.com/news/premiere-partials-man-made-machine">
+        <a href='http://clashmusic.com/news/premiere-partials-man-made-machine'>
           Clash Magazine
         </a>
       </p>
+      <p>
+        <em>
+          The funk and Afrobeat influences present make Talking Heads a go-to
+          reference point, but contemporaries like Foals, Sylvan Esso and Lucius
+          provide more appropriate models for how an “alternative” band like
+          Partials could utilize its potential and find crossover success in the
+          modern day. Comparisons aside, though, Glossolalia is a thrilling
+          listen that should translate easily across audiences.
+        </em>{' '}
+        —{' '}
+        <a href='http://www.flagpole.com/music/record-reviews/2018/04/04/partials-em-glossolalia-em-ep-review'>
+          Flagpole Magazine
+        </a>
+      </p>
     </header>
-    <hr class="glyph" />
-    <div class="left column">
+    <hr class='glyph' />
+    <div class='left column'>
       <p>
         Glossolalia (meaning “speaking in tongues”) is a fitting title for
         Partials’ debut recording. The word has a strong association with the
@@ -76,7 +89,7 @@ const Biography = () => (
         bass drum.
       </p>
     </div>
-    <div class="right column">
+    <div class='right column'>
       <p>
         The playful funk of “Man Made Machine” builds slowly, each instrument
         coming in separately to build up a frisky, inescapable groove. Warm bass
@@ -124,28 +137,46 @@ const newsItems = [
     text: 'Clash Magazine premieres "Man Made Machine"',
     href: 'http://clashmusic.com/news/premiere-partials-man-made-machine',
     suffix: "Jan '18"
+  },
+  {
+    text: 'Bandcamp features Glossolalia as an Essential Release',
+    href:
+      'https://daily.bandcamp.com/2018/04/06/bandcamp-essential-releases-april-6-2018/',
+    suffix: "Apr '18"
+  },
+  {
+    text: 'The Vinyl District gives Glossolalia a B+ rating',
+    href:
+      'http://www.thevinyldistrict.com/the-tvd-record-store-club/2018/04/graded-on-a-curve-new-in-stores-april-2018-part-one/',
+    suffix: "Apr '18"
+  },
+  {
+    text: 'Flagpole Magazine reviews Glossolalia',
+    href:
+      'http://www.flagpole.com/music/record-reviews/2018/04/04/partials-em-glossolalia-em-ep-review',
+    suffix: "Apr '18"
   }
 ]
 
 const News = () => (
-  <section class="news">
+  <section class='news'>
     <GlyphList items={newsItems} />
   </section>
 )
 
 const Images = () => {
   return (
-    <section class="images">
-      <a href="images/partials-glossolalia-ep-high-res.jpg">
+    <section class='images'>
+      <a href='images/partials-glossolalia-ep-high-res.jpg'>
         <img
-          alt="Partials - Glossolalia Album Cover, Low Resolution"
-          src="images/partials-glossolalia-ep-low-res.jpg"
+          alt='Partials - Glossolalia Album Cover, Low Resolution'
+          src='images/partials-glossolalia-ep-low-res.jpg'
         />
       </a>
-      <a href="images/partials-press-photo-high-res.jpg">
+      <a href='images/partials-press-photo-high-res.jpg'>
         <img
-          alt="The members of Partials dressed preposterously"
-          src="images/partials-press-photo-low-res.jpg"
+          alt='The members of Partials dressed preposterously'
+          src='images/partials-press-photo-low-res.jpg'
         />
       </a>
     </section>
@@ -180,7 +211,7 @@ const memberItems = [
 ]
 
 const Members = () => (
-  <section class="members">
+  <section class='members'>
     <GlyphList items={memberItems} />
   </section>
 )
@@ -188,7 +219,7 @@ const Members = () => (
 const Press = props => {
   updateTitle('Press | Partials')
   return (
-    <main class="container press">
+    <main class='container press'>
       <Biography />
       <hr />
       <News />
