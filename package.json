@@ -39,8 +39,7 @@
   },
   "scripts": {
     "start": "node sortSvgPaths.js && react-scripts start",
-    "build":
-      "node sortSvgPaths.js && react-scripts build && react-snapshot && node asyncScriptTagTransform.js && workbox generate:sw",
+    "build": "node sortSvgPaths.js && react-scripts build && react-snapshot && node asyncScriptTagTransform.js && workbox generate:sw",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "deploy": "npm run build && firebase deploy",

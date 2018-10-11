@@ -2,28 +2,47 @@
   "hosting": {
     "public": "build",
     "cleanUrls": true,
-    "rewrites": [{
-      "source": "**",
-      "destination": "/index.html"
-    }],
-    "headers": [{
-      "source" : "/",
-      "headers" : [{
-        "key" : "Cache-Control",
-        "value" : "no-cache"
-      }]
-    }, {
-      "source" : "/**/*",
-      "headers" : [{
-        "key" : "Cache-Control",
-        "value" : "max-age=31540000"
-      }]
-    }, {
-      "source" : "**/service-worker.js",
-      "headers" : [{
-        "key" : "Cache-Control",
-        "value" : "max-age=0"
-      }]
-    }]
+    "redirects": [
+      {
+        "source": "/incredible-speed-video",
+        "destination": "https://youtu.be/2a263G39upQ",
+        "type": 302
+      }
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ],
+    "headers": [
+      {
+        "source": "/",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache"
+          }
+        ]
+      },
+      {
+        "source": "/**/*",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=31540000"
+          }
+        ]
+      },
+      {
+        "source": "**/service-worker.js",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=0"
+          }
+        ]
+      }
+    ]
   }
 }

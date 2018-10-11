@@ -6,8 +6,8 @@ import nbsp from '../nbsp'
 // const listen = nbsp('listen')
 // const free = nbsp('free')
 
-const pre = nbsp('pre')
 const order = nbsp('order')
+const ep = nbsp('ep')
 
 const LinkLinks = Links.map(l => {
   l.showIcon = false
@@ -17,9 +17,9 @@ const YouTube = {
   href: 'https://store.partialsband.com',
   text: (
     <span>
-      {pre}
-      <br />
       {order}
+      <br />
+      {ep}
     </span>
   ),
   isExternal: true
