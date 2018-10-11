@@ -26,6 +26,15 @@
         ]
       },
       {
+        "source": "/incredible-speed-video",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache"
+          }
+        ]
+      },
+      {
         "source": "/**/*",
         "headers": [
           {
