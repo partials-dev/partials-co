@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "partialsband-com"
+    "default": "partialsband-com",
+    "production": "partialsband-com"
   }
 }
